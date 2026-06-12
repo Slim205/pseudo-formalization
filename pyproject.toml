@@ -1,0 +1,15 @@
+[project]
+name = "pseudo-formalization"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "datasets",
+    "matplotlib",
+    "numpy",
+    "openai",
+    "pandas",
+    "python-dotenv",
+    "scikit-learn",
+    "seaborn",
+    "tqdm",
+]

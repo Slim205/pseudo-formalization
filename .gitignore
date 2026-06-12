@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets
+.env
+
+# macOS
+.DS_Store
+
+# Run outputs
+outputs/
+
+# Downloaded papers — NOT redistributed; fetch via scripts/download_arxiv_pdfs.py
+data/arxiv_pdfs/
+data/arxiv_grading_bench_pdf_files/
+arXiv-*.pdf
+
+# Local scratch / figure working files
+playground/
+data/hf_backup_arxivmathgradingbench/
+figures/
+*.key
+
+# uv lockfile (deps declared in pyproject.toml; lock not pinned here)
+uv.lock
