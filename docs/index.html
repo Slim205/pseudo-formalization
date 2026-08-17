@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pseudo-Formalization for Automatic Proof Verification</title>
+<meta name="description" content="Pseudo-Formalization (PF) is a proof format that captures the modularity and precision of formal proofs while retaining the flexibility of natural language.">
+
+<!-- Open Graph / social preview. Set the absolute URL once the host is known. -->
+<meta property="og:title" content="Pseudo-Formalization for Automatic Proof Verification">
+<meta property="og:description" content="A proof format with the modularity of formal proofs and the flexibility of natural language, verified block by block.">
+<meta property="og:type" content="website">
+<meta name="citation_arxiv_id" content="2605.20531">
+<meta property="og:image" content="static/fig1_web.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>&#9633;</text></svg>">
+
+<style>
+:root {
+  --bg:#ffffff;          /* white so figure backgrounds do not show as plates */
+  /* Deliberately single-theme: white-background figures and the yellow
+     error highlights both depend on a light ground. */
+  --ink:#17181c;
+  --muted:#63656d;
+  --line:#e4e1da;
+  --panel:#fafaf8;       /* faint, for chips only — figures sit on --bg */
+  --accent:#1f4e5f;      /* the dark teal of the PF curve in Figure 1 */
+  --accent-soft:#eaf1f3;
+}
+
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body {
+  margin:0; background:var(--bg); color:var(--ink);
+  font:17px/1.65 ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
+}
+main { max-width:52rem; margin:0 auto; padding:4.5rem 1.5rem 6rem; }
+
+/* ---- header ---- */
+header { text-align:center; padding-bottom:2.5rem; border-bottom:1px solid var(--line); }
+h1 {
+  font-size:clamp(1.75rem, 4.2vw, 2.6rem); line-height:1.15;
+  margin:0 0 1.5rem; letter-spacing:-.015em; text-wrap:balance;
+}
+.authors { font-size:1.02rem; margin:0 0 .5rem; line-height:1.9; }
+.authors a { color:var(--ink); text-decoration:none;
+  border-bottom:1px solid var(--line); }
+.authors a:hover { border-bottom-color:var(--accent); }
+sup { color:var(--accent); font-size:.72em; }
+.affil { color:var(--muted); font-size:.98rem; margin:0 0 .35rem; }
+.eq { color:var(--muted); font-size:.85rem; margin:0; }
+
+/* ---- link row ---- */
+.links {
+  display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center;
+  margin:2rem 0 0;
+}
+.links a {
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:.5rem 1rem; border-radius:999px;
+  border:1px solid var(--line); background:var(--panel);
+  color:var(--ink); text-decoration:none;
+  font:500 .88rem/1 ui-sans-serif,system-ui,-apple-system,sans-serif;
+  transition:border-color .15s, color .15s, background .15s;
+}
+.links a:hover { border-color:var(--accent); color:var(--accent); }
+.links a[aria-disabled="true"] {
+  opacity:.5; pointer-events:none;
+}
+.links svg { width:15px; height:15px; flex:none; }
+
+
+/* ---- sections ---- */
+section { padding-top:3.25rem; }
+h2 {
+  font:600 .78rem/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--accent);
+  margin:0 0 1rem;
+}
+section > p { margin:0 0 1.15rem; }
+section > p:last-child { margin-bottom:0; }
+code, .mono {
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.88em;
+}
+.lede { font-size:1.06rem; }
+
+/* Figures are white-background PNGs and the page is light, so they need no
+   plate. Wrap paper figures in <figure class="fig">. */
+
+/* Figures are white-background PNGs and the page is light, so they need no
+   plate. Wrap paper figures in <figure class="fig">. */
+.fig { margin:1.75rem 0; }
+.fig img { display:block; width:100%; height:auto; border-radius:8px; }
+.fig figcaption { color:var(--muted); font-size:.88rem; margin-top:.7rem; }
+
+/* ---- data section: tabs ---- */
+.tabs { display:flex; gap:.4rem; margin:0 0 1.5rem; flex-wrap:wrap; }
+.tabs button {
+  font:500 .86rem/1 ui-sans-serif,system-ui,-apple-system,sans-serif;
+  padding:.5rem .95rem; border-radius:999px; cursor:pointer;
+  border:1px solid var(--line); background:var(--panel); color:var(--ink);
+}
+.tabs button[aria-selected="true"] {
+  border-color:var(--accent); color:var(--accent); background:var(--accent-soft);
+}
+.pane[hidden] { display:none; }
+.hint { color:var(--muted); font-size:.9rem; margin:0 0 1.25rem; }
+
+/* ---- FirstProof browser ---- */
+.picker { display:flex; flex-wrap:wrap; gap:.35rem; margin:0 0 1.1rem; }
+.picker button {
+  font:500 .8rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  padding:.4rem .6rem; border-radius:6px; cursor:pointer;
+  border:1px solid var(--line); background:var(--panel); color:var(--muted);
+}
+.picker button[aria-current="true"] {
+  border-color:var(--accent); color:var(--accent); background:var(--accent-soft);
+}
+.picker button .n {
+  font-size:.72em; margin-left:.35rem; opacity:.75;
+}
+.proofbox {
+  /* vertical scroll only — a wide equation scrolls inside its own container
+     (see mjx-container below) rather than scrolling the whole proof sideways,
+     which is what made this feel two-dimensional */
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.25rem 0; margin:0;
+  max-height:34rem; overflow-y:auto; overflow-x:hidden;
+  font-size:.94rem; line-height:1.65;
+  /* no side padding, so the proof text keeps the same left edge as the rest
+     of the page */
+  scrollbar-gutter:stable;
+}
+.proofbox .head { font-weight:600; margin:1.6rem 0 .5rem; font-size:1.02em; }
+.proofbox .envhead { font-weight:600; margin:1.3rem 0 .35rem; }
+.proofbox .ref { color:var(--accent); }
+.proofbox .bullet { color:var(--muted); margin-right:.35rem; }
+.proofbox p { margin:.7rem 0; }
+/* display equations are the one thing that can exceed the column; let them
+   scroll on their own rather than widening the page */
+.proofbox mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden;
+  padding:.2rem 0; }
+.problembox {
+  border-left:3px solid var(--accent); padding:.2rem 0 .2rem 1rem;
+  margin:0 0 1.5rem; font-size:.94rem;
+}
+.problembox .lbl, .errnote .lbl {
+  font:600 .68rem/1.4 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted); display:block; margin-bottom:.3rem;
+}
+mark.hl {
+  display:block; position:relative; background:#fdf3d8; color:inherit;
+  border-left:3px solid #e2b53c; border-radius:0 5px 5px 0;
+  padding:.5rem .7rem .5rem 2.4rem; margin:.9rem 0 0;
+}
+mark.hl > p:first-child { margin-top:0; }
+mark.hl > p:last-child { margin-bottom:0; }
+.hlnum {
+  position:absolute; left:.55rem; top:.55rem;
+  display:inline-block; min-width:1.3em; height:1.3em; line-height:1.3em;
+  text-align:center; border-radius:4px; background:#b8891c; color:#fff;
+  font:600 .7rem/1.3em ui-sans-serif,system-ui,sans-serif;
+}
+/* the referee-derived description, sitting directly under its span */
+.errnote {
+  border-left:3px solid var(--accent); background:var(--accent-soft);
+  border-radius:0 5px 5px 0; padding:.7rem .9rem; margin:0 0 .9rem 0;
+  font-size:.88rem;
+}
+.errnote p:first-of-type { margin-top:0; }
+.errnote p:last-child { margin-bottom:0; }
+.clean {
+  color:var(--muted); font-size:.9rem; border-left:3px solid var(--line);
+  padding:.5rem 0 .5rem 1rem; margin:0 0 1.25rem;
+}
+
+/* ---- arXiv table ---- */
+/* matches .proofbox: hairlines top and bottom, full content width, vertical
+   scroll only */
+.tablewrap {
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  max-height:34rem; overflow-y:auto; overflow-x:hidden;
+  scrollbar-gutter:stable;
+}
+table.arxiv { border-collapse:collapse; width:100%; font-size:.85rem;
+  table-layout:fixed; }
+table.arxiv th {
+  position:sticky; top:0; z-index:1; background:var(--bg); text-align:left;
+  font:600 .7rem/1.4 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--muted);
+  padding:.7rem .8rem .55rem 0; border-bottom:1px solid var(--line);
+}
+table.arxiv th + th, table.arxiv td + td { padding-left:.9rem; }
+table.arxiv td { padding:.7rem .8rem .7rem 0; vertical-align:top;
+  border-bottom:1px solid var(--line); overflow-wrap:anywhere; }
+table.arxiv col.c-paper { width:22%; }
+table.arxiv col.c-cat   { width:11%; }
+table.arxiv col.c-note  { width:52%; }
+table.arxiv col.c-loc   { width:15%; }
+table.arxiv tr:last-child td { border-bottom:0; }
+table.arxiv a { color:var(--accent); text-decoration:none; }
+table.arxiv a:hover { text-decoration:underline; }
+table.arxiv .cat { color:var(--muted); white-space:nowrap; }
+table.arxiv .ttl { color:var(--muted); display:block; margin-top:.2rem;
+  line-height:1.4; }
+table.arxiv .loc { font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.92em; line-height:1.45; }
+
+footer {
+  margin-top:4.5rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  color:var(--muted); font-size:.85rem; text-align:center;
+}
+footer a { color:var(--muted); }
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+  <h1>Pseudo-Formalization for<br>Automatic Proof Verification</h1>
+
+  <p class="authors">
+    Slim Barkallah<sup>*</sup>,
+    Luke Bailey<sup>*</sup>,
+    Kaiyue Wen<sup>*</sup>,
+    Mohammed Abouzaid,
+    Tengyu Ma
+  </p>
+  <p class="affil">Stanford University</p>
+  <p class="eq"><sup>*</sup> Equal contribution</p>
+
+  <nav class="links">
+    <a href="https://arxiv.org/abs/2605.20531">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/></svg>
+      arXiv
+    </a>
+    <a href="https://github.com/Slim205/pseudo-formalization">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7 0-.7 0-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+      Code
+    </a>
+    <a href="https://huggingface.co/datasets/LukeBailey181Pub/ArxivMathGradingBench">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5" rx="8" ry="3"/>
+        <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/>
+        <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+      ArxivMathGradingBench
+    </a>
+    <a href="https://huggingface.co/datasets/LukeBailey181Pub/FirstProofGradingBench">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5" rx="8" ry="3"/>
+        <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/>
+        <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+      FirstProofGradingBench
+    </a>
+  </nav>
+</header>
+
+<section id="summary">
+  <h2>Summary</h2>
+  <p class="lede">Fully formal proofs are easy to verify because they are
+  unambiguous and modular, but most proofs &mdash; particularly those written by
+  AI systems &mdash; have neither property, and translating them into a formal
+  language remains out of reach in many frontier math settings.</p>
+  <p><b>Pseudo-Formalization</b> (PF) is a proof format that keeps the
+  modularity and precision of formal proofs while staying in natural language. A
+  Pseudo-Formal proof is decomposed into self-contained modules, each stating its
+  premises, conclusion, and proof. To verify a natural language proof, an LLM
+  translates it into Pseudo-Formal form and then checks each module
+  independently &mdash; an algorithm we call <b>Block Verification</b> (BV).</p>
+  <p>PF&nbsp;+&nbsp;BV pareto-dominates LLM-as-judge baselines on error-finding
+  precision and recall across three benchmarks spanning olympiad and
+  research-level mathematics.</p>
+
+  <figure class="fig">
+    <img src="static/fig1_web.png"
+         alt="Left: a natural language proof is translated into a Pseudo-Formal
+              tree of blocks, then each block is verified independently. Right:
+              precision against recall on Hard2Verify, ArxivMathGradingBench and
+              FirstProofGradingBench, with Pseudo-Formalization above the
+              LLM-as-judge baseline on all three.">
+    <figcaption><b>Left:</b> a natural language proof is translated into a
+    Pseudo-Formal representation and each block is verified independently.
+    <b>Right:</b> precision against recall on all three benchmarks, each curve
+    tracing multiple independent runs aggregated per problem.
+    Pseudo-Formalization achieves higher recall at every precision level.</figcaption>
+  </figure>
+</section>
+
+<section id="data">
+  <h2>Data</h2>
+  <p>We release two benchmarks. <b>ArxivMathGradingBench</b> is 100 arXiv
+  mathematics papers whose authors later flagged and corrected an error, giving
+  109 known errors located by the authors' own revision notes.
+  <b>FirstProofGradingBench</b> is 16 AI proof attempts at research problems,
+  refereed by expert mathematicians, where the ground truth says not just where
+  each error is but what it is.</p>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true"  data-pane="fp">FirstProofGradingBench</button>
+    <button role="tab" aria-selected="false" data-pane="ax">ArxivMathGradingBench</button>
+  </div>
+
+  <div class="pane" id="pane-fp">
+    <p class="hint">Pick a proof and read it through. Highlighted passages are
+    the annotated errors, each followed by what the referees found wrong.</p>
+    <div class="picker" id="fp-picker"></div>
+    <div class="problembox" id="fp-problem"></div>
+    <div id="fp-clean"></div>
+    <div class="proofbox" id="fp-proof"></div>
+  </div>
+
+  <div class="pane" id="pane-ax" hidden>
+    <p class="hint">Each row is a paper whose author corrected an error in a
+    later version. The comment is the author's revision note verbatim; the
+    location is extracted from it.</p>
+    <div class="tablewrap">
+      <table class="arxiv">
+      <colgroup><col class="c-paper"><col class="c-cat"><col class="c-note"><col class="c-loc"></colgroup>
+      <thead><tr>
+        <th>Paper</th><th>Category</th><th>Author's revision note</th><th>Error</th>
+      </tr></thead><tbody id="ax-body"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Correspondence:
+  <a href="mailto:slimbark@stanford.edu">slimbark</a>,
+  <a href="mailto:ljbailey@stanford.edu">ljbailey</a>,
+  <a href="mailto:kaiyuew@stanford.edu">kaiyuew</a>,
+  <a href="mailto:abouzaid@stanford.edu">abouzaid</a>,
+  <a href="mailto:tengyuma@stanford.edu">tengyuma</a>
+  &nbsp;@stanford.edu</p>
+</footer>
+
+</main>
+
+<script src="static/data.js"></script>
+<script>
+// MathJax must not typeset on load: the proof HTML is injected afterwards.
+// `mathReady` resolves in pageReady, i.e. once the bundle has actually loaded.
+// Guarding on `window.MathJax` alone is not enough — before the bundle arrives
+// window.MathJax is THIS config object: truthy, but with no .typesetPromise, so
+// a naive check silently no-ops forever.
+let _resolveMath;
+const mathReady = new Promise(r => { _resolveMath = r; });
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    processEscapes: true,
+    macros: (window.PFDATA && window.PFDATA.macros) || {}
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+  startup: {
+    typeset: false,
+    pageReady() { return MathJax.startup.defaultPageReady().then(_resolveMath); }
+  }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+(function () {
+  const D = window.PFDATA;
+  if (!D) return;
+
+  /* typeset a node once MathJax is genuinely up; clear first so re-renders do
+     not accumulate stale output */
+  function typeset(el) {
+    return mathReady.then(() => {
+      MathJax.typesetClear([el]);
+      return MathJax.typesetPromise([el]);
+    }).catch(e => console.error('MathJax:', e));
+  }
+
+  /* ---------- tabs ---------- */
+  document.querySelectorAll('.tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(b =>
+        b.setAttribute('aria-selected', String(b === btn)));
+      document.getElementById('pane-fp').hidden = btn.dataset.pane !== 'fp';
+      document.getElementById('pane-ax').hidden = btn.dataset.pane !== 'ax';
+    });
+  });
+
+  /* ---------- FirstProofGradingBench ---------- */
+  const picker  = document.getElementById('fp-picker');
+  const probBox = document.getElementById('fp-problem');
+  const cleanBox= document.getElementById('fp-clean');
+  const proofBox= document.getElementById('fp-proof');
+
+  function select(i) {
+    const e = D.firstproof[i];
+    picker.querySelectorAll('button').forEach((b, j) =>
+      b.setAttribute('aria-current', String(j === i)));
+
+    probBox.innerHTML = '<span class="lbl">Problem</span>' + e.problem_html;
+    cleanBox.innerHTML = e.errors.length ? '' :
+      '<p class="clean">No annotated errors &mdash; the referees judged this ' +
+      'proof correct. Anything a verifier reports here is a false positive.</p>';
+    proofBox.innerHTML = e.proof_html;
+    typeset(probBox); typeset(proofBox);
+  }
+
+  D.firstproof.forEach((e, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = e.id + (e.errors.length
+      ? `<span class="n">${e.errors.length}</span>`
+      : '<span class="n">&#10003;</span>');
+    b.title = e.errors.length
+      ? `${e.errors.length} annotated error${e.errors.length > 1 ? 's' : ''}`
+      : 'no errors — referees judged this proof correct';
+    b.addEventListener('click', () => select(i));
+    picker.appendChild(b);
+  });
+  select(0);
+
+  /* ---------- ArxivMathGradingBench ---------- */
+  const esc = t => String(t == null ? '' : t)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  document.getElementById('ax-body').innerHTML = D.arxiv.map(r => `
+    <tr>
+      <td><a href="${esc(r.url)}">${esc(r.id)}</a>${
+        r.version ? ' <span class="cat">' + esc(r.version) + '</span>' : ''}
+        <div class="ttl">${esc(r.title)}</div></td>
+      <td class="cat">${esc(r.category)}</td>
+      <td>${esc(r.comment)}</td>
+      <td class="loc">${esc(r.location)}</td>
+    </tr>`).join('');
+})();
+</script>
+</body>
+</html>
