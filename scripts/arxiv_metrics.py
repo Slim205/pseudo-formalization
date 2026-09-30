@@ -271,7 +271,7 @@ def _boot(papers, k, n, rng, boot):
     ps, rs = [], []
     allidx = list(range(n))
     for _ in range(boot):
-        idxs = [rng.sample(allidx, k) for _ in papers]
+        idxs = [sorted(rng.sample(allidx, k)) for _ in papers]
         tp, fp, fn = _tp_fp_fn(papers, idxs)
         ps.append(tp / (tp + fp) if tp + fp else 0.0)
         rs.append(tp / (tp + fn) if tp + fn else 0.0)

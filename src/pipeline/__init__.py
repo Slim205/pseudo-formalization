@@ -23,8 +23,8 @@ class pipeline:
 
             else:  # baseline
                 async with sem:
-                    text, usage = await verifier.process_row(row)
-                    return idx, text, usage
+                    out = await verifier.process_row(row)
+                    return idx, out
 
         tasks = []
 
@@ -46,6 +46,7 @@ class pipeline:
                         "proof": val["Response"],
                         "problem": val.get("Problem"),
                         "original_steps": val.get("Original_Steps"),
+                        "run_number": i + 1,
                     }
                     tasks.append(asyncio.create_task(bounded_process(key, ro)))
 
@@ -72,21 +73,22 @@ class pipeline:
                         df[idx]["parse_failed"] = True
 
                 else:  # baseline
-                    idx, text, usage = await coro
-                    score = parse_score(text)
+                    idx, out = await coro
+                    if isinstance(out, dict):
+                        # step-level baseline: already carries its own score
+                        entry = out
+                    else:
+                        text, usage = out
+                        entry = {"text": text, "usage": usage, "score": parse_score(text)}
 
                     if verifier.n > 1:
                         if "LLM_Full_Output" not in df[idx].keys():
                             df[idx]["LLM_Full_Output"] = []
 
-                        df[idx]["LLM_Full_Output"].append(
-                            {"text": text, "usage": usage, "score": score}
-                        )
+                        df[idx]["LLM_Full_Output"].append(entry)
 
                     else:
-                        df[idx]["LLM_Full_Output"] = [
-                            {"text": text, "usage": usage, "score": score}
-                        ]
+                        df[idx]["LLM_Full_Output"] = [entry]
 
                 if i % 50 == 0:
                     save_json(df, output / "grading_full_output.json")

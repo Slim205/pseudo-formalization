@@ -1,0 +1,1312 @@
+<THEOREM_STATEMENT id="1">
+Let
+\[
+R=\prod_{i=1}^4[0,R_i],\qquad S=\prod_{i=1}^4[0,S_i],
+\]
+with \(0<R_1\le R_2\le R_3\le R_4\) and \(0<S_1\le S_2\le S_3\le S_4\). Orient \(S\) by
+\[
+dx_1\wedge dx_2\wedge dx_3\wedge dx_4.
+\]
+Write
+\[
+Q=[0,S_1]\times[0,S_2],\qquad B=[0,S_3]\times[0,S_4],
+\]
+so \(S=Q\times B\), and orient \(Q\) and \(B\) by \(dx_1\wedge dx_2\) and \(dx_3\wedge dx_4\), respectively. Let
+\[
+\pi:S\to B,\qquad \pi(x_1,x_2,x_3,x_4)=(x_3,x_4),
+\]
+and suppose
+\[
+f:(R,\partial R)\to(S,\partial S)
+\]
+is a Lipschitz finite piecewise smooth map of degree \(1\) with \(\operatorname{Dil}_2(f)\le 1\). Put
+\[
+F=\pi\circ f=(f_3,f_4),\qquad G=(f_1,f_2).
+\]
+For \(y\in B\), set
+\[
+P_y=Q\times\{y\}.
+\]
+Use the slicing convention normalized by
+\[
+\langle \llbracket Q\times B\rrbracket,\pi,y\rangle
+=
+\llbracket Q\times\{y\}\rrbracket .
+\]
+
+Statement:
+For a.e. \(y\in \operatorname{int}B\), the slice
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle
+\]
+is a relative integral \(2\)-cycle in \((R,\partial R)\), and
+\[
+f_\# z_y=\llbracket P_y\rrbracket .
+\]
+Consequently,
+\[
+\operatorname{FillVol}_R(z_y)\ge \operatorname{FillVol}_S(P_y)
+=S_1S_2\,\operatorname{dist}(y,\partial B).
+\]
+Moreover,
+\[
+\int_B \operatorname{Area}(z_y)\,dy\le \operatorname{Vol}(R).
+\]
+Finally, let
+\[
+B_0=\left[\frac{S_3}{3},\frac{2S_3}{3}\right]\times
+\left[\frac{S_4}{3},\frac{2S_4}{3}\right].
+\]
+At points where \(dF\) has rank \(2\), let
+\[
+\sigma_1(x)\ge \sigma_2(x)>0
+\]
+be the two nonzero singular values of \(dF_x\). Define the measure
+\[
+d\mu=\frac{\sigma_2}{\sigma_1}\,dx
+\]
+on the rank-two set of \(dF\), and \(d\mu=0\) where \(\operatorname{rank}dF<2\). Then
+\[
+\mu(F^{-1}(B_0))\ge \frac19 S_1S_2S_3S_4
+\]
+and
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu.
+\]
+Thus, if in addition one has an estimate
+\[
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu
+\ge
+c_d\sqrt{\frac{S_3}{S_2}}\,
+\mu(F^{-1}(B_0))
+\]
+for some constant \(c_d>0\), then
+\[
+R_1R_2R_3R_4
+\ge
+\frac{c_d}{9}S_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+Write \(\mathbf M(T)\) for the mass of an integral current \(T\), and write \(\llbracket X\rrbracket\) for the integral current associated to an oriented Lipschitz manifold or rectangle \(X\).
+
+For a compact rectangle \(X\), if \(Z\in \mathbf I_m(X)\) satisfies \(\operatorname{spt}\partial Z\subset \partial X\), define its relative filling volume by
+\[
+\operatorname{FillVol}_X(Z)
+=
+\inf\left\{
+\mathbf M(Y):
+Y\in \mathbf I_{m+1}(X),\
+\operatorname{spt}(\partial Y-Z)\subset \partial X
+\right\}.
+\]
+
+We use the standard slicing theorem for integral currents: if \(T\in \mathbf I_m\) and \(\Phi\) is Lipschitz into \(\mathbb R^k\), then for a.e. \(a\), the slice \(\langle T,\Phi,a\rangle\in \mathbf I_{m-k}\) exists and
+\[
+\partial\langle T,\Phi,a\rangle
+=
+\pm \langle \partial T,\Phi,a\rangle.
+\]
+We also use slicing naturality: for Lipschitz \(H\),
+\[
+H_\#\langle T,\Phi\circ H,a\rangle
+=
+\langle H_\#T,\Phi,a\rangle
+\]
+for a.e. \(a\). Finally, we use the rectifiable-current area inequality
+\[
+\mathbf M(H_\#T)
+\le
+\int J_k(dH|_{\operatorname{Tan}T})\,d\|T\|
+\]
+for \(T\in\mathbf I_k\).
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="1">
+None.
+
+External results: standard slicing theorem for integral currents; slicing naturality for integral currents; rectifiable-current area inequality.
+</PROPOSITION_PROOF>
+<DEPS id="1"></DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+Assume the setting of Theorem \(1\): \(R,S\) are the oriented rectangles above, and
+\[
+f:(R,\partial R)\to(S,\partial S)
+\]
+is Lipschitz finite piecewise smooth of degree \(1\). Statement:
+\[
+f_\#\llbracket R\rrbracket=\llbracket S\rrbracket .
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="2.1">
+Under the assumptions of Proposition \(2\), let
+\[
+T=f_\#\llbracket R\rrbracket.
+\]
+Statement: \(T\in\mathbf I_4(S)\),
+\[
+\partial T=f_\#\partial\llbracket R\rrbracket
+\]
+is supported in \(f(\partial R)\subset \partial S\), and
+\[
+\partial(T\llcorner \operatorname{int}S)=0
+\]
+in \(\operatorname{int}S\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.1">
+Since \(f\) is Lipschitz, \(T\in\mathbf I_4(S)\), and
+\[
+\partial T=f_\#\partial\llbracket R\rrbracket
+\]
+is supported in \(f(\partial R)\subset \partial S\). Hence, in \(\operatorname{int}S\),
+\[
+\partial(T\llcorner \operatorname{int}S)=0.
+\]
+</LEMMA_PROOF>
+<DEPS id="2.1"></DEPS>
+
+<LEMMA_STATEMENT id="2.2">
+Under the assumptions of Proposition \(2\), let \(T=f_\#\llbracket R\rrbracket\), and assume
+\[
+\partial(T\llcorner \operatorname{int}S)=0
+\]
+in \(\operatorname{int}S\). Statement: there exists \(m\in\mathbb Z\) such that
+\[
+T=m\llbracket S\rrbracket.
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="2.2.1">
+Under the assumptions of Lemma \(2.2\), statement:
+\[
+T\llcorner \operatorname{int}S
+=
+m\,\llbracket \operatorname{int}S\rrbracket
+\]
+for some \(m\in\mathbb Z\).
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="2.2.1">
+By the constancy theorem on the connected open set \(\operatorname{int}S\),
+\[
+T\llcorner \operatorname{int}S
+=
+m\,\llbracket \operatorname{int}S\rrbracket
+\]
+for some \(m\in\mathbb Z\).
+
+External results: constancy theorem for integral currents.
+</CLAIM_PROOF>
+<DEPS id="2.2.1"></DEPS>
+
+<CLAIM_STATEMENT id="2.2.2">
+Under the assumptions of Lemma \(2.2\), with \(m\in\mathbb Z\) as in Claim \(2.2.1\), statement:
+\[
+T-m\llbracket S\rrbracket=0.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="2.2.2">
+By Claim \(2.2.1\), \(T-m\llbracket S\rrbracket\) is supported in \(\partial S\). Since \(\partial S\) has \(\mathcal H^4\)-measure zero, no nonzero integral \(4\)-current can be supported there, so
+\[
+T=m\llbracket S\rrbracket.
+\]
+</CLAIM_PROOF>
+<DEPS id="2.2.2">2.2.1</DEPS>
+
+<LEMMA_PROOF id="2.2">
+Claims \(2.2.1\) and \(2.2.2\) give the asserted integer \(m\) and the equality \(T=m\llbracket S\rrbracket\).
+</LEMMA_PROOF>
+<DEPS id="2.2">2.2.1, 2.2.2</DEPS>
+
+<LEMMA_STATEMENT id="2.3">
+Under the assumptions of Proposition \(2\), let \(T=f_\#\llbracket R\rrbracket\). If
+\[
+T=m\llbracket S\rrbracket
+\]
+for some \(m\in\mathbb Z\), then \(m=1\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.3">
+Because \(f\) has degree \(1\), \(T\) represents the relative fundamental class \([S,\partial S]\), hence \(m=1\).
+</LEMMA_PROOF>
+<DEPS id="2.3"></DEPS>
+
+<PROPOSITION_PROOF id="2">
+First prove the fundamental current identity. Let
+\[
+T=f_\#\llbracket R\rrbracket.
+\]
+Lemma \(2.1\) gives the boundary statement in \(\operatorname{int}S\). Lemma \(2.2\) gives
+\[
+T=m\llbracket S\rrbracket.
+\]
+Lemma \(2.3\) gives \(m=1\). Thus
+\[
+f_\#\llbracket R\rrbracket=\llbracket S\rrbracket .
+\]
+</PROPOSITION_PROOF>
+<DEPS id="2">2.1, 2.2, 2.3</DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+Assume the setting of Theorem \(1\), and set
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle.
+\]
+Statement: for a.e. \(y\in\operatorname{int}B\), \(z_y\) is a relative integral \(2\)-cycle in \((R,\partial R)\), and
+\[
+f_\#z_y=\llbracket P_y\rrbracket.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="3.1">
+Assume the setting of Proposition \(3\). Statement: for a.e. \(y\in\operatorname{int}B\),
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle
+\]
+is an integral \(2\)-current, and \(\partial z_y\) is supported in \(\partial R\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.1">
+Now apply the standard slicing theorem recorded in Proposition \(1\) to \(F=\pi\circ f\). For a.e. \(y\in\operatorname{int}B\),
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle
+\]
+is an integral \(2\)-current, and
+\[
+\partial z_y
+=
+\pm \langle \partial\llbracket R\rrbracket,F,y\rangle,
+\]
+so \(\partial z_y\) is supported in \(\partial R\). Hence \(z_y\) is a relative integral \(2\)-cycle in \((R,\partial R)\).
+</LEMMA_PROOF>
+<DEPS id="3.1">1</DEPS>
+
+<LEMMA_STATEMENT id="3.2">
+Assume the setting of Proposition \(3\). Statement: for a.e. \(y\in\operatorname{int}B\),
+\[
+f_\# z_y
+=
+\langle \llbracket S\rrbracket,\pi,y\rangle .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.2">
+By slicing naturality recorded in Proposition \(1\) and Proposition \(2\),
+\[
+f_\# z_y
+=
+f_\#\langle \llbracket R\rrbracket,F,y\rangle
+=
+\langle f_\#\llbracket R\rrbracket,\pi,y\rangle
+=
+\langle \llbracket S\rrbracket,\pi,y\rangle .
+\]
+</LEMMA_PROOF>
+<DEPS id="3.2">1, 2</DEPS>
+
+<LEMMA_STATEMENT id="3.3">
+Assume the product orientation and slice convention of Theorem \(1\). Statement: for a.e. \(y\in\operatorname{int}B\),
+\[
+\langle \llbracket S\rrbracket,\pi,y\rangle
+=
+\llbracket P_y\rrbracket.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.3">
+With the stated product orientation and slice convention,
+\[
+\langle \llbracket S\rrbracket,\pi,y\rangle
+=
+\llbracket Q\times\{y\}\rrbracket
+=
+\llbracket P_y\rrbracket.
+\]
+</LEMMA_PROOF>
+<DEPS id="3.3"></DEPS>
+
+<PROPOSITION_PROOF id="3">
+Lemma \(3.1\) gives the relative integral \(2\)-cycle statement. Lemmas \(3.2\) and \(3.3\) give
+\[
+f_\#z_y=\llbracket P_y\rrbracket.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="3">3.1, 3.2, 3.3</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Assume the setting of Theorem \(1\). For a.e. \(y\in\operatorname{int}B\), with
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle,
+\]
+statement:
+\[
+\operatorname{FillVol}_R(z_y)\ge \operatorname{FillVol}_S(P_y).
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+Assume \(f\) is Lipschitz finite piecewise smooth and \(\operatorname{Dil}_2(f)\le 1\). Statement:
+\[
+\operatorname{Dil}_3(f)\le 1,
+\]
+equivalently
+\[
+\|\Lambda^3df\|\le 1
+\]
+a.e.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.1">
+Next, \(\operatorname{Dil}_2(f)\le 1\) implies \(\operatorname{Dil}_3(f)\le 1\). Indeed, at a differentiability point of \(f\), let
+\[
+a_1\ge a_2\ge a_3\ge a_4\ge 0
+\]
+be the singular values of \(df\). The hypothesis gives \(a_1a_2\le 1\). Hence \(a_2\le 1\), so \(a_3\le 1\), and therefore
+\[
+a_1a_2a_3\le a_1a_2\le 1.
+\]
+Thus \(\|\Lambda^3df\|\le 1\) a.e.
+</LEMMA_PROOF>
+<DEPS id="4.1"></DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+Assume the setting of Proposition \(4\), and let \(y\in\operatorname{int}B\) be such that
+\[
+f_\#z_y=\llbracket P_y\rrbracket.
+\]
+Let \(Y\in \mathbf I_3(R)\) be a relative filling of \(z_y\), so
+\[
+\operatorname{spt}(\partial Y-z_y)\subset \partial R.
+\]
+Statement: \(f_\#Y\) is a relative filling of \(P_y\) in \(S\), and
+\[
+\mathbf M(f_\#Y)\le \mathbf M(Y).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+Then
+\[
+\partial(f_\#Y)-f_\#z_y
+=
+f_\#(\partial Y-z_y)
+\]
+is supported in \(f(\partial R)\subset \partial S\). Since \(f_\#z_y=\llbracket P_y\rrbracket\), the current \(f_\#Y\) is a relative filling of \(P_y\) in \(S\). Also, by Lemma \(4.1\),
+\[
+\mathbf M(f_\#Y)\le \int \|\Lambda^3df\|\,d\|Y\|\le \mathbf M(Y).
+\]
+</LEMMA_PROOF>
+<DEPS id="4.2">4.1</DEPS>
+
+<PROPOSITION_PROOF id="4">
+For a.e. \(y\in\operatorname{int}B\), Proposition \(3\) gives
+\[
+f_\#z_y=\llbracket P_y\rrbracket.
+\]
+Apply Lemma \(4.2\) to each relative filling \(Y\) of \(z_y\). Taking the infimum over all such \(Y\) gives
+\[
+\operatorname{FillVol}_R(z_y)\ge \operatorname{FillVol}_S(P_y).
+\]
+</PROPOSITION_PROOF>
+<DEPS id="4">3, 4.2</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+Assume the setting of Theorem \(1\). For \(y\in\operatorname{int}B\), statement:
+\[
+\operatorname{FillVol}_S(P_y)
+=
+S_1S_2\,\operatorname{dist}(y,\partial B).
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="5.1">
+Assume the setting of Proposition \(5\), and let
+\[
+\delta(y)=\operatorname{dist}(y,\partial B).
+\]
+Statement:
+\[
+\operatorname{FillVol}_S(P_y)\le S_1S_2\,\delta(y).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.1">
+For the upper bound, choose a shortest segment \(\gamma\subset B\) from \(\partial B\) to \(y\), oriented toward \(y\). Then
+\[
+C=\llbracket Q\rrbracket\times \llbracket \gamma\rrbracket
+\]
+is a relative filling of \(P_y\) in \(S\), and
+\[
+\mathbf M(C)=S_1S_2\,\delta(y).
+\]
+Hence
+\[
+\operatorname{FillVol}_S(P_y)\le S_1S_2\,\delta(y).
+\]
+</LEMMA_PROOF>
+<DEPS id="5.1"></DEPS>
+
+<LEMMA_STATEMENT id="5.2">
+Assume \(B=[0,S_3]\times[0,S_4]\). For \(q=(q_3,q_4)\in B\), define
+\[
+\delta(q)=\operatorname{dist}(q,\partial B)
+=
+\min\{q_3,S_3-q_3,q_4,S_4-q_4\}.
+\]
+For \(\eta>0\), define
+\[
+m_\eta(q)
+=
+-\eta\log\left(
+e^{-q_3/\eta}
++
+e^{-(S_3-q_3)/\eta}
++
+e^{-q_4/\eta}
++
+e^{-(S_4-q_4)/\eta}
+\right).
+\]
+Let \(\chi_\eta:\mathbb R\to\mathbb R\) be smooth with
+\[
+\chi_\eta(t)=0\quad\text{for }t\le 0,\qquad
+0\le \chi_\eta'(t)\le 1,\qquad
+\chi_\eta(t)\ge t-\eta\quad\text{for }t\ge 0,
+\]
+and set
+\[
+\rho_\eta(q)=\chi_\eta(m_\eta(q)).
+\]
+Statement:
+\[
+\delta(q)-\eta\log 4\le m_\eta(q)\le \delta(q),
+\qquad
+|\nabla m_\eta(q)|\le 1,
+\]
+\(\rho_\eta\) is smooth,
+\[
+\rho_\eta=0\quad\text{on }\partial B,\qquad |d\rho_\eta|\le 1,
+\]
+and for every fixed \(y\in\operatorname{int}B\),
+\[
+\rho_\eta(y)\to \delta(y)
+\qquad\text{as }\eta\to 0.
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="5.2.1">
+Assume \(B=[0,S_3]\times[0,S_4]\). For \(q=(q_3,q_4)\in B), define
+\[
+\delta(q)=\operatorname{dist}(q,\partial B)
+=
+\min\{q_3,S_3-q_3,q_4,S_4-q_4\}.
+\]
+For \(\eta>0\), set
+\[
+m_\eta(q)
+=
+-\eta\log\left(
+e^{-q_3/\eta}
++
+e^{-(S_3-q_3)/\eta}
++
+e^{-q_4/\eta}
++
+e^{-(S_4-q_4)/\eta}
+\right).
+\]
+Statement:
+\[
+\delta(q)-\eta\log 4\le m_\eta(q)\le \delta(q),
+\qquad
+|\nabla m_\eta(q)|\le 1.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.2.1">
+None
+</CLAIM_PROOF>
+<DEPS id="5.2.1"></DEPS>
+
+<CLAIM_STATEMENT id="5.2.2">
+Assume \(B=[0,S_3]\times[0,S_4]\), and let
+\[
+m_\eta(q)
+=
+-\eta\log\left(
+e^{-q_3/\eta}
++
+e^{-(S_3-q_3)/\eta}
++
+e^{-q_4/\eta}
++
+e^{-(S_4-q_4)/\eta}
+\right).
+\]
+Choose a smooth function \(\chi_\eta:\mathbb R\to\mathbb R\) such that
+\[
+\chi_\eta(t)=0\quad\text{for }t\le 0,\qquad
+0\le \chi_\eta'(t)\le 1,\qquad
+\chi_\eta(t)\ge t-\eta\quad\text{for }t\ge 0.
+\]
+Set
+\[
+\rho_\eta(q)=\chi_\eta(m_\eta(q)).
+\]
+Statement: \(\rho_\eta\) is smooth,
+\[
+\rho_\eta=0\quad\text{on }\partial B,\qquad |d\rho_\eta|\le 1,
+\]
+and for every fixed \(y\in\operatorname{int}B\),
+\[
+\rho_\eta(y)\to \delta(y)
+\qquad\text{as }\eta\to 0.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.2.2">
+None
+</CLAIM_PROOF>
+<DEPS id="5.2.2"></DEPS>
+
+<LEMMA_PROOF id="5.2">
+For the lower bound, Claim \(5.2.1\) defines \(\delta(q)\) and \(m_\eta(q)\), and Claim \(5.2.2\) chooses \(\chi_\eta\), sets \(\rho_\eta\), and gives the stated properties.
+</LEMMA_PROOF>
+<DEPS id="5.2">5.2.1, 5.2.2</DEPS>
+
+<LEMMA_STATEMENT id="5.3">
+Assume the setting of Lemma \(5.2\). Define the smooth \(2\)-form
+\[
+\alpha_\eta=\rho_\eta(x_3,x_4)\,dx_1\wedge dx_2.
+\]
+Statement: \(\alpha_\eta\) restricts to zero on \(\partial S\), and
+\[
+d\alpha_\eta=d\rho_\eta\wedge dx_1\wedge dx_2
+\]
+has comass at most \(1\).
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="5.3.1">
+Assume the setting of Lemma \(5.3\). Statement: \(\alpha_\eta\) restricts to zero on \(\partial S\).
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.3.1">
+It restricts to zero on \(\partial S\): on the \(x_1\)- and \(x_2\)-faces because \(dx_1\wedge dx_2\) vanishes there, and on the \(x_3\)- and \(x_4\)-faces because \(\rho_\eta=0\) on \(\partial B\), by Lemma \(5.2\).
+</CLAIM_PROOF>
+<DEPS id="5.3.1">5.2</DEPS>
+
+<CLAIM_STATEMENT id="5.3.2">
+Assume the setting of Lemma \(5.3\). Statement:
+\[
+d\alpha_\eta=d\rho_\eta\wedge dx_1\wedge dx_2,
+\]
+and the comass of \(d\alpha_\eta\) is at most \(1\).
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.3.2">
+But
+\[
+d\alpha_\eta=d\rho_\eta\wedge dx_1\wedge dx_2,
+\]
+whose comass is at most \(|d\rho_\eta|\le 1\), by Lemma \(5.2\).
+</CLAIM_PROOF>
+<DEPS id="5.3.2">5.2</DEPS>
+
+<LEMMA_PROOF id="5.3">
+Claims \(5.3.1\) and \(5.3.2\) give the stated boundary-vanishing and comass properties.
+</LEMMA_PROOF>
+<DEPS id="5.3">5.3.1, 5.3.2</DEPS>
+
+<LEMMA_STATEMENT id="5.4">
+Assume the setting of Proposition \(5\), and let
+\[
+\delta(y)=\operatorname{dist}(y,\partial B).
+\]
+Statement:
+\[
+\operatorname{FillVol}_S(P_y)\ge S_1S_2\,\delta(y).
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="5.4.1">
+Assume the setting of Lemma \(5.4\). Let \(Y\in\mathbf I_3(S)\) be any relative filling of \(P_y\), so
+\[
+\operatorname{spt}(\partial Y-\llbracket P_y\rrbracket)\subset \partial S.
+\]
+For \(\alpha_\eta\) as in Lemma \(5.3\), statement:
+\[
+\partial Y(\alpha_\eta)
+=
+\llbracket P_y\rrbracket(\alpha_\eta)
+=
+\rho_\eta(y)S_1S_2
+\]
+and
+\[
+Y(d\alpha_\eta)=\rho_\eta(y)S_1S_2.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.4.1">
+Let \(Y\in\mathbf I_3(S)\) be any relative filling of \(P_y\), so
+\[
+\operatorname{spt}(\partial Y-\llbracket P_y\rrbracket)\subset \partial S.
+\]
+Since \(\alpha_\eta\) vanishes on \(\partial S\), by Lemma \(5.3\),
+\[
+\partial Y(\alpha_\eta)
+=
+\llbracket P_y\rrbracket(\alpha_\eta)
+=
+\rho_\eta(y)S_1S_2.
+\]
+By Stokes’ theorem for currents,
+\[
+Y(d\alpha_\eta)=\rho_\eta(y)S_1S_2.
+\]
+
+External results: Stokes’ theorem for currents.
+</CLAIM_PROOF>
+<DEPS id="5.4.1">5.3</DEPS>
+
+<CLAIM_STATEMENT id="5.4.2">
+Assume the setting of Claim \(5.4.1\). Statement:
+\[
+\mathbf M(Y)\ge \rho_\eta(y)S_1S_2
+\]
+for each \(\eta>0\), and
+\[
+\mathbf M(Y)\ge S_1S_2\,\delta(y).
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.4.2">
+By Claim \(5.4.1\),
+\[
+Y(d\alpha_\eta)=\rho_\eta(y)S_1S_2.
+\]
+By Lemma \(5.3\),
+\[
+d\alpha_\eta=d\rho_\eta\wedge dx_1\wedge dx_2,
+\]
+whose comass is at most \(|d\rho_\eta|\le 1\). Therefore
+\[
+\mathbf M(Y)\ge \rho_\eta(y)S_1S_2.
+\]
+By Lemma \(5.2\), for every fixed \(y\in\operatorname{int}B\),
+\[
+\rho_\eta(y)\to \delta(y)
+\qquad\text{as }\eta\to 0.
+\]
+Letting \(\eta\to 0\) gives
+\[
+\mathbf M(Y)\ge S_1S_2\,\delta(y).
+\]
+</CLAIM_PROOF>
+<DEPS id="5.4.2">5.2, 5.3, 5.4.1</DEPS>
+
+<CLAIM_STATEMENT id="5.4.3">
+Assume the setting of Lemma \(5.4\). Statement:
+\[
+\operatorname{FillVol}_S(P_y)\ge S_1S_2\,\delta(y).
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="5.4.3">
+By Claim \(5.4.2\), taking the infimum over \(Y\),
+\[
+\operatorname{FillVol}_S(P_y)\ge S_1S_2\,\delta(y).
+\]
+</CLAIM_PROOF>
+<DEPS id="5.4.3">5.4.2</DEPS>
+
+<LEMMA_PROOF id="5.4">
+Claims \(5.4.1\), \(5.4.2\), and \(5.4.3\) give the lower bound.
+</LEMMA_PROOF>
+<DEPS id="5.4">5.4.1, 5.4.2, 5.4.3</DEPS>
+
+<PROPOSITION_PROOF id="5">
+It remains to compute \(\operatorname{FillVol}_S(P_y)\). Lemma \(5.1\) gives the upper bound, and Lemma \(5.4\) gives the lower bound. Thus
+\[
+\operatorname{FillVol}_S(P_y)=S_1S_2\,\operatorname{dist}(y,\partial B).
+\]
+</PROPOSITION_PROOF>
+<DEPS id="5">5.1, 5.4</DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+Assume the setting of Theorem \(1\). For a.e. \(y\in B_0\), with
+\[
+z_y=\langle \llbracket R\rrbracket,F,y\rangle,
+\]
+statement:
+\[
+\operatorname{FillVol}_R(z_y)\ge \frac13 S_1S_2S_3.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="6">
+In particular, for \(y\in B_0\),
+\[
+\operatorname{dist}(y,\partial B)\ge \frac{S_3}{3},
+\]
+because \(S_4\ge S_3\). Hence, for a.e. \(y\in B_0\), Propositions \(4\) and \(5\) give
+\[
+\operatorname{FillVol}_R(z_y)\ge \frac13 S_1S_2S_3.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="6">4, 5</DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_B \operatorname{Area}(z_y)\,dy\le \operatorname{Vol}(R).
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="7.1">
+Assume \(F:R\to B\) is Lipschitz. Statement: for every nonnegative Borel function \(g\),
+\[
+\int_B\int_{F^{-1}(y)} g\,d\mathcal H^2\,dy
+=
+\int_R g\,J_2F\,dx,
+\]
+where
+\[
+J_2F=\|\Lambda^2 dF\|.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.1">
+Now apply the coarea formula to the Lipschitz map \(F:R\to B\).
+
+External results: coarea formula.
+</LEMMA_PROOF>
+<DEPS id="7.1"></DEPS>
+
+<LEMMA_STATEMENT id="7.2">
+Assume the setting of Proposition \(7\). Statement:
+\[
+\int_B \operatorname{Area}(z_y)\,dy
+=
+\int_R J_2F\,dx.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.2">
+By Lemma \(7.1\), for a.e. \(y\), the mass of the slice \(z_y\) is \(\operatorname{Area}(z_y)\), so with \(g=1\),
+\[
+\int_B \operatorname{Area}(z_y)\,dy
+=
+\int_R J_2F\,dx.
+\]
+</LEMMA_PROOF>
+<DEPS id="7.2">7.1</DEPS>
+
+<LEMMA_STATEMENT id="7.3">
+Assume the setting of Proposition \(7\). Statement:
+\[
+J_2F\le 1
+\]
+a.e. on \(R\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.3">
+Since \(F=\pi\circ f\) and \(\pi\) is an orthogonal projection,
+\[
+J_2F\le \|\Lambda^2df\|\le 1.
+\]
+</LEMMA_PROOF>
+<DEPS id="7.3"></DEPS>
+
+<PROPOSITION_PROOF id="7">
+Lemma \(7.2\) gives
+\[
+\int_B \operatorname{Area}(z_y)\,dy
+=
+\int_R J_2F\,dx.
+\]
+Lemma \(7.3\) gives \(J_2F\le 1\). Therefore
+\[
+\int_B \operatorname{Area}(z_y)\,dy
+\le
+\operatorname{Vol}(R).
+\]
+</PROPOSITION_PROOF>
+<DEPS id="7">7.2, 7.3</DEPS>
+
+<PROPOSITION_STATEMENT id="8">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+\ge
+\frac19 S_1S_2S_3S_4.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="8.1">
+Assume the setting of Theorem \(1\). Fix a regular value \(y\in B_0\), and let \(x\in z_y\) be a point where \(f\) is differentiable and \(dF_x\) has rank \(2\). Statement:
+\[
+J_2(G|_{T_xz_y})\le \sigma_1(x)^{-2}.
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="8.1.1">
+Assume the setting of Lemma \(8.1\). Statement:
+\[
+T_xz_y=\ker dF_x.
+\]
+Let
+\[
+N_x=(T_xz_y)^\perp.
+\]
+The restriction \(dF_x|_{N_x}:N_x\to\mathbb R^2\) has singular values
+\[
+\sigma_1(x)\ge \sigma_2(x)>0.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="8.1.1">
+None
+</CLAIM_PROOF>
+<DEPS id="8.1.1"></DEPS>
+
+<CLAIM_STATEMENT id="8.1.2">
+Assume the setting of Lemma \(8.1\). Let \(n\in N_x\) be a unit vector such that
+\[
+|dF_x(n)|=\sigma_1(x).
+\]
+For any unit vector \(v\in T_xz_y\), statement:
+\[
+|dG_x(v)|\le \sigma_1(x)^{-1}.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="8.1.2">
+By Claim \(8.1.1\), choose a unit vector \(n\in N_x\) such that
+\[
+|dF_x(n)|=\sigma_1(x).
+\]
+For any unit vector \(v\in T_xz_y\), one has \(dF_x(v)=0\). Since
+\[
+df_x=(dG_x,dF_x),
+\]
+we get
+\[
+df_x(v)=(dG_x(v),0),
+\qquad
+df_x(n)=(dG_x(n),dF_x(n)).
+\]
+In the orthogonal splitting \(\mathbb R^4=\mathbb R^2_Q\oplus\mathbb R^2_B\), the mixed \(Q\wedge B\) component of
+\[
+df_x(v)\wedge df_x(n)
+\]
+is
+\[
+dG_x(v)\wedge dF_x(n),
+\]
+whose norm is
+\[
+|dG_x(v)|\,|dF_x(n)|
+=
+|dG_x(v)|\,\sigma_1(x).
+\]
+This mixed component has norm at most the norm of the full wedge. Therefore, using \(\operatorname{Dil}_2(f)\le 1\),
+\[
+|dG_x(v)|\,\sigma_1(x)
+\le
+|df_x(v)\wedge df_x(n)|
+\le 1.
+\]
+Hence
+\[
+|dG_x(v)|\le \sigma_1(x)^{-1}.
+\]
+</CLAIM_PROOF>
+<DEPS id="8.1.2">8.1.1</DEPS>
+
+<CLAIM_STATEMENT id="8.1.3">
+Assume the setting of Lemma \(8.1\). Statement:
+\[
+J_2(G|_{T_xz_y})\le \sigma_1(x)^{-2}.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="8.1.3">
+By Claim \(8.1.2\), taking the supremum over unit \(v\in T_xz_y\),
+\[
+\|dG_x|_{T_xz_y}\|\le \sigma_1(x)^{-1}.
+\]
+Since \(T_xz_y\) is two-dimensional,
+\[
+J_2(G|_{T_xz_y})\le \sigma_1(x)^{-2}.
+\]
+</CLAIM_PROOF>
+<DEPS id="8.1.3">8.1.2</DEPS>
+
+<LEMMA_PROOF id="8.1">
+Claims \(8.1.1\), \(8.1.2\), and \(8.1.3\) give the pointwise estimate.
+</LEMMA_PROOF>
+<DEPS id="8.1">8.1.1, 8.1.2, 8.1.3</DEPS>
+
+<LEMMA_STATEMENT id="8.2">
+Assume the setting of Theorem \(1\). Statement: for a.e. \(y\in B_0\),
+\[
+G_\#z_y=\llbracket Q\rrbracket.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.2">
+Let \(p_Q:S\to Q\) be the projection onto the first two coordinates. Since \(G=p_Q\circ f\), for a.e. \(y\in B_0\), by Proposition \(3\),
+\[
+G_\#z_y
+=
+(p_Q)_\# f_\#z_y
+=
+(p_Q)_\#\llbracket P_y\rrbracket
+=
+\llbracket Q\rrbracket.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.2">3</DEPS>
+
+<LEMMA_STATEMENT id="8.3">
+Assume the setting of Theorem \(1\). Statement: for a.e. \(y\in B_0\),
+\[
+S_1S_2
+\le
+\int_{z_y}\sigma_1^{-2}\,dA.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.3">
+By Lemma \(8.2\), Lemma \(8.1\), and the rectifiable-current area inequality recorded in Proposition \(1\),
+\[
+S_1S_2
+=
+\mathbf M(\llbracket Q\rrbracket)
+=
+\mathbf M(G_\#z_y)
+\le
+\int_{z_y}J_2(G|_{Tz_y})\,dA
+\le
+\int_{z_y}\sigma_1^{-2}\,dA.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.3">1, 8.1, 8.2</DEPS>
+
+<LEMMA_STATEMENT id="8.4">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+\ge
+S_1S_2\,|B_0|
+=
+\frac19 S_1S_2S_3S_4.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.4">
+By Lemma \(8.3\), integrating over \(B_0\),
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+\ge
+S_1S_2\,|B_0|
+=
+\frac19 S_1S_2S_3S_4.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.4">8.3</DEPS>
+
+<PROPOSITION_PROOF id="8">
+It remains to prove the two estimates involving \(\mu\). Lemmas \(8.1\), \(8.2\), \(8.3\), and \(8.4\) give
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+\ge
+\frac19 S_1S_2S_3S_4.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="8">8.1, 8.2, 8.3, 8.4</DEPS>
+
+<PROPOSITION_STATEMENT id="9">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\mu(F^{-1}(B_0))
+\ge
+\frac19 S_1S_2S_3S_4.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="9.1">
+Assume the setting of Theorem \(1\). Define
+\[
+\widetilde g(x)
+=
+\sigma_1(x)^{-2}\,
+\mathbf 1_{F^{-1}(B_0)\cap\{\operatorname{rank}dF=2\}}(x).
+\]
+For \(M>0\), set \(g_M=\min\{\widetilde g,M\}\). Statement:
+\[
+\int_{B_0}\int_{z_y} g_M\,dA\,dy
+=
+\int_{F^{-1}(B_0)}g_M\,J_2F\,dx.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.1">
+By the coarea formula,
+\[
+\int_{B_0}\int_{z_y} g_M\,dA\,dy
+=
+\int_{F^{-1}(B_0)}g_M\,J_2F\,dx.
+\]
+
+External results: coarea formula.
+</LEMMA_PROOF>
+<DEPS id="9.1"></DEPS>
+
+<LEMMA_STATEMENT id="9.2">
+Assume the setting of Lemma \(9.1\). Statement:
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+=
+\int_{F^{-1}(B_0)\cap\{\operatorname{rank}dF=2\}}
+\sigma_1^{-2}J_2F\,dx.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.2">
+In Lemma \(9.1\), letting \(M\to\infty\) and using monotone convergence,
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+=
+\int_{F^{-1}(B_0)\cap\{\operatorname{rank}dF=2\}}
+\sigma_1^{-2}J_2F\,dx.
+\]
+
+External results: monotone convergence theorem.
+</LEMMA_PROOF>
+<DEPS id="9.2">9.1</DEPS>
+
+<LEMMA_STATEMENT id="9.3">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+=
+\mu(F^{-1}(B_0)).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.3">
+By Lemma \(9.2\), on the rank-two set,
+\[
+J_2F=\sigma_1\sigma_2.
+\]
+Thus
+\[
+\sigma_1^{-2}J_2F
+=
+\frac{\sigma_2}{\sigma_1}.
+\]
+Hence
+\[
+\int_{B_0}\int_{z_y}\sigma_1^{-2}\,dA\,dy
+=
+\int_{F^{-1}(B_0)}\frac{\sigma_2}{\sigma_1}\,dx
+=
+\mu(F^{-1}(B_0)).
+\]
+</LEMMA_PROOF>
+<DEPS id="9.3">9.2</DEPS>
+
+<PROPOSITION_PROOF id="9">
+Combining Proposition \(8\) with Lemma \(9.3\) gives
+\[
+\mu(F^{-1}(B_0))
+\ge
+\frac19 S_1S_2S_3S_4.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="9">8, 9.3</DEPS>
+
+<PROPOSITION_STATEMENT id="10">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="10.1">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}J_2F\,dx.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="10.1">
+Finally, applying the ordinary coarea formula over \(B_0\),
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}J_2F\,dx.
+\]
+
+External results: ordinary coarea formula.
+</LEMMA_PROOF>
+<DEPS id="10.1"></DEPS>
+
+<LEMMA_STATEMENT id="10.2">
+Assume the setting of Theorem \(1\). Statement:
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="10.2">
+By Lemma \(10.1\),
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}J_2F\,dx.
+\]
+On the rank-two set,
+\[
+J_2F=\sigma_1\sigma_2
+=
+\sigma_1^2\frac{\sigma_2}{\sigma_1},
+\]
+while both sides vanish on the rank \(<2\) set. Therefore
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu.
+\]
+</LEMMA_PROOF>
+<DEPS id="10.2">10.1</DEPS>
+
+<PROPOSITION_PROOF id="10">
+Lemmas \(10.1\) and \(10.2\) give
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+=
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="10">10.1, 10.2</DEPS>
+
+<PROPOSITION_STATEMENT id="11">
+Assume the setting of Theorem \(1\). Assume also that
+\[
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu
+\ge
+c_d\sqrt{\frac{S_3}{S_2}}\,
+\mu(F^{-1}(B_0))
+\]
+for some constant \(c_d>0\). Statement:
+\[
+R_1R_2R_3R_4
+\ge
+\frac{c_d}{9}
+S_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="11.1">
+Assume the setting and additional hypothesis of Proposition \(11\). Statement:
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+\ge
+c_d\sqrt{\frac{S_3}{S_2}}\,
+\mu(F^{-1}(B_0))
+\ge
+\frac{c_d}{9}
+S_1S_2S_3S_4
+\sqrt{\frac{S_3}{S_2}}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="11.1">
+Assume now that
+\[
+\int_{F^{-1}(B_0)}\sigma_1^2\,d\mu
+\ge
+c_d\sqrt{\frac{S_3}{S_2}}\,
+\mu(F^{-1}(B_0)).
+\]
+Then, by Propositions \(10\) and \(9\),
+\[
+\int_{B_0}\operatorname{Area}(z_y)\,dy
+\ge
+c_d\sqrt{\frac{S_3}{S_2}}\,
+\mu(F^{-1}(B_0))
+\ge
+\frac{c_d}{9}
+S_1S_2S_3S_4
+\sqrt{\frac{S_3}{S_2}}.
+\]
+</LEMMA_PROOF>
+<DEPS id="11.1">9, 10</DEPS>
+
+<LEMMA_STATEMENT id="11.2">
+Assume the setting and additional hypothesis of Proposition \(11\). Statement:
+\[
+R_1R_2R_3R_4
+=
+\operatorname{Vol}(R)
+\ge
+\frac{c_d}{9}
+S_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="11.2">
+Since, by Proposition \(7\) and Lemma \(11.1\),
+\[
+\operatorname{Vol}(R)
+\ge
+\int_B\operatorname{Area}(z_y)\,dy
+\ge
+\int_{B_0}\operatorname{Area}(z_y)\,dy,
+\]
+we obtain
+\[
+R_1R_2R_3R_4
+=
+\operatorname{Vol}(R)
+\ge
+\frac{c_d}{9}
+S_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</LEMMA_PROOF>
+<DEPS id="11.2">7, 11.1</DEPS>
+
+<PROPOSITION_PROOF id="11">
+Lemmas \(11.1\) and \(11.2\) establish the conditional estimate.
+</PROPOSITION_PROOF>
+<DEPS id="11">11.1, 11.2</DEPS>
+
+<THEOREM_PROOF id="1">
+Proposition \(3\) gives the a.e. slice statement and the identity \(f_\#z_y=\llbracket P_y\rrbracket\). Propositions \(4\) and \(5\) give
+\[
+\operatorname{FillVol}_R(z_y)\ge \operatorname{FillVol}_S(P_y)
+=S_1S_2\,\operatorname{dist}(y,\partial B).
+\]
+Proposition \(6\) records the intermediate \(B_0\) filling bound. Proposition \(7\) gives
+\[
+\int_B \operatorname{Area}(z_y)\,dy\le \operatorname{Vol}(R).
+\]
+Propositions \(9\) and \(10\) give the two estimates involving \(\mu\). Proposition \(11\) gives the final conditional estimate. This completes the proof.
+</THEOREM_PROOF>
+<DEPS id="theorem_1">3, 4, 5, 6, 7, 9, 10, 11</DEPS>

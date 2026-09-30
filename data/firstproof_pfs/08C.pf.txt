@@ -1,0 +1,640 @@
+<THEOREM_STATEMENT id="1">
+Let \(M\) be a finite matroid of rank \(d\) on ground set \(E\), and suppose that the lattice of flats \(\cL(M)\) admits an order-reversing involution
+\[
+   F\longmapsto F^\perp.
+\]
+Let
+\[
+   \Dr(M)=\{\text{tropical linear subspaces of }\Trop(M)\}.
+\]
+For \(F\in\cL(M)\), write
+\[
+   X_F:=\Trop(M/F\oplus U_{0,F}),
+\]
+so that the natural embedding is
+\[
+   \cL(M)^{\operatorname{op}}\hookrightarrow \Dr(M),\qquad
+   F\longmapsto X_F.
+\]
+For \(L=\Trop(p)\in \Dr(M)\), where \(p\) is a rank-\(s\) valuated quotient of \(M\), let \(p^\perp\) denote the rank-\((d-s)\) quotient obtained by pulling back the flat-valued form of \(p\) along \(F\mapsto F^\perp\). Define
+\[
+   \Phi:\Dr(M)\longrightarrow \Dr(M),\qquad
+   \Trop(p)\longmapsto \Trop(p^\perp).
+\]
+Then \(\Phi\) is an order-reversing involution. Moreover, for every flat \(F\in \cL(M)\),
+\[
+   \Phi\!\left(\Trop(M/F\oplus U_{0,F})\right)
+   =
+   \Trop(M/F^\perp\oplus U_{0,F^\perp}).
+\]
+Thus \(\Phi\) extends the given involution \(F\mapsto F^\perp\) on \(\cL(M)\).
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+Let \(M\) be a finite matroid of rank \(d\) on ground set \(E\). Write
+\[
+  \cL(M)
+\]
+for its lattice of flats, ordered by inclusion. If \(F\in \cL(M)\), define
+\[
+  X_F:=\Trop(M/F\oplus U_{0,F}).
+\]
+The assignment \(F\mapsto X_F\) is order-reversing, hence gives an embedding
+\[
+   \cL(M)^{\operatorname{op}}\hookrightarrow \Dr(M).
+\]
+
+A valuated matroid \(p\) of rank \(s\) on \(E\) determines a tropical linear space \(\Trop(p)\) of dimension \(s-1\), and tropical linear spaces are identified up to adding a global scalar to \(p\). If \(q\) and \(p\) are valuated matroids of ranks \(t\ge s\), then
+\[
+   \Trop(p)\subseteq \Trop(q)
+\]
+if and only if \(p\) is a valuated quotient of \(q\), equivalently \((q,p)\) satisfies the tropical incidence--Plucker relations.
+
+For a flat \(F\), the corresponding valuated quotient \(p_F\) of rank \(d-\rk(F)\) is the trivial valuation on the matroid \(M/F\oplus U_{0,F}\). If \(B\subseteq E\) has size \(d-\rk(F)\), then
+\[
+   p_F(B)=
+   \begin{cases}
+   0, & \text{if } B \text{ is a basis of }M/F,\\
+   \infty, & \text{otherwise}.
+   \end{cases}
+\]
+Equivalently, for an independent set \(B\) of \(M\),
+\[
+   p_F(B)<\infty
+   \quad\Longleftrightarrow\quad
+   \cl_M(B)\vee F=E.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="1">
+We use the valuated-matroid model of tropical linear spaces. The equivalence between containment of tropical linear spaces and valuated quotients is the valuated flag matroid correspondence.
+
+External citations used: D. Speyer, “Tropical linear spaces,” SIAM J. Discrete Math. \(\mathbf{22}\) (2008), 1527--1558; D. Maclagan and B. Sturmfels, Introduction to Tropical Geometry, Graduate Studies in Mathematics, vol. 161, American Mathematical Society, 2015, Ch. 4; M. Brandt, C. Eur, and L. Zhang, “Tropical flag varieties,” Adv. Math. \(\mathbf{384}\) (2021), 107695.
+</PROPOSITION_PROOF>
+<DEPS id="1"></DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+Let \(L\) be a finite ranked semimodular lattice of rank \(d\). Suppose that \(L\) admits an order-reversing involution
+\[
+   \alpha:L\longrightarrow L,\qquad x\longmapsto x^\perp .
+\]
+Then \(L\) is modular.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="2.1">
+Let \(L\) be a finite ranked semimodular lattice of rank \(d\). Suppose that \(L\) admits an order-reversing involution
+\[
+   \alpha:L\longrightarrow L,\qquad x\longmapsto x^\perp .
+\]
+For all \(x\in L\),
+\[
+   \rk(x^\perp)=d-\rk(x).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.1">
+Since \(\alpha\) is an order-reversing involution, it sends maximal chains to maximal chains with the order reversed. Hence
+\[
+   \rk(x^\perp)=d-\rk(x)
+\]
+for all \(x\in L\).
+</LEMMA_PROOF>
+<DEPS id="2.1"></DEPS>
+
+<LEMMA_STATEMENT id="2.2">
+Let \(L\) be a finite ranked semimodular lattice of rank \(d\). Suppose that \(L\) admits an order-reversing involution
+\[
+   \alpha:L\longrightarrow L,\qquad x\longmapsto x^\perp .
+\]
+For all \(x,y\in L\),
+\[
+   \rk(x)+\rk(y)\le \rk(x\wedge y)+\rk(x\vee y).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.2">
+Because \(L\) is semimodular, for all \(x,y\in L\) we have
+\[
+   \rk(x)+\rk(y)\ge \rk(x\wedge y)+\rk(x\vee y).
+\]
+Apply semimodularity to \(x^\perp\) and \(y^\perp\). Using Lemma 2.1 and
+\[
+   x^\perp\wedge y^\perp=(x\vee y)^\perp,
+   \qquad
+   x^\perp\vee y^\perp=(x\wedge y)^\perp,
+\]
+we obtain
+\[
+\begin{aligned}
+  \rk(x^\perp)+\rk(y^\perp)
+  &\ge
+  \rk((x\vee y)^\perp)+\rk((x\wedge y)^\perp)\\
+  (d-\rk(x))+(d-\rk(y))
+  &\ge
+  (d-\rk(x\vee y))+(d-\rk(x\wedge y)).
+\end{aligned}
+\]
+Cancelling \(2d\) gives
+\[
+   \rk(x)+\rk(y)\le \rk(x\wedge y)+\rk(x\vee y).
+\]
+</LEMMA_PROOF>
+<DEPS id="2.2">2.1</DEPS>
+
+<PROPOSITION_PROOF id="2">
+Together with semimodularity, equality holds:
+\[
+   \rk(x)+\rk(y)=\rk(x\wedge y)+\rk(x\vee y).
+\]
+This is precisely the rank form of modularity.
+</PROPOSITION_PROOF>
+<DEPS id="2">2.2</DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+If \(M\) admits an order-reversing involution on \(\cL(M)\), then \(\cL(M)\) is modular.
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="3">
+The lattice of flats of a matroid is a finite geometric lattice, hence finite, ranked, atomic, and semimodular. Apply Proposition 2.
+</PROPOSITION_PROOF>
+<DEPS id="3">2</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Let \(M\) be a finite modular matroid of rank \(d\) on ground set \(E\). For \(0\le s\le d\), write
+\[
+   \cL_s(M):=\{F\in \cL(M):\rk(F)=s\}.
+\]
+Let \(p\) be a rank-\(s\) valuated quotient of the trivial valuated matroid of \(M\). If \(B,B'\subseteq E\) are bases of the same rank-\(s\) flat of \(M\), then
+\[
+   p(B)=p(B').
+\]
+Hence \(p\) descends to a function
+\[
+   \bar p:\cL_s(M)\longrightarrow \mathbb T,\qquad
+   \bar p(F)=p(B)
+\]
+for any basis \(B\) of \(F\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+Let \(M\) be a finite modular matroid of rank \(d\) on ground set \(E\). Let \(p\) be a rank-\(s\) valuated quotient of the trivial valuated matroid of \(M\). Let \(B,B'\subseteq E\) be bases of the same rank-\(s\) flat of \(M\) which differ by one element. Write
+\[
+   B=S\cup\{i\},\qquad B'=S\cup\{j\},
+\]
+where \(i\ne j\), \(|S|=s-1\), and assume
+\[
+   \cl_M(S\cup\{i\})=\cl_M(S\cup\{j\})=:F.
+\]
+Let \(C\) be a set of size \(d-s\) such that
+\[
+   S\cup\{i\}\cup C
+   \quad\text{and}\quad
+   S\cup\{j\}\cup C
+\]
+are both bases of \(M\). Let
+\[
+   J:=S\cup\{i,j\}\cup C.
+\]
+Then
+\[
+   p(B)=p(B').
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="4.1.1">
+Under the assumptions of Lemma 4.1, with \(\mu\) the trivial valuation of \(M\), the tropical incidence relation for the valuated quotient \(p\), indexed by \(S\) and \(J\), is
+\[
+   \min_{e\in J\setminus S}\{p(S\cup\{e\})+\mu(J\setminus\{e\})\},
+\]
+and this minimum must attain its minimum at least twice.
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.1">
+Then \(|J|=d+1\). By Proposition 1, consider the tropical incidence relation for the valuated quotient \(p\), indexed by \(S\) and \(J\).
+</CLAIM_PROOF>
+<DEPS id="4.1.1">1</DEPS>
+
+<CLAIM_STATEMENT id="4.1.2">
+Under the assumptions of Lemma 4.1, the terms corresponding to \(e=i\) and \(e=j\) in the incidence relation are respectively \(p(B)\) and \(p(B')\).
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.2">
+For \(e=i\) and \(e=j\), the terms are respectively
+\[
+   p(S\cup\{i\})+\mu(S\cup\{j\}\cup C)=p(B),
+\]
+and
+\[
+   p(S\cup\{j\})+\mu(S\cup\{i\}\cup C)=p(B').
+\]
+</CLAIM_PROOF>
+<DEPS id="4.1.2"></DEPS>
+
+<CLAIM_STATEMENT id="4.1.3">
+Under the assumptions of Lemma 4.1, for every \(e\in C\),
+\[
+   \mu(J\setminus\{e\})=\infty.
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.3">
+For \(e\in C\), the set
+\[
+   J\setminus\{e\}=S\cup\{i,j\}\cup(C\setminus\{e\})
+\]
+is dependent in \(M\), because \(i\) and \(j\) are dependent over \(S\). Hence
+\[
+   \mu(J\setminus\{e\})=\infty.
+\]
+</CLAIM_PROOF>
+<DEPS id="4.1.3"></DEPS>
+
+<CLAIM_STATEMENT id="4.1.4">
+Under the assumptions of Lemma 4.1,
+\[
+   p(B)=p(B').
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.4">
+By Claims 4.1.1, 4.1.2, and 4.1.3, the incidence relation reduces to saying that the minimum of the two values \(p(B)\) and \(p(B')\) is attained twice. Therefore \(p(B)=p(B')\).
+</CLAIM_PROOF>
+<DEPS id="4.1.4">4.1.1, 4.1.2, 4.1.3</DEPS>
+
+<LEMMA_PROOF id="4.1">
+Claim 4.1.4 gives the single-element-exchange case.
+</LEMMA_PROOF>
+<DEPS id="4.1">4.1.4</DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+Let \(M\) be a finite modular matroid, and let \(F\) be a flat of \(M\). Any two bases of \(F\) are connected by single-element exchanges through bases of \(F\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+Since the basis graph of a matroid restriction \(M|F\) is connected.
+</LEMMA_PROOF>
+<DEPS id="4.2"></DEPS>
+
+<PROPOSITION_PROOF id="4">
+We now use the standard modular-lattice form of valuated matroids. It is enough to prove the claim when \(B\) and \(B'\) differ by one element. Let
+\[
+   B=S\cup\{i\},\qquad B'=S\cup\{j\},
+\]
+where \(|S|=s-1\), and assume
+\[
+   \cl_M(S\cup\{i\})=\cl_M(S\cup\{j\})=:F.
+\]
+Extend \(S\cup\{i\}\), equivalently \(S\cup\{j\}\), to a basis of \(M\) by choosing a set \(C\) of size \(d-s\) such that
+\[
+   S\cup\{i\}\cup C
+   \quad\text{and}\quad
+   S\cup\{j\}\cup C
+\]
+are both bases of \(M\). Lemma 4.1 proves this case.
+
+Since the basis graph of a matroid restriction \(M|F\) is connected, Lemma 4.2 gives that any two bases of \(F\) are connected by such single-element exchanges. The result follows.
+</PROPOSITION_PROOF>
+<DEPS id="4">4.1, 4.2</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+Let \(M\) be a modular matroid of rank \(d\), and let
+\[
+   \alpha:\cL(M)\longrightarrow \cL(M),\qquad F\longmapsto F^\perp
+\]
+be an order-reversing involution. Let \(p\) be a rank-\(s\) valuated quotient of \(M\), and let \(\bar p:\cL_s(M)\to \mathbb T\) be the descended function on rank-\(s\) flats. Define a function
+\[
+   \bar p^{\,\perp}:\cL_{d-s}(M)\longrightarrow \mathbb T
+\]
+by
+\[
+   \bar p^{\,\perp}(G):=\bar p(G^\perp).
+\]
+Then \(\bar p^{\,\perp}\) is the flat-valued form of a rank-\((d-s)\) valuated quotient \(p^\perp\) of \(M\).
+
+Moreover:
+\[
+\textup{(i)}\quad (p^\perp)^\perp=p \quad\text{up to tropical scalar;}
+\]
+\[
+\textup{(ii)}\quad
+\text{if }q\text{ and }p\text{ are valuated quotients of }M\text{ with }q\twoheadrightarrow p,\text{ then }
+   p^\perp\twoheadrightarrow q^\perp;
+\]
+\[
+\textup{(iii)}\quad
+   \Trop(p)\subseteq \Trop(q)
+   \quad\Longleftrightarrow\quad
+   \Trop(q^\perp)\subseteq \Trop(p^\perp).
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="5.1">
+Let \(M\) be a modular matroid of rank \(d\), and let \(p\) be a rank-\(s\) valuated quotient of \(M\). The quotient \(p\) is equivalently a valuated matroid on the modular lattice \(\cL(M)\), with coordinates indexed by rank-\(s\) flats.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.1">
+By Proposition 4.
+</LEMMA_PROOF>
+<DEPS id="5.1">4</DEPS>
+
+<LEMMA_STATEMENT id="5.2">
+Let \(M\) be a modular matroid of rank \(d\), and let
+\[
+   \alpha:\cL(M)\longrightarrow \cL(M),\qquad F\longmapsto F^\perp
+\]
+be an order-reversing involution. Pulling the flat-valued Plucker coordinates back along \(F\mapsto F^\perp\) preserves the tropical Plucker relations and reverses the flag incidence relations.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.2">
+We will use the following standard form of valuated matroid duality on modular geometric lattices. It is the modular-lattice version of ordinary valuated-matroid duality. In the Boolean case it is exactly the usual operation
+\[
+   p^*(A)=p(E\setminus A).
+\]
+For modular lattices, the same construction is obtained by replacing set-complement by the lattice anti-isomorphism.
+
+The tropical Plucker relations are local relations in length-four intervals of \(\cL(M)\), and the tropical incidence relations for a pair of quotients are the corresponding local flag-Plucker relations. An order-reversing lattice isomorphism sends length-four intervals to length-four intervals and interchanges rank \(s\) with rank \(d-s\). Therefore pulling the flat-valued Plucker coordinates back along \(F\mapsto F^\perp\) preserves the tropical Plucker relations and reverses the flag incidence relations.
+
+External citations used: A. Dress and W. Wenzel, “Valuated matroids,” Adv. Math. \(\mathbf{93}\) (1992), 214--250; K. Murota, Discrete Convex Analysis, SIAM Monographs on Discrete Mathematics and Applications, SIAM, 2003, Ch. 4; M. Brandt, C. Eur, and L. Zhang, “Tropical flag varieties,” Adv. Math. \(\mathbf{384}\) (2021), 107695.
+</LEMMA_PROOF>
+<DEPS id="5.2"></DEPS>
+
+<PROPOSITION_PROOF id="5">
+We recall the argument. By Lemma 5.1, every valuated quotient \(p\) of a modular matroid \(M\) is equivalently a valuated matroid on the modular lattice \(\cL(M)\), with coordinates indexed by rank-\(s\) flats. By Lemma 5.2, pulling the flat-valued Plucker coordinates back along \(F\mapsto F^\perp\) preserves the tropical Plucker relations and reverses the flag incidence relations.
+
+Thus \(\bar p^\perp\) is again a valuated quotient of \(M\), now of rank \(d-s\). Since \(\perp\) is an involution on \(\cL(M)\), applying the construction twice gives back \(\bar p\). Finally, the valuated flag relation \(q\twoheadrightarrow p\) is carried to \(p^\perp\twoheadrightarrow q^\perp\), which is precisely the asserted reversal of containment of tropical linear spaces.
+</PROPOSITION_PROOF>
+<DEPS id="5">5.1, 5.2</DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+Let \(M\) be a modular matroid of rank \(d\), and let
+\[
+   L=\Trop(p)\in \Dr(M),
+\]
+where \(p\) is a valuated quotient of \(M\) of rank \(s\). Define
+\[
+   \Phi(L):=\Trop(p^\perp),
+\]
+where \(p^\perp\) is the rank-\((d-s)\) quotient supplied by the modular-lattice valuated duality construction.
+
+Equivalently, if \(A\subseteq E\) is independent of size \(d-s\), then
+\[
+   p^\perp(A)=\bar p(\cl_M(A)^\perp),
+\]
+and if \(A\) is dependent in \(M\), then
+\[
+   p^\perp(A)=\infty.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="6">
+None
+</PROPOSITION_PROOF>
+<DEPS id="6"></DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Let \(M\) be a finite matroid whose lattice of flats admits an order-reversing involution
+\[
+   F\longmapsto F^\perp.
+\]
+Let \(\Phi:\Dr(M)\to\Dr(M)\) be defined by
+\[
+   \Phi(\Trop(p)):=\Trop(p^\perp).
+\]
+Then \(\Phi\) is well-defined, satisfies
+\[
+   \Phi^2=\operatorname{id}_{\Dr(M)},
+\]
+and is order-reversing.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="7.1">
+Let \(M\) be a finite matroid whose lattice of flats admits an order-reversing involution. Then \(M\) is modular, and the modular-lattice valuated duality construction applies.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.1">
+By Proposition 3, \(M\) is modular. Hence Proposition 5 applies.
+</LEMMA_PROOF>
+<DEPS id="7.1">3, 5</DEPS>
+
+<LEMMA_STATEMENT id="7.2">
+Under the assumptions of Proposition 7, \(\Phi\) is well-defined.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.2">
+First, \(\Phi\) is well-defined because, by Proposition 1, tropical linear spaces are identified with valuated matroids up to tropical scalar, and, by the construction in Proposition 6, the construction \(p\mapsto p^\perp\) is unchanged by adding a global scalar to \(p\).
+</LEMMA_PROOF>
+<DEPS id="7.2">1, 6</DEPS>
+
+<LEMMA_STATEMENT id="7.3">
+Under the assumptions of Proposition 7,
+\[
+   \Phi^2=\operatorname{id}_{\Dr(M)}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.3">
+Second, since \(F\mapsto F^\perp\) is an involution on \(\cL(M)\), Proposition 5 gives
+\[
+   (p^\perp)^\perp=p
+\]
+up to tropical scalar. Therefore
+\[
+   \Phi^2=\operatorname{id}_{\Dr(M)}.
+\]
+</LEMMA_PROOF>
+<DEPS id="7.3">5</DEPS>
+
+<LEMMA_STATEMENT id="7.4">
+Under the assumptions of Proposition 7, \(\Phi\) is order-reversing.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.4">
+Third, suppose
+\[
+   \Trop(p)\subseteq \Trop(q).
+\]
+Equivalently, by Proposition 1,
+\[
+   q\twoheadrightarrow p.
+\]
+By Proposition 5,
+\[
+   p^\perp\twoheadrightarrow q^\perp.
+\]
+Therefore
+\[
+   \Trop(q^\perp)\subseteq \Trop(p^\perp),
+\]
+which is precisely
+\[
+   \Phi(\Trop(q))\subseteq \Phi(\Trop(p)).
+\]
+Thus \(\Phi\) is order-reversing.
+</LEMMA_PROOF>
+<DEPS id="7.4">1, 5</DEPS>
+
+<PROPOSITION_PROOF id="7">
+By Lemma 7.1, \(M\) is modular and Proposition 5 applies. Lemma 7.2 gives well-definedness. Lemma 7.3 gives
+\[
+   \Phi^2=\operatorname{id}_{\Dr(M)}.
+\]
+Lemma 7.4 gives that \(\Phi\) is order-reversing.
+</PROPOSITION_PROOF>
+<DEPS id="7">7.1, 7.2, 7.3, 7.4</DEPS>
+
+<PROPOSITION_STATEMENT id="8">
+Let \(M\) be a finite matroid whose lattice of flats admits an order-reversing involution
+\[
+   F\longmapsto F^\perp.
+\]
+Let \(\Phi:\Dr(M)\to\Dr(M)\) be defined by
+\[
+   \Phi(\Trop(p)):=\Trop(p^\perp).
+\]
+For every flat \(F\in\cL(M)\),
+\[
+   \Phi\!\left(\Trop(M/F\oplus U_{0,F})\right)
+   =
+   \Trop(M/F^\perp\oplus U_{0,F^\perp}).
+\]
+Thus \(\Phi\) extends the given flat involution.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="8.1">
+Let \(M\) be a finite matroid of rank \(d\) whose lattice of flats admits an order-reversing involution. Let \(F\in\cL(M)\), and put \(f=\rk(F)\). Let \(p_F\) be the trivial valuation of the quotient
+\[
+   M/F\oplus U_{0,F}.
+\]
+Then \(p_F\) has rank \(d-f\). In flat-valued form,
+\[
+   \bar p_F(H)=
+   \begin{cases}
+   0, & H\vee F=E,\\
+   \infty, & H\vee F\ne E,
+   \end{cases}
+   \qquad H\in \cL_{d-f}(M).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.1">
+None
+</LEMMA_PROOF>
+<DEPS id="8.1"></DEPS>
+
+<LEMMA_STATEMENT id="8.2">
+Let \(M\) be a finite matroid of rank \(d\) whose lattice of flats admits an order-reversing involution. Let \(F\in\cL(M)\), put \(f=\rk(F)\), and let \(G\in\cL_f(M)\). For the flat-valued dual \(\bar p_F^{\,\perp}\),
+\[
+   \bar p_F^{\,\perp}(G)=0
+   \quad\Longleftrightarrow\quad
+   G^\perp\vee F=E.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.2">
+Let \(G\in\cL_f(M)\). Then
+\[
+   \bar p_F^{\,\perp}(G)
+   =
+   \bar p_F(G^\perp).
+\]
+Thus, by Lemma 8.1,
+\[
+   \bar p_F^{\,\perp}(G)=0
+   \quad\Longleftrightarrow\quad
+   G^\perp\vee F=E.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.2">8.1</DEPS>
+
+<LEMMA_STATEMENT id="8.3">
+Let \(M\) be a finite matroid of rank \(d\) whose lattice of flats admits an order-reversing involution. Let \(F\in\cL(M)\), put \(f=\rk(F)\), and let \(G\in\cL_f(M)\). Then
+\[
+   G^\perp\vee F=E
+   \quad\Longleftrightarrow\quad
+   G\wedge F^\perp=\hat 0.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.3">
+Applying the order-reversing involution gives
+\[
+   G^\perp\vee F=E
+   \quad\Longleftrightarrow\quad
+   G\wedge F^\perp=\hat 0.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.3"></DEPS>
+
+<LEMMA_STATEMENT id="8.4">
+Let \(M\) be a finite matroid of rank \(d\) whose lattice of flats admits an order-reversing involution. Let \(F\in\cL(M)\), put \(f=\rk(F)\), and let \(G\in\cL_f(M)\). Then
+\[
+   G\wedge F^\perp=\hat 0
+   \quad\Longleftrightarrow\quad
+   G\vee F^\perp=E.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.4">
+Because, by Proposition 3, \(\cL(M)\) is modular and, by Lemma 2.1,
+\[
+   \rk(G)+\rk(F^\perp)=f+(d-f)=d,
+\]
+the condition \(G\wedge F^\perp=\hat 0\) is equivalent to
+\[
+   G\vee F^\perp=E.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.4">2.1, 3</DEPS>
+
+<LEMMA_STATEMENT id="8.5">
+Let \(M\) be a finite matroid of rank \(d\) whose lattice of flats admits an order-reversing involution. Let \(F\in\cL(M)\), put \(f=\rk(F)\), and let \(p_F\) be the trivial valuation of the quotient
+\[
+   M/F\oplus U_{0,F}.
+\]
+Then
+\[
+   p_F^\perp=p_{F^\perp},
+\]
+and consequently
+\[
+   \Phi(X_F)=X_{F^\perp}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.5">
+By Lemmas 8.2, 8.3, and 8.4, for \(G\in\cL_f(M)\),
+\[
+   \bar p_F^{\,\perp}(G)=0
+   \quad\Longleftrightarrow\quad
+   G\vee F^\perp=E.
+\]
+But this is exactly the flat-valued trivial valuation of the quotient
+\[
+   M/F^\perp\oplus U_{0,F^\perp}.
+\]
+Hence
+\[
+   p_F^\perp=p_{F^\perp}.
+\]
+By Proposition 6, consequently
+\[
+   \Phi(X_F)=X_{F^\perp}.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.5">6, 8.2, 8.3, 8.4</DEPS>
+
+<PROPOSITION_PROOF id="8">
+It remains to check that \(\Phi\) extends the given flat involution. Let \(F\in\cL(M)\). Lemma 8.5 gives
+\[
+   \Phi(X_F)=X_{F^\perp}.
+\]
+This proves the claimed extension property.
+</PROPOSITION_PROOF>
+<DEPS id="8">8.5</DEPS>
+
+<THEOREM_PROOF id="1">
+Proposition 3 records the main point that an order-reversing involution of a geometric lattice forces the lattice to be modular. Proposition 5 records that, for modular matroids, valuated quotients are naturally valuated matroids on the modular lattice of flats, and the desired involution is obtained by pulling back along the lattice polarity. Proposition 7 gives the order-reversing involution \(\Phi\) on \(\Dr(M)\), and Proposition 8 gives the extension property on \(\cL(M)\).
+
+The answer to the question is affirmative: every order-reversing involution on \(\cL(M)\) extends to an order-reversing involution on \(\Dr(M)\).
+</THEOREM_PROOF>
+<DEPS id="theorem_1">3, 5, 7, 8</DEPS>

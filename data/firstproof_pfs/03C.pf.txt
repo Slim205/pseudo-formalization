@@ -1,0 +1,341 @@
+<THEOREM_STATEMENT id="1">
+Let \(p\in[0,1]\). The following assertion holds for every \(m\ge1\), every choice of nonnegative weights \(w_1,\ldots,w_m\) with \(\sum_i w_i=1\), and i.i.d. Bernoulli\((p)\) random variables \(v_1,\ldots,v_m\):
+\[
+\mathbb P\!\left(\sum_{i=1}^m w_i v_i\ge p\right)\ge p.
+\]
+This is true if and only if
+\[
+p\in[0,1/3]\cup\{1/2,1\}.
+\]
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+Hoeffding--Pinelis comparison for weighted Bernoulli sums. Let \(0<\theta<1\), let \(\xi_1,\ldots,\xi_m\) be i.i.d. Bernoulli\((\theta)\), and let \(a_i\ge0\), \(\sum_i a_i=1\). For every real \(x\),
+\[
+\mathbb P\!\left(\sum_{i=1}^m a_i\xi_i<x\right)
+\le
+\sup_{n\ge1}
+\mathbb P\!\left(\frac1n B_{n,\theta}<x\right),
+\]
+where \(B_{n,\theta}\sim \Bin(n,\theta)\).
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="1">
+We use two standard sharp inequalities. This is the Bernoulli specialization of Hoeffding's extremal theorem for sums of bounded independent random variables; see W.~Hoeffding, \emph{On the distribution of the number of successes in independent trials}, \emph{Annals of Mathematical Statistics} \textbf{27} (1956), 713--721, \cite[Theorem 4]{Hoeffding1956}. For the left-tail formulation in essentially the above form, see also I.~Pinelis, \emph{Optimal binomial, Poisson, and normal left-tail domination for sums of nonnegative random variables}, \emph{Electronic Journal of Probability} \textbf{21} (2016), article no.~47, \cite[Corollary 3.7]{Pinelis2016}.
+</PROPOSITION_PROOF>
+<DEPS id="1"></DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+Ramanujan--Jogdeo--Samuels binomial inequality. If \(0\le \theta\le 1/3\) and \(B_{n,\theta}\sim \Bin(n,\theta)\), then
+\[
+\mathbb P(B_{n,\theta}<n\theta)\le 1-\theta
+\]
+for every integer \(n\ge1\). Equivalently,
+\[
+\mathbb P(B_{n,\theta}\ge n\theta)\ge \theta .
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="2">
+This is a classical binomial-tail inequality proved by K.~Jogdeo and S.~M. Samuels, \emph{Monotone convergence of binomial probabilities and a generalization of Ramanujan's equation}, \emph{Annals of Mathematical Statistics} \textbf{39} (1968), 1191--1195, \cite{JogdeoSamuels1968}; it is often discussed as a Ramanujan-type binomial inequality.
+</PROPOSITION_PROOF>
+<DEPS id="2"></DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+Sufficiency for \(0\le p\le 1/3\). Let \(p\in[0,1/3]\), let \(m\ge1\), let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), and let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((p)\) random variables. Then
+\[
+\mathbb P\!\left(\sum_{i=1}^m w_i v_i\ge p\right)\ge p.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="3.1">
+Let \(p=0\), let \(m\ge1\), let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), and let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((0)\) random variables. Then
+\[
+\mathbb P\!\left(\sum_i w_i v_i\ge0\right)\ge0.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.1">
+The case \(p=0\) is trivial, since the event
+\[
+\sum_i w_i v_i\ge0
+\]
+has probability \(1\).
+</LEMMA_PROOF>
+<DEPS id="3.1"></DEPS>
+
+<LEMMA_STATEMENT id="3.2">
+Let \(0<p\le1/3\), let \(m\ge1\), let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), and let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((p)\) random variables. Then
+\[
+\mathbb P\!\left(\sum_{i=1}^m w_i v_i\ge p\right)\ge p.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.2">
+Assume \(0<p\le1/3\), and set
+\[
+S=\sum_{i=1}^m w_i v_i .
+\]
+By Proposition 1, with \(\theta=p\) and \(x=p\),
+\[
+\mathbb P(S<p)
+\le
+\sup_{n\ge1}\mathbb P(B_{n,p}<np).
+\]
+By Proposition 2, each term in the supremum is at most \(1-p\). Therefore
+\[
+\mathbb P(S<p)\le 1-p,
+\]
+and hence
+\[
+\mathbb P(S\ge p)=1-\mathbb P(S<p)\ge p.
+\]
+</LEMMA_PROOF>
+<DEPS id="3.2">1, 2</DEPS>
+
+<PROPOSITION_PROOF id="3">
+The case \(p=0\) is handled by Lemma 3.1, and the case \(0<p\le1/3\) is handled by Lemma 3.2.
+</PROPOSITION_PROOF>
+<DEPS id="3">3.1, 3.2</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Sufficiency for \(p=1/2\). Let \(p=1/2\), let \(m\ge1\), let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), and let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((1/2)\) random variables. Then
+\[
+\mathbb P\!\left(\sum_{i=1}^m w_i v_i\ge \frac12\right)\ge \frac12.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+Let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((1/2)\) random variables, and set
+\[
+S=\sum_{i=1}^m w_i v_i .
+\]
+The random variables \(1-S\) and \(S\) have the same distribution.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.1">
+Since \(v_i\sim\operatorname{Bernoulli}(1/2)\), the vector
+\[
+(1-v_1,\ldots,1-v_m)
+\]
+has the same distribution as
+\[
+(v_1,\ldots,v_m).
+\]
+Thus \(1-S\) has the same distribution as \(S\).
+</LEMMA_PROOF>
+<DEPS id="4.1"></DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+Let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((1/2)\) random variables, set
+\[
+S=\sum_{i=1}^m w_i v_i ,
+\]
+and assume that \(1-S\) has the same distribution as \(S\). Then
+\[
+\mathbb P(S\ge1/2)\ge \frac12.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+Hence
+\[
+\mathbb P(S>1/2)=\mathbb P(S<1/2).
+\]
+Consequently,
+\[
+\mathbb P(S\ge1/2)
+=
+\mathbb P(S>1/2)+\mathbb P(S=1/2)
+=
+\frac{1+\mathbb P(S=1/2)}2
+\ge \frac12.
+\]
+</LEMMA_PROOF>
+<DEPS id="4.2"></DEPS>
+
+<PROPOSITION_PROOF id="4">
+Lemma 4.1 gives the required distributional symmetry, and Lemma 4.2 gives the desired inequality for \(p=1/2\).
+</PROPOSITION_PROOF>
+<DEPS id="4">4.1, 4.2</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+Sufficiency for \(p=1\). Let \(p=1\), let \(m\ge1\), let \(w_1,\ldots,w_m\) be nonnegative weights with \(\sum_i w_i=1\), and let \(v_1,\ldots,v_m\) be i.i.d. Bernoulli\((1)\) random variables. Then
+\[
+\mathbb P\!\left(\sum_i w_i v_i\ge1\right)\ge1.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="5">
+If \(p=1\), then \(v_i=1\) almost surely for every \(i\), so
+\[
+\sum_i w_i v_i=\sum_i w_i=1
+\]
+almost surely. Thus
+\[
+\mathbb P\!\left(\sum_i w_i v_i\ge1\right)=1.
+\]
+</PROPOSITION_PROOF>
+<DEPS id="5"></DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+Necessity: failure for \(1/3<p<1/2\). For every \(p\in(1/3,1/2)\), take \(m=3\) and \(w_1=w_2=w_3=1/3\). Let \(v_1,v_2,v_3\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2+v_3\sim \Bin(3,p).
+\]
+For this choice,
+\[
+\mathbb P\!\left(\frac K3\ge p\right)<p.
+\]
+The desired inequality fails throughout \((1/3,1/2)\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="6.1">
+Let \(p\in(1/3,1/2)\), let \(v_1,v_2,v_3\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2+v_3\sim \Bin(3,p).
+\]
+Then
+\[
+\frac K3\ge p
+\quad\Longleftrightarrow\quad
+K\ge2.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.1">
+None
+</LEMMA_PROOF>
+<DEPS id="6.1"></DEPS>
+
+<LEMMA_STATEMENT id="6.2">
+Let \(p\in(1/3,1/2)\), let \(v_1,v_2,v_3\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2+v_3\sim \Bin(3,p).
+\]
+Then
+\[
+\mathbb P\!\left(\frac K3\ge p\right)=p^2(3-2p).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.2">
+By Lemma 6.1,
+\[
+\mathbb P\!\left(\frac K3\ge p\right)
+=
+\mathbb P(K\ge2)
+=
+3p^2(1-p)+p^3
+=
+p^2(3-2p).
+\]
+</LEMMA_PROOF>
+<DEPS id="6.2">6.1</DEPS>
+
+<LEMMA_STATEMENT id="6.3">
+For \(p\in(1/3,1/2)\),
+\[
+p^2(3-2p)<p.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.3">
+Now
+\[
+p^2(3-2p)<p
+\]
+is equivalent to
+\[
+p(3-2p)<1,
+\]
+or
+\[
+2p^2-3p+1>0,
+\]
+i.e.
+\[
+(2p-1)(p-1)>0.
+\]
+This holds for \(1/3<p<1/2\).
+</LEMMA_PROOF>
+<DEPS id="6.3"></DEPS>
+
+<PROPOSITION_PROOF id="6">
+By Lemmas 6.2 and 6.3,
+\[
+\mathbb P\!\left(\frac K3\ge p\right)=p^2(3-2p)<p.
+\]
+Hence the desired inequality fails throughout
+\[
+(1/3,1/2).
+\]
+</PROPOSITION_PROOF>
+<DEPS id="6">6.2, 6.3</DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Necessity: failure for \(1/2<p<1\). For every \(p\in(1/2,1)\), take \(m=2\) and \(w_1=w_2=1/2\). Let \(v_1,v_2\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2\sim \Bin(2,p).
+\]
+For this choice,
+\[
+\mathbb P\!\left(\frac K2\ge p\right)<p.
+\]
+The desired inequality fails throughout \((1/2,1)\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="7.1">
+Let \(p\in(1/2,1)\), let \(v_1,v_2\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2\sim \Bin(2,p).
+\]
+Then
+\[
+\frac K2\ge p
+\quad\Longleftrightarrow\quad
+K=2.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.1">
+None
+</LEMMA_PROOF>
+<DEPS id="7.1"></DEPS>
+
+<LEMMA_STATEMENT id="7.2">
+Let \(p\in(1/2,1)\), let \(v_1,v_2\) be i.i.d. Bernoulli\((p)\) random variables, and let
+\[
+K=v_1+v_2\sim \Bin(2,p).
+\]
+Then
+\[
+\mathbb P\!\left(\frac K2\ge p\right)=p^2<p.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.2">
+By Lemma 7.1,
+\[
+\mathbb P\!\left(\frac K2\ge p\right)=p^2<p
+\]
+for every \(p\in(1/2,1)\).
+</LEMMA_PROOF>
+<DEPS id="7.2">7.1</DEPS>
+
+<PROPOSITION_PROOF id="7">
+By Lemma 7.2,
+\[
+\mathbb P\!\left(\frac K2\ge p\right)=p^2<p
+\]
+for every \(p\in(1/2,1)\). Hence the desired inequality fails throughout
+\[
+(1/2,1).
+\]
+</PROPOSITION_PROOF>
+<DEPS id="7">7.2</DEPS>
+
+<THEOREM_PROOF id="1">
+We prove sufficiency and necessity separately. Propositions 3, 4, and 5 prove sufficiency for \(p\in[0,1/3]\), \(p=1/2\), and \(p=1\), respectively. Propositions 6 and 7 prove necessity by failure for \(1/3<p<1/2\) and \(1/2<p<1\), respectively. Combining the sufficiency and necessity parts proves the theorem.
+</THEOREM_PROOF>
+<DEPS id="theorem_1">3, 4, 5, 6, 7</DEPS>

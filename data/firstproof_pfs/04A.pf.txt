@@ -1,0 +1,893 @@
+<THEOREM_STATEMENT id="1">
+Partial proof: the first alternative and the remaining hard estimate.
+
+I write the small universal constant in the problem as \(\kappa\), reserving
+\(k\) for \(k\)-dilation. Rectangles are oriented Euclidean products and
+degree \(1\) means relative degree \(1\) on
+\[
+H_4(R,\partial R;\mathbb Z)\to H_4(S,\partial S;\mathbb Z).
+\]
+The current proof is complete through the first alternative and through a
+conditional reduction of the hard case. It is not a complete proof of the
+stated dichotomy, because the averaged tightening estimate \((\mathrm{EAT})\)
+below remains unproved. The arguments are written for smooth transverse maps;
+piecewise smooth maps may be treated by the same current-slicing argument, or
+by smoothing on strata with an arbitrarily small \(C^1\)-loss and then
+absorbing that loss into the universal constants.
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+All constants are positive and universal. If \(\Dil_2(f)\le1\), then
+\[
+\Dil_3(f),\Dil_4(f)\le1.
+\]
+The standard inputs used are Guth's map-of-pairs estimate, which for
+\(n=4,k=2,j=1,l=4\) gives
+\[
+        R_1^2\,\Vol(R)\ge c_0\,S_1^3S_2S_3S_4 ,
+\tag{guth14}
+\]
+and the small-volume relative isoperimetric estimate in rectangles: if \(Z\)
+is a relative \(2\)-cycle in \(R\) with \(A=\Mass Z\le c_*R_1R_2\), then
+\[
+        \Fill_R(Z)\le C_*\max\{A^{3/2},A^2/R_1\}.
+\]
+The consequences used are
+\[
+\Fill_R(Z)\ge L\quad\Longrightarrow\quad
+\Mass Z\ge c\min\{R_1R_2,L^{2/3},(R_1L)^{1/2}\},
+\tag{profile-inverse}
+\]
+and, after decreasing \(c_*\),
+\[
+        \Mass Z<c_*R_1R_2\quad\Longrightarrow\quad
+        \Fill_R(Z)\le C R_1R_2^2 .
+\tag{iso}
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="1.1">
+Assume \(\Dil_2(f)\le1\). Then
+\[
+\Dil_3(f),\Dil_4(f)\le1.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.1">
+For singular values
+\(\sigma_1\ge\cdots\ge\sigma_4\), the inequality
+\(\sigma_1\sigma_2\le1\) implies \(\sigma_2\le1\) and
+\(\sigma_1\cdots\sigma_j\le\sigma_1\sigma_2\) for \(j\ge2\).
+</LEMMA_PROOF>
+<DEPS id="1.1"></DEPS>
+
+<LEMMA_STATEMENT id="1.2">
+For \(n=4,k=2,j=1,l=4\), Guth's map-of-pairs estimate gives
+\[
+        R_1^2\,\Vol(R)\ge c_0\,S_1^3S_2S_3S_4 .
+\tag{guth14}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.2">
+We use Guth's map-of-pairs estimate. For
+\(n=4,k=2,j=1,l=4\) it gives
+\[
+        R_1^2\,\Vol(R)\ge c_0\,S_1^3S_2S_3S_4 .
+\]
+
+External citation used: L. Guth, \emph{Area-expanding embeddings of rectangles}, arXiv:0710.0403, Estimate 1.
+</LEMMA_PROOF>
+<DEPS id="1.2"></DEPS>
+
+<LEMMA_STATEMENT id="1.3">
+If \(Z\) is a relative \(2\)-cycle in \(R\) with
+\[
+A=\Mass Z\le c_*R_1R_2,
+\]
+then
+\[
+        \Fill_R(Z)\le C_*\max\{A^{3/2},A^2/R_1\}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.3">
+We also use the small-volume relative isoperimetric estimate in rectangles.
+
+External citation used: L. Guth, \emph{Area-expanding embeddings of rectangles}, arXiv:0710.0403, Theorem 3.
+</LEMMA_PROOF>
+<DEPS id="1.3"></DEPS>
+
+<LEMMA_STATEMENT id="1.4">
+The small-volume relative isoperimetric estimate has the consequences
+\[
+\Fill_R(Z)\ge L\quad\Longrightarrow\quad
+\Mass Z\ge c\min\{R_1R_2,L^{2/3},(R_1L)^{1/2}\},
+\tag{profile-inverse}
+\]
+and, after decreasing \(c_*\),
+\[
+        \Mass Z<c_*R_1R_2\quad\Longrightarrow\quad
+        \Fill_R(Z)\le C R_1R_2^2 .
+\tag{iso}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.4">
+Consequently, from Lemma 1.3,
+\[
+\Fill_R(Z)\ge L\quad\Longrightarrow\quad
+\Mass Z\ge c\min\{R_1R_2,L^{2/3},(R_1L)^{1/2}\},
+\]
+and, after decreasing \(c_*\),
+\[
+        \Mass Z<c_*R_1R_2\quad\Longrightarrow\quad
+        \Fill_R(Z)\le C R_1R_2^2 .
+\]
+</LEMMA_PROOF>
+<DEPS id="1.4">1.3</DEPS>
+
+<PROPOSITION_PROOF id="1">
+Lemmas 1.1, 1.2, 1.3, and 1.4 give the standard inputs.
+</PROPOSITION_PROOF>
+<DEPS id="1">1.1, 1.2, 1.3, 1.4</DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+There is \(c_2>0\) such that, under the hypotheses of the problem, if
+\[
+        R_1R_2^2\le c_2S_1S_2S_3 ,
+\]
+then
+\[
+        R_3R_4\ge c_2S_3S_4 .
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="2.1">
+Let \(Q\) be the concentric subrectangle of the \((x_3,x_4)\)-face of \(S\)
+with side lengths \(S_3/2,S_4/2\), and set
+\[
+        P_y=[0,S_1]\times[0,S_2]\times\{y\},\qquad y\in Q.
+\]
+Every relative \(3\)-chain in \(S\) with boundary \(P_y\), \(y\in Q\), has
+mass at least
+\[
+        cS_1S_2S_3 .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.1">
+Choose a \(1\)-Lipschitz function \(\psi\) on the
+\((x_3,x_4)\)-rectangle which vanishes on its boundary and satisfies
+\(\psi\ge cS_3\) on \(Q\). Put \(\beta=\psi\,dx_1\wedge dx_2\). Then
+\(d\beta\) has comass at most \(1\), and Stokes' theorem gives
+\[
+\Mass Y\ge\left|\int_Yd\beta\right|
+ =\left|\int_{P_y}\beta\right|\ge cS_1S_2S_3 .
+\]
+The relative boundary terms vanish because \(dx_1\wedge dx_2=0\) on the
+\(x_1,x_2\)-faces and \(\psi=0\) on the \(x_3,x_4\)-faces.
+</LEMMA_PROOF>
+<DEPS id="2.1"></DEPS>
+
+<LEMMA_STATEMENT id="2.2">
+Let \(Q\) and \(P_y\) be as in Lemma 2.1. Let \(T=[[R]]\) be the fundamental
+relative current and put \(F=(f_3,f_4)\). Since \(f\) has relative degree
+\(1\), for a.e. \(y\in Q\), with
+\[
+        Z_y=\langle T,F,y\rangle,
+\]
+one has
+\[
+        f_\#Z_y
+        =f_\#\langle T,F,y\rangle
+        =\langle [[S]],(x_3,x_4),y\rangle=\pm P_y .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.2">
+Since \(f\) has relative degree \(1\), \(f_\#T=[[S]]\) as a relative
+\(4\)-current. For a.e. \(y\in Q\), slicing naturality gives
+\[
+        f_\#\langle T,F,y\rangle
+        =\langle [[S]],(x_3,x_4),y\rangle=\pm P_y .
+\]
+Write \(Z_y=\langle T,F,y\rangle\).
+</LEMMA_PROOF>
+<DEPS id="2.2"></DEPS>
+
+<LEMMA_STATEMENT id="2.3">
+Let \(Q\), \(P_y\), \(T\), \(F=(f_3,f_4)\), and
+\(Z_y=\langle T,F,y\rangle\) be as in Lemma 2.2. For a.e. \(y\in Q\),
+\[
+        \Fill_R(Z_y)\ge cS_1S_2S_3 .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.3">
+Any relative filling of \(Z_y\) in \(R\)
+pushes forward, using \(\Dil_3(f)\le1\) from Lemma 1.1, to a filling of
+\(P_y\) in \(S\). Lemma 2.1 therefore gives
+\[
+        \Fill_R(Z_y)\ge cS_1S_2S_3 .
+\]
+</LEMMA_PROOF>
+<DEPS id="2.3">1.1, 2.1</DEPS>
+
+<LEMMA_STATEMENT id="2.4">
+Let \(Q\), \(T\), \(F=(f_3,f_4)\), and \(Z_y=\langle T,F,y\rangle\) be as
+in Lemma 2.2. If
+\[
+        R_1R_2^2\le c_2S_1S_2S_3
+\]
+and \(c_2\) is sufficiently small, then for a.e. \(y\in Q\),
+\[
+        \Mass Z_y\ge c_*R_1R_2 .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.4">
+If \(c_2\) is sufficiently small, Lemma 1.4 and Lemma 2.3 force
+\[
+\Mass Z_y\ge c_*R_1R_2 .
+\]
+</LEMMA_PROOF>
+<DEPS id="2.4">1.4, 2.3</DEPS>
+
+<LEMMA_STATEMENT id="2.5">
+Under the hypotheses of Proposition 2, with \(Q\), \(F=(f_3,f_4)\), and
+\(Z_y=\langle [[R]],F,y\rangle\) as above,
+\[
+ \Vol(R)\ge cR_1R_2S_3S_4 .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.5">
+Since \(J_2F\le\Dil_2(f)\le1\), the coarea
+formula and Lemma 2.4 yield
+\[
+ \Vol(R)\ge\int_Q\Mass Z_y\,dy
+        \ge cR_1R_2S_3S_4 .
+\]
+</LEMMA_PROOF>
+<DEPS id="2.5">2.4</DEPS>
+
+<PROPOSITION_PROOF id="2">
+Let \(T=[[R]]\) be the fundamental relative current and put \(F=(f_3,f_4)\).
+Lemmas 2.2, 2.3, and 2.4 give the slicing, filling, and slice-mass lower
+bounds. Lemma 2.5 gives
+\[
+ \Vol(R)\ge cR_1R_2S_3S_4 .
+\]
+Cancelling \(R_1R_2\) proves the proposition.
+</PROPOSITION_PROOF>
+<DEPS id="2">2.2, 2.3, 2.4, 2.5</DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+Assume \(R_1=\alpha S_1\le S_1\) and that the first conclusion fails with a
+small constant. Then
+\[
+        R_1R_2^2\ge cS_1S_2S_3 ,
+\tag{r12large}
+\]
+and
+\[
+        \Vol(R)\ge cS_1S_2^{3/5}S_3^{7/5}S_4 .
+\]
+The remaining gap is exactly the high-aspect factor
+\[
+        (S_3/S_2)^{1/10}.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="3.1">
+Assume \(R_1=\alpha S_1\le S_1\) and that the first conclusion fails with a
+small constant. Then
+\[
+        R_1R_2^2\ge cS_1S_2S_3 .
+\tag{r12large}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.1">
+Proposition 2 gives
+\[
+        R_1R_2^2\ge cS_1S_2S_3 .
+\]
+</LEMMA_PROOF>
+<DEPS id="3.1">2</DEPS>
+
+<LEMMA_STATEMENT id="3.2">
+Assume \(R_1=\alpha S_1\le S_1\), that
+\[
+        R_1R_2^2\ge cS_1S_2S_3 ,
+\tag{r12large}
+\]
+and let \(Z_y=\langle [[R]],(f_3,f_4),y\rangle\) be the slices above. Then
+\[
+        \Vol(R)\ge
+        c\alpha^{1/2}S_1S_2^{1/2}S_3^{3/2}S_4 .
+\tag{slicevol}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.2">
+For the slices above, Lemma 1.4 with
+\(L=cS_1S_2S_3\), together with Lemma 2.3, gives, for a.e. \(y\in Q\),
+\[
+\Mass Z_y\ge c\min\{R_1R_2,(S_1S_2S_3)^{2/3},
+                         (R_1S_1S_2S_3)^{1/2}\}.
+\]
+Using Lemma 3.1 and \(R_1=\alpha S_1\), every term in the minimum is
+at least \(c\alpha^{1/2}S_1(S_2S_3)^{1/2}\). Hence
+\[
+        \Vol(R)\ge
+        c\alpha^{1/2}S_1S_2^{1/2}S_3^{3/2}S_4 .
+\]
+</LEMMA_PROOF>
+<DEPS id="3.2">1.4, 2.3, 3.1</DEPS>
+
+<LEMMA_STATEMENT id="3.3">
+Assume \(R_1=\alpha S_1\le S_1\). Then
+\[
+        \Vol(R)\ge
+        c\alpha^{-2}S_1S_2S_3S_4 .
+\tag{monovol}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.3">
+On the other hand, Lemma 1.2 gives
+\[
+        \Vol(R)\ge
+        c\alpha^{-2}S_1S_2S_3S_4 .
+\]
+</LEMMA_PROOF>
+<DEPS id="3.3">1.2</DEPS>
+
+<LEMMA_STATEMENT id="3.4">
+Under the hypotheses of Proposition 3,
+\[
+        \Vol(R)\ge cS_1S_2^{3/5}S_3^{7/5}S_4 .
+\]
+The remaining gap is exactly the high-aspect factor
+\[
+        (S_3/S_2)^{1/10}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.4">
+Optimizing between Lemmas 3.2 and 3.3 gives
+\[
+        \Vol(R)\ge cS_1S_2^{3/5}S_3^{7/5}S_4 .
+\]
+Thus the remaining gap is exactly the high-aspect factor
+\((S_3/S_2)^{1/10}\).
+</LEMMA_PROOF>
+<DEPS id="3.4">3.2, 3.3</DEPS>
+
+<PROPOSITION_PROOF id="3">
+Lemma 3.1 gives \((\mathrm{r12large})\). Lemma 3.2 gives
+\((\mathrm{slicevol})\), Lemma 3.3 gives \((\mathrm{monovol})\), and Lemma
+3.4 gives the optimized unconditional partial hard-case bound and identifies
+the remaining gap.
+</PROPOSITION_PROOF>
+<DEPS id="3">3.1, 3.2, 3.3, 3.4</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Let \(Q\) be the concentric subrectangle of the \((x_3,x_4)\)-face of \(S\)
+with side lengths \(S_3/2,S_4/2\). Let \(T=[[R]]\), keep
+\(F=(f_3,f_4)\), and set
+\[
+        Z_y=\langle T,F,y\rangle .
+\]
+Let \(G=(f_1,f_2)\), and define
+\[
+E_y=\int_{Z_y}\|dG|_{TZ_y}\|_{HS}^2\,d\|Z_y\|,\qquad
+I=\int_QE_y\,dy,\qquad q=|Q|.
+\]
+Then
+\[
+        I\le C\Vol(R).
+\tag{Icoarea}
+\]
+Let
+\[
+        \Omega=\{y\in Q:E_y\le4I/q\}.
+\]
+Then
+\[
+        |\Omega|\ge3q/4.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+At a regular point of \(F\), let \(K=\ker dF\), and let \(a\ge b\) be the
+singular values of \(dF|_{K^\perp}\); then \(ab=J_2F\) and
+\[
+        \|dG|_{\ker dF}\|_{HS}^2J_2F\le2 .
+\]
+</LEMMA_STATEMENT>
+
+<CLAIM_STATEMENT id="4.1.1">
+At a regular point of \(F\), let \(K=\ker dF\), and let \(a\ge b\) be the
+singular values of \(dF|_{K^\perp}\). For any unit \(w\in K\), the mixed
+two-vector \(df(w)\wedge df(v)\), where \(v\) is a unit vector with
+\(|dF(v)|=a\), has a component of norm
+\[
+        |dG(w)|a .
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.1">
+None
+</CLAIM_PROOF>
+<DEPS id="4.1.1"></DEPS>
+
+<CLAIM_STATEMENT id="4.1.2">
+At a regular point of \(F\), let \(K=\ker dF\), and let \(a\ge b\) be the
+singular values of \(dF|_{K^\perp}\); then \(ab=J_2F\), and for any unit
+\(w\in K\),
+\[
+        |dG(w)|^2J_2F\le b/a\le1 .
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.2">
+Using Claim 4.1.1, since \(\Dil_2(f)\le1\), \(|dG(w)|a\le1\), and hence
+\[
+        |dG(w)|^2J_2F\le b/a\le1 .
+\]
+</CLAIM_PROOF>
+<DEPS id="4.1.2">4.1.1</DEPS>
+
+<CLAIM_STATEMENT id="4.1.3">
+At a regular point of \(F\), let \(K=\ker dF\). Then
+\[
+        \|dG|_{\ker dF}\|_{HS}^2J_2F\le2 .
+\]
+</CLAIM_STATEMENT>
+
+<CLAIM_PROOF id="4.1.3">
+Summing over an orthonormal basis of \(K\) gives
+\[
+        \|dG|_{\ker dF}\|_{HS}^2J_2F\le2 .
+\]
+</CLAIM_PROOF>
+<DEPS id="4.1.3">4.1.2</DEPS>
+
+<LEMMA_PROOF id="4.1">
+Claims 4.1.1, 4.1.2, and 4.1.3 give the pointwise estimate.
+</LEMMA_PROOF>
+<DEPS id="4.1">4.1.1, 4.1.2, 4.1.3</DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+With
+\[
+        I=\int_QE_y\,dy,
+\]
+one has
+\[
+        I\le C\Vol(R).
+\tag{Icoarea}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+Using Lemma 4.1, by coarea,
+\[
+        I\le C\Vol(R).
+\]
+</LEMMA_PROOF>
+<DEPS id="4.2">4.1</DEPS>
+
+<LEMMA_STATEMENT id="4.3">
+Let
+\[
+        \Omega=\{y\in Q:E_y\le4I/q\}.
+\]
+Then
+\[
+        |\Omega|\ge3q/4.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.3">
+None
+</LEMMA_PROOF>
+<DEPS id="4.3"></DEPS>
+
+<PROPOSITION_PROOF id="4">
+Lemma 4.1 gives the pointwise kernel estimate. Lemma 4.2 gives the weighted
+coarea estimate \((\mathrm{Icoarea})\). Lemma 4.3 gives the measure bound for
+\(\Omega\).
+</PROPOSITION_PROOF>
+<DEPS id="4">4.1, 4.2, 4.3</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+For real normal currents define
+\[
+\EFill_f(y)=\inf\{\Mass C:\ C\in N_3(R,\partial R;\mathbb R),\
+        f_\#(\partial C)=\pm P_y\}.
+\]
+Let \(Z_y=\langle [[R]],(f_3,f_4),y\rangle\) be the actual slice. This class is
+nonempty. If
+\[
+A_\Omega:=\int_\Omega\EFill_f(y)\,dy,
+\]
+then
+\[
+        \EFill_f(y)\ge cS_1S_2S_3
+\tag{EFilllower}
+\]
+and
+\[
+A_\Omega
+        \ge cS_1S_2S_3\,q
+        \ge cS_1S_2S_3^2S_4 .
+\tag{AElower}
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="5.1">
+For real normal currents, with
+\[
+\EFill_f(y)=\inf\{\Mass C:\ C\in N_3(R,\partial R;\mathbb R),\
+        f_\#(\partial C)=\pm P_y\},
+\]
+the class defining \(\EFill_f(y)\) is nonempty.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.1">
+This class is nonempty by filling the actual slice \(Z_y\).
+</LEMMA_PROOF>
+<DEPS id="5.1"></DEPS>
+
+<LEMMA_STATEMENT id="5.2">
+For every \(y\in Q\),
+\[
+        \EFill_f(y)\ge cS_1S_2S_3 .
+\tag{EFilllower}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.2">
+If \(C\) is admissible, then \(f_\#C\) fills \(P_y\) and
+\(\Mass(f_\#C)\le\Mass C\); Lemma 2.1 gives
+\[
+        \EFill_f(y)\ge cS_1S_2S_3 .
+\]
+</LEMMA_PROOF>
+<DEPS id="5.2">2.1</DEPS>
+
+<LEMMA_STATEMENT id="5.3">
+Let
+\[
+A_\Omega:=\int_\Omega\EFill_f(y)\,dy .
+\]
+Then
+\[
+A_\Omega
+        \ge cS_1S_2S_3\,q
+        \ge cS_1S_2S_3^2S_4 .
+\tag{AElower}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="5.3">
+Therefore, using Lemmas 5.2 and 4.3,
+\[
+A_\Omega:=\int_\Omega\EFill_f(y)\,dy
+        \ge cS_1S_2S_3\,q
+        \ge cS_1S_2S_3^2S_4 .
+\]
+</LEMMA_PROOF>
+<DEPS id="5.3">4.3, 5.2</DEPS>
+
+<PROPOSITION_PROOF id="5">
+Lemma 5.1 gives nonemptiness, Lemma 5.2 gives the essential filling lower
+bound, and Lemma 5.3 gives \((\mathrm{AElower})\).
+</PROPOSITION_PROOF>
+<DEPS id="5">5.1, 5.2, 5.3</DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+For \(z\in Q\), let \({\mathcal B}_z\) be the set of \(x\in R\) such that
+\(z\) belongs to the \(F\)-image of at least one coordinate \(2\)-plaque
+through \(x\). Then, for every normal \(3\)-current \(B\),
+\[
+ \frac1q\int_Q\Mass(B\llcorner{\mathcal B}_z)\,dz
+ \le C\frac{R_3R_4}{S_3S_4}\Mass B .
+\tag{badfubini}
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="6.1">
+For fixed \(x\), the set of \(z\in Q\) such that \(z\) belongs to the
+\(F\)-image of at least one coordinate \(2\)-plaque through \(x\) has measure
+at most
+\[
+        CR_3R_4 .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.1">
+For fixed \(x\), the set of such \(z\)'s has measure at most
+\(CR_3R_4\), because there are six plaques, each has area at most \(R_3R_4\),
+and \(J_2F\le1\) on each plaque.
+</LEMMA_PROOF>
+<DEPS id="6.1"></DEPS>
+
+<LEMMA_STATEMENT id="6.2">
+For every normal \(3\)-current \(B\),
+\[
+ \frac1q\int_Q\Mass(B\llcorner{\mathcal B}_z)\,dz
+ \le C\frac{R_3R_4}{S_3S_4}\Mass B .
+\tag{badfubini}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.2">
+Apply Lemma 6.1 pointwise, integrate against the mass measure of \(B\) using
+Fubini/Tonelli, and use \(q=|Q|\sim S_3S_4\). Hence, for every normal
+\(3\)-current \(B\),
+\[
+ \frac1q\int_Q\Mass(B\llcorner{\mathcal B}_z)\,dz
+ \le C\frac{R_3R_4}{S_3S_4}\Mass B .
+\]
+</LEMMA_PROOF>
+<DEPS id="6.2">6.1</DEPS>
+
+<PROPOSITION_PROOF id="6">
+Lemma 6.1 gives the fixed-\(x\) estimate, and Lemma 6.2 gives the
+exact-plaque Fubini estimate.
+</PROPOSITION_PROOF>
+<DEPS id="6">6.1, 6.2</DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Let \(G=(f_1,f_2)\), keep \(F=(f_3,f_4)\), and let \(E_y\), \(I\), \(q\),
+\(\Omega\), \(\EFill_f(y)\), \(A_\Omega\), and \({\mathcal B}_z\) be as above.
+Take measurable near-minimizers \(C_y^0\) with
+\[
+\Mass C_y^0\le2\EFill_f(y).
+\]
+Assume the averaged tightening estimate
+\[
+ A_\Omega
+ \le C\left(R_1I+\frac{I^2}{S_1q}\right)
+ +\frac{C}{q}\int_Q\int_\Omega
+       \Mass(C_y^0\llcorner{\mathcal B}_z)\,dy\,dz .
+\tag{EAT}
+\]
+This estimate is sufficient for the desired theorem in the following sense: if
+\[
+R_3R_4\le\kappa S_3S_4
+\]
+with \(\kappa\) small, and if also
+\[
+R_1\le\kappa S_1,
+\]
+then
+\[
+I\ge cS_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="7.1">
+Measurable near-minimizers \(C_y^0\) may be taken with
+\[
+\Mass C_y^0\le2\EFill_f(y).
+\]
+The averaged tightening estimate under consideration is
+\[
+ A_\Omega
+ \le C\left(R_1I+\frac{I^2}{S_1q}\right)
+ +\frac{C}{q}\int_Q\int_\Omega
+       \Mass(C_y^0\llcorner{\mathcal B}_z)\,dy\,dz .
+\tag{EAT}
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.1">
+Take measurable
+near-minimizers \(C_y^0\) with
+\(\Mass C_y^0\le2\EFill_f(y)\); standard measurable selection in the
+separable flat topology, or equivalently outer integration with
+\(\varepsilon\)-minimizers, is enough for this formal step. One needs
+\[
+ A_\Omega
+ \le C\left(R_1I+\frac{I^2}{S_1q}\right)
+ +\frac{C}{q}\int_Q\int_\Omega
+       \Mass(C_y^0\llcorner{\mathcal B}_z)\,dy\,dz .
+\]
+</LEMMA_PROOF>
+<DEPS id="7.1"></DEPS>
+
+<LEMMA_STATEMENT id="7.2">
+Assuming \((\mathrm{EAT})\), \((\mathrm{badfubini})\), and
+\[
+\Mass C_y^0\le2\EFill_f(y),
+\]
+one has
+\[
+A_\Omega\le C\left(R_1I+\frac{I^2}{S_1q}\right)
+  +C\frac{R_3R_4}{S_3S_4}A_\Omega .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.2">
+Assuming Lemma 7.1, Lemma 6.2, and
+\(\Mass C_y^0\le2\EFill_f(y)\) give
+\[
+A_\Omega\le C\left(R_1I+\frac{I^2}{S_1q}\right)
+  +C\frac{R_3R_4}{S_3S_4}A_\Omega .
+\]
+</LEMMA_PROOF>
+<DEPS id="7.2">6.2, 7.1</DEPS>
+
+<LEMMA_STATEMENT id="7.3">
+Assume \((\mathrm{EAT})\),
+\[
+R_3R_4\le\kappa S_3S_4,\qquad R_1\le\kappa S_1
+\]
+with \(\kappa\) small. Then
+\[
+I\ge cS_1S_2^{1/2}S_3^{3/2}S_4.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="7.3">
+If \(R_3R_4\le\kappa S_3S_4\), the last term in Lemma 7.2 is absorbed by
+taking \(\kappa\) small. If also \(R_1\le\kappa S_1\) and
+\(I\le\delta S_1S_2^{1/2}S_3^{3/2}S_4\), then, since \(q\sim S_3S_4\),
+\[
+R_1I\le C\kappa\delta S_1S_2S_3^2S_4,\qquad
+\frac{I^2}{S_1q}\le C\delta^2S_1S_2S_3^2S_4 .
+\]
+For small \(\delta,\kappa\) this contradicts Lemma 5.3. Thus
+\(I\ge cS_1S_2^{1/2}S_3^{3/2}S_4\), and Lemma 4.2 gives the desired
+second alternative.
+</LEMMA_PROOF>
+<DEPS id="7.3">4.2, 5.3, 7.2</DEPS>
+
+<PROPOSITION_PROOF id="7">
+The following estimate is sufficient for the desired theorem. Lemma 7.1 takes
+the measurable near-minimizers \(C_y^0\) and formulates \((\mathrm{EAT})\).
+Lemma 7.2 applies \((\mathrm{badfubini})\) and
+\(\Mass C_y^0\le2\EFill_f(y)\). Lemma 7.3 absorbs the
+\(R_3R_4/(S_3S_4)\) term, uses small \(R_1\), argues by contradiction with
+\((\mathrm{AElower})\), and invokes \((\mathrm{Icoarea})\) to get the desired
+second alternative.
+</PROPOSITION_PROOF>
+<DEPS id="7">7.1, 7.2, 7.3</DEPS>
+
+<PROPOSITION_STATEMENT id="8">
+The estimate \((\mathrm{EAT})\) cannot be obtained by a standard source-local
+cellular deformation in the quotient by \(f\)-null chains without a new idea.
+The obstruction is already visible in a two-cell model. This does not disprove
+\((\mathrm{EAT})\); it identifies what is missing.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="8.1">
+The estimate \((\mathrm{EAT})\) cannot be obtained by a standard source-local
+cellular deformation in the quotient by \(f\)-null chains without a new idea.
+The obstruction is already visible in a two-cell model.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.1">
+Let \(A,A'\) be two
+oriented \(2\)-cells with \(f_\#A=f_\#A'=P\). Then \(N=A-A'\in\ker f_\#\).
+If an exact-plaque bad set contains \(A\) but not \(A'\), the source-local
+projection \(P_{\rm bad}\) with \(P_{\rm bad}A=A\), \(P_{\rm bad}A'=0\) gives
+\(f_\#P_{\rm bad}N=P\ne0\). Dually, a quotient cochain has equal values on
+\(A\) and \(A'\), but restricting it to the nonsaturated bad set destroys that
+property. Thus exact source localization and quotient invariance are in
+tension.
+</LEMMA_PROOF>
+<DEPS id="8.1"></DEPS>
+
+<LEMMA_STATEMENT id="8.2">
+The two-cell obstruction does not disprove \((\mathrm{EAT})\); it identifies
+what is missing.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.2">
+This does not disprove \((\mathrm{EAT})\); it identifies what is missing. A
+proof would need an energy-sensitive, null-respecting carrier or a dual
+target-side cochain homotopy whose residual term is nevertheless controlled by
+the unsaturated exact-plaque mass in Lemma 6.2.
+</LEMMA_PROOF>
+<DEPS id="8.2">6.2</DEPS>
+
+<PROPOSITION_PROOF id="8">
+Lemma 8.1 gives the two-cell obstruction. Lemma 8.2 states what is missing.
+</PROPOSITION_PROOF>
+<DEPS id="8">8.1, 8.2</DEPS>
+
+<PROPOSITION_STATEMENT id="9">
+The document is a conditional reduction, not a complete solution. The remaining
+open issues are the unresolved averaged tightening estimate \((\mathrm{EAT})\),
+the fact that the document proves only the listed partial and conditional
+estimates, the insufficiency of standard approaches tried so far, and the need
+for either a proof of \((\mathrm{EAT})\), an equivalent dual formulation using
+only target-pullback cochains, or a different hard-regime argument.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="9.1">
+The essential mathematical gap is \((\mathrm{EAT})\), an averaged tightening
+estimate for the degree-carrying part of the slices \(Z_y\). It is used only
+in the last section, but it is indispensable for the high-aspect hard case.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.1">
+None
+</LEMMA_PROOF>
+<DEPS id="9.1"></DEPS>
+
+<LEMMA_STATEMENT id="9.2">
+The first alternative, the single-slice bound, the weighted coarea
+estimate, the essential filling lower bound, the exact-plaque Fubini estimate,
+and the absorption algebra are proved above.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.2">
+None
+</LEMMA_PROOF>
+<DEPS id="9.2"></DEPS>
+
+<LEMMA_STATEMENT id="9.3">
+Standard approaches tried so far do not close the gap: monomial
+degree estimates give only \((\mathrm{guth14})\); ordinary source deformations
+create uncontrolled \(f\)-null boundary errors; quotient cochains are not
+compatible with nonsaturated exact-plaque localization as shown above.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.3">
+None
+</LEMMA_PROOF>
+<DEPS id="9.3"></DEPS>
+
+<LEMMA_STATEMENT id="9.4">
+A complete proof would require either a proof of \((\mathrm{EAT})\), an
+equivalent dual formulation using only target-pullback cochains, or a different
+hard-regime argument exploiting the full two-parameter family of slices and the
+ambient mixed \(2\)-Jacobian bounds.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.4">
+None
+</LEMMA_PROOF>
+<DEPS id="9.4"></DEPS>
+
+<PROPOSITION_PROOF id="9">
+The document is therefore a conditional reduction, not a complete solution.
+Lemmas 9.1, 9.2, 9.3, and 9.4 list the remaining open issues.
+</PROPOSITION_PROOF>
+<DEPS id="9">9.1, 9.2, 9.3, 9.4</DEPS>
+
+<PROPOSITION_STATEMENT id="10">
+The bibliography contains the following references:
+
+L. Guth, \emph{Area-expanding embeddings of rectangles}, arXiv:0710.0403.
+
+L. Guth, \emph{Area-contracting maps between rectangles}, Ph.D. thesis,
+Massachusetts Institute of Technology, 2005.
+
+L. Guth, \emph{Directional isoperimetric inequalities and rational homotopy
+invariants}, arXiv:0802.3549.
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="10">
+None
+</PROPOSITION_PROOF>
+<DEPS id="10"></DEPS>
+
+<THEOREM_PROOF id="1">
+Proposition 1 records the standard inputs. Proposition 2 proves the first
+alternative. Proposition 3 proves the unconditional partial hard-case bound and
+identifies the remaining gap. Propositions 4, 5, 6, and 7 give the weighted
+coarea estimate, essential filling lower bound, exact-plaque Fubini estimate,
+and conditional absorption argument assuming \((\mathrm{EAT})\). Proposition 8
+explains why the remaining estimate is non-routine. Proposition 9 records the
+remaining open issues. Proposition 10 records the bibliography.
+</THEOREM_PROOF>
+<DEPS id="theorem_1">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</DEPS>

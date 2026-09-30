@@ -17,6 +17,11 @@ data/arxiv_pdfs/
 data/arxiv_grading_bench_pdf_files/
 arXiv-*.pdf
 
+# Hard2Verify clone and decrypted data — never commit (authors' request)
+Hard2Verify/
+data/hard2verify.json
+data/hard2verify.csv
+
 # Local scratch / figure working files
 playground/
 data/hf_backup_arxivmathgradingbench/

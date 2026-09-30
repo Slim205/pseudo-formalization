@@ -15,6 +15,7 @@ from src.verifier.prompts import (
     ARXIV_REWRITE_PROMPT_PDF_ONLY,
     ARXIV_REGENERATE_REWRITE_PROMPT_PDF_ONLY,
     ARXIV_COMPONENT_FAITHFULNESS_PROMPT_PDF_ONLY,
+    WHOLE_FAITHFULNESS_PROMPT_PDF_ONLY,
     ARXIV_META_VERIFY_PROMPT_PDF_ONLY,
 )
 import os
@@ -187,6 +188,134 @@ class Verfifierbaseline(Verifier):
                     )
 
                 return (resp.output_text or ""), tokens_used
+            except Exception as e:
+                msg = str(e).lower()
+                retryable = (
+                    "rate" in msg
+                    or "429" in msg
+                    or "timeout" in msg
+                    or "temporarily" in msg
+                    or "overloaded" in msg
+                    or " 5" in msg
+                )
+                print(
+                    f"!! API error (attempt {attempt + 1}/{self.max_tries}): "
+                    f"{type(e).__name__}: {e}",
+                    file=sys.stderr,
+                )
+                if attempt == self.max_tries - 1 or not retryable:
+                    return "", tokens_used
+                await asyncio.sleep(self.base * (2**attempt))
+
+
+class Hard2VerifyStepBaseline(Verifier):
+    """Step-level LLM-as-judge baseline for Hard2Verify.
+
+    Uses the Hard2Verify authors' step-level prompts and verdict parser
+    (``Hard2Verify/utils.py``, cloned as described in the README) and mirrors
+    their evaluation loop (``Hard2Verify/model.py``): one Chat Completions call
+    per run; if the number of parsed verdicts does not match the number of
+    steps, retry with the prompt that states the step count, up to
+    ``max_parse_attempts`` attempts in total.
+    """
+
+    def __init__(
+        self,
+        n: int = 1,
+        max_tries: int = 6,
+        base: int = 10,
+        model: str = "gpt-5.4-mini-2026-03-17",
+        effort: str = "medium",
+        max_completion_tokens: int = 32768,
+        temperature: float = 1.0,
+        top_p: float = 1.0,
+        max_parse_attempts: int = 5,
+    ):
+        h2v_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            "Hard2Verify",
+        )
+        if h2v_dir not in sys.path:
+            sys.path.insert(0, h2v_dir)
+        from utils import (  # Hard2Verify/utils.py
+            parse_judgment_output,
+            step_level_system_prompt,
+            step_level_user_prompt,
+            step_level_user_retry_prompt,
+        )
+
+        self._parse = parse_judgment_output
+        self.system_prompt = step_level_system_prompt
+        self.user_prompt = step_level_user_prompt
+        self.user_retry_prompt = step_level_user_retry_prompt
+        self.client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        self.n = n
+        self.max_tries = max_tries
+        self.base = base
+        self.model = model
+        self.effort = effort
+        self.max_completion_tokens = max_completion_tokens
+        self.temperature = temperature
+        self.top_p = top_p
+        self.max_parse_attempts = max_parse_attempts
+
+    async def process_row(self, row) -> dict:
+        steps = row["Original_Steps"]
+        steps_text = "\n".join(f"<step>[{i}] {s}</step>" for i, s in enumerate(steps))
+        texts: List[str] = []
+        usages: List[Dict[str, int]] = []
+        preds: List[int] = []
+        status = "PARSE_MISMATCH"
+
+        for attempt in range(self.max_parse_attempts):
+            if attempt == 0:
+                user = self.user_prompt.format(problem=row["Problem"], steps=steps_text)
+            else:
+                user = self.user_retry_prompt.format(
+                    problem=row["Problem"], steps=steps_text, num_steps=len(steps)
+                )
+            text, usage = await self.chat_completion(user)
+            texts.append(text)
+            usages.append(usage)
+            preds = self._parse(text, task="step_level")
+            if len([p for p in preds if p in (0, 1)]) == len(steps):
+                status = "SUCCESS"
+                break
+
+        return {
+            "text": texts[-1],
+            "text_all": texts,
+            "usage": usages,
+            "attempts": len(texts),
+            "status": status,
+            "step_predictions": preds,  # 1 = correct, 0 = incorrect, -2 = unparsed
+            "score": 7 if status == "SUCCESS" and all(p == 1 for p in preds) else 0,
+        }
+
+    async def chat_completion(self, user_prompt: str) -> Tuple[str, Dict[str, int]]:
+        tokens_used = {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
+
+        for attempt in range(self.max_tries):
+            try:
+                resp = await self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": self.system_prompt},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    temperature=self.temperature,
+                    max_completion_tokens=self.max_completion_tokens,
+                    top_p=self.top_p,
+                    reasoning_effort=self.effort,
+                )
+                usage = getattr(resp, "usage", None)
+                if usage:
+                    it = getattr(usage, "prompt_tokens", 0) or 0
+                    ot = getattr(usage, "completion_tokens", 0) or 0
+                    tokens_used.update(
+                        {"input_tokens": it, "output_tokens": ot, "total_tokens": it + ot}
+                    )
+                return (resp.choices[0].message.content or ""), tokens_used
             except Exception as e:
                 msg = str(e).lower()
                 retryable = (
@@ -984,6 +1113,53 @@ def verify_parse_roundtrip(
     return result
 
 
+def _walk_paper_components(decomposition: Dict[str, Any]) -> List[Tuple[str, str, str, str]]:
+    """[(key, label, statement, proof)] for every component of a paper-form
+    decomposition: lemmas, then propositions, then theorems (the same order
+    and key scheme as the per-component faithfulness check)."""
+    out = []
+    props = sorted(decomposition.get("propositions", {}).items())
+    for p_num, prop in props:
+        for l_num, lem in sorted(prop.get("lemmas", {}).items()):
+            out.append((f"lemma_{p_num}_{l_num}", f"Lemma {p_num}.{l_num}",
+                        lem.get("statement") or "", lem.get("proof") or ""))
+    for p_num, prop in props:
+        out.append((f"proposition_{p_num}", f"Proposition {p_num}",
+                    prop.get("statement") or "", prop.get("proof") or ""))
+    for tid, thm in sorted(decomposition.get("theorems", {}).items()):
+        out.append((f"theorem_{tid}", f"Theorem {tid}",
+                    thm.get("statement") or "", thm.get("proof") or ""))
+    return out
+
+
+def _render_paper_components(components: List[Tuple[str, str, str, str]]) -> str:
+    """The rewrite as a flat, id-tagged listing the faithfulness checker can cite."""
+    parts = []
+    for key, label, stmt, proof in components:
+        parts.append(f"[{key}] {label}\nSTATEMENT: {stmt}\n"
+                     f"PROOF: {proof or '(no proof given)'}")
+    return "\n\n".join(parts)
+
+
+def _parse_unfaithful(output: str, valid: List[str]) -> Tuple[Dict[str, str], bool]:
+    """({component_id: error_description}, parsed_ok) from the whole-rewrite
+    checker's trailing <unfaithful> block. Ids not in `valid` are ignored.
+    parsed_ok is False when no <unfaithful> block was found (then nothing is
+    flagged)."""
+    m = re.search(r"<unfaithful>(.*?)</unfaithful>", output or "", re.DOTALL)
+    if not m:
+        return {}, False
+    out = {}
+    for block in re.findall(r"<component>(.*?)</component>", m.group(1), re.DOTALL):
+        cid = (f.group(1).strip() if (f := re.search(r"<id>(.*?)</id>", block, re.DOTALL)) else "")
+        if cid in valid:
+            desc = (f.group(1).strip()
+                    if (f := re.search(r"<description>(.*?)</description>", block, re.DOTALL))
+                    else "")
+            out[cid] = desc or "(no description)"
+    return out, True
+
+
 def _parse_faithfulness_verdict(output: str) -> Tuple[str, Optional[str]]:
     """Extract verdict and error_description from faithfulness check response.
 
@@ -1268,10 +1444,17 @@ class PseudoFormalisationVerifier(Verifier):
             ]
 
             if self.hard2verify_step_meta_verify and original_steps:
+                run_number = row.get("run_number", 1)
+                step_error_parts = [
+                    f"[run {run_number} / {key}]\nscore: {res['score']}\n"
+                    f"error_class: {res.get('error_class')}\n{res['output']}"
+                    for key, res in component_results.items()
+                    if res["score"] == 0
+                ]
                 errors_text = (
-                    "\n\n---\n\n".join(error_parts)
-                    if error_parts
-                    else "No potential errors were flagged by rewritten-proof verification."
+                    "\n\n---\n\n".join(step_error_parts)
+                    if step_error_parts
+                    else "No potential errors were flagged by the first 1 rewritten-proof verification run(s)."
                 )
                 meta_prompt = HARD2VERIFY_STEP_META_VERIFY_PROMPT.format(
                     problem=problem,
@@ -1737,7 +1920,9 @@ class ArxivDecomposedVerifier(Verifier):
          propositions, lemmas. Up to ``max_rewrite_retries`` faithfulness
          retries.
       2. Parse + structural completeness check (no roundtrip identity).
-      3. Faithfulness check per component against the PDF (optional).
+      3. Faithfulness check against the PDF (optional). ``faithfulness_mode``
+         "whole" (default, as in the paper) audits the whole rewrite in one
+         call; "per_component" makes one call per component.
       4. Component verification (text-only, no PDF).
       5. Meta-verification (PDF + rewrite + flagged errors → final
          list of errors with PDF-rendered labels). Always runs.
@@ -1754,13 +1939,17 @@ class ArxivDecomposedVerifier(Verifier):
         effort: str = "medium",
         max_output_tokens: int = 50000,
         max_rewrite_retries: int = 5,
+        faithfulness_mode: str = "whole",
     ):
+        if faithfulness_mode not in ("whole", "per_component"):
+            raise ValueError(f"unknown faithfulness_mode {faithfulness_mode!r}")
         self.client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         self.n = n
         self.n_verifications = n_verifications
         self.max_tries = max_tries
         self.base = base
         self.faithfulness_check = faithfulness_check
+        self.faithfulness_mode = faithfulness_mode
         self.model = model
         self.effort = effort
         self.max_output_tokens = max_output_tokens
@@ -2052,7 +2241,42 @@ class ArxivDecomposedVerifier(Verifier):
         results = await asyncio.gather(*(coro for _, coro in verify_tasks))
         return dict(zip(keys, results))
 
-    # ── Faithfulness check (paper variant) ──────────────────────────
+    # ── Faithfulness check (paper variant, whole rewrite) ──────────
+    async def _check_faithfulness_paper_whole(
+        self, decomposition: Dict[str, Any], pdf_b64: str, pdf_filename: str
+    ) -> Dict[str, Any]:
+        """One call audits every component of the rewrite against the PDF.
+
+        Returns the same {component_key: {verdict, error_description, usage}}
+        shape as the per-component check; components the model does not report
+        are FAITHFUL. The call's usage is attributed to the first component
+        only, so summing usage across components stays correct.
+        """
+        components = _walk_paper_components(decomposition)
+        if not components:
+            return {}
+        keys = [c[0] for c in components]
+        prompt = WHOLE_FAITHFULNESS_PROMPT_PDF_ONLY.format(
+            component_ids="\n".join(f"- {k}" for k in keys),
+            rewritten_paper=_render_paper_components(components),
+        )
+        output, usage = await self._completion_pdf_text(
+            prompt_text=prompt, pdf_b64=pdf_b64, pdf_filename=pdf_filename,
+        )
+        flagged, parsed_ok = _parse_unfaithful(output, keys)
+        return {
+            k: {
+                "verdict": "UNFAITHFUL" if k in flagged else "FAITHFUL",
+                "error_description": flagged.get(k),
+                "usage": usage if i == 0 else None,
+                "whole_call": True,
+                "parsed_ok": parsed_ok,
+                "raw_output": output if i == 0 else None,
+            }
+            for i, k in enumerate(keys)
+        }
+
+    # ── Faithfulness check (paper variant, per component) ───────────
     async def _check_faithfulness_paper(
         self, decomposition: Dict[str, Any], pdf_b64: str, pdf_filename: str
     ) -> Dict[str, Any]:
@@ -2061,6 +2285,10 @@ class ArxivDecomposedVerifier(Verifier):
         PDF-only input: the original paper is supplied to the checker as
         the attached PDF rather than inline LaTeX source.
         """
+        if self.faithfulness_mode == "whole":
+            return await self._check_faithfulness_paper_whole(
+                decomposition, pdf_b64, pdf_filename
+            )
 
         async def _faith_check(
             label, statement, proof, context_parts, established_parts

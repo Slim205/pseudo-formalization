@@ -1,0 +1,607 @@
+<THEOREM_STATEMENT id="1">
+Under the hypotheses stated in the question, let \((P_t)_{t\geq0}\) be the Markov semigroup associated with the Dirichlet stochastic heat equation with drift \(\delta_0(u)\).
+
+Let
+\[
+        E:=C_0([0,1]),\qquad H:=L^2(0,1).
+\]
+We regard \(E\) as a Borel subset of \(H\). Let \(\gamma\) denote the law on \(E\) of the standard Brownian bridge from \(0\) to \(0\) over \([0,1]\). Equivalently, \(\gamma\) is the centered Gaussian measure on \(H\) with covariance \((-\Delta_D)^{-1}\), where \(\Delta_D\) is the Dirichlet Laplacian on \((0,1)\).
+
+Let
+\[
+        \mathsf H(r):=\1_{\{r>0\}},\qquad
+        \Psi(u):=\int_0^1 \mathsf H(u(\xi))\,\dd \xi,\qquad u\in E.
+\]
+Define
+\[
+        \mu(\dd u)
+        := Z^{-1}e^{2\Psi(u)}\,\gamma(\dd u),
+        \qquad
+        Z:=\int_E e^{2\Psi(u)}\,\gamma(\dd u).
+\]
+
+The semigroup \((P_t)_{t\geq0}\) has exactly one invariant probability measure on
+\(E=C_0([0,1])\). It is the measure \(\mu\) defined above. In particular,
+\(P_t\) has at most one invariant probability measure.
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+Let
+\[
+        E:=C_0([0,1]),\qquad H:=L^2(0,1),
+\]
+and let \(\gamma\) be the law on \(E\) of the standard Brownian bridge from \(0\) to \(0\) over \([0,1]\). Let
+\[
+        \mathsf H(r):=\1_{\{r>0\}},\qquad
+        \Psi(u):=\int_0^1 \mathsf H(u(\xi))\,\dd \xi,\qquad u\in E,
+\]
+and
+\[
+        \mu(\dd u)
+        := Z^{-1}e^{2\Psi(u)}\,\gamma(\dd u),
+        \qquad
+        Z:=\int_E e^{2\Psi(u)}\,\gamma(\dd u).
+\]
+For \(n\geq1\), let
+\[
+        G_{1/n}(r)=\sqrt{\frac{n}{2\pi}}\,e^{-nr^2/2},\qquad
+        B_n(r):=\int_{-\infty}^r G_{1/n}(a)\,\dd a,
+\]
+and put
+\[
+        \Psi_n(u):=\int_0^1 B_n(u(\xi))\,\dd \xi,\qquad
+        \mu_n(\dd u):=Z_n^{-1}e^{2\Psi_n(u)}\,\gamma(\dd u).
+\]
+For these functions, \(B_n'=G_{1/n}\).
+
+The measures \(\mu\) and \(\gamma\) are equivalent and their Radon--Nikodym derivative is bounded above and below by positive constants. The measures \(\mu_n\) converge to \(\mu\) in total variation.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="1.1">
+With \(\mu\), \(\gamma\), and \(\Psi\) as in Proposition 1, the measures \(\mu\) and \(\gamma\) are equivalent and their Radon--Nikodym derivative is bounded above and below by positive constants.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.1">
+Since \(0\leq \Psi\leq 1\).
+</LEMMA_PROOF>
+<DEPS id="1.1"></DEPS>
+
+<LEMMA_STATEMENT id="1.2">
+Let \(\beta\) be a Brownian bridge with law \(\gamma\). The zero set
+\[
+        \{\xi:\beta(\xi)=0\}
+\]
+has Lebesgue measure zero \(\gamma\)-a.s.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.2">
+For a Brownian bridge \(\beta\),
+\[
+    \E_\gamma\!\left[\int_0^1 \1_{\{\beta(\xi)=0\}}\dd \xi\right]
+    =\int_0^1 \gamma(\beta(\xi)=0)\dd \xi=0,
+\]
+because \(\beta(\xi)\) is a non-degenerate centered Gaussian random variable for
+\(\xi\in(0,1)\), while the endpoints have Lebesgue measure zero. Hence, for
+\(\gamma\)-a.e. \(u\), the zero set \(\{\xi:u(\xi)=0\}\) has Lebesgue measure zero.
+</LEMMA_PROOF>
+<DEPS id="1.2"></DEPS>
+
+<LEMMA_STATEMENT id="1.3">
+With \(\Psi_n\) and \(\Psi\) as in Proposition 1,
+\[
+        \Psi_n(u)\to\Psi(u)
+\]
+for \(\gamma\)-a.e. \(u\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.3">
+By Lemma 1.2, for \(\gamma\)-a.e. \(u\), the zero set \(\{\xi:u(\xi)=0\}\) has Lebesgue measure zero. Since \(B_n(r)\to \mathsf H(r)\) for every \(r\neq0\) and \(0\leq B_n\leq1\), dominated convergence gives \(\Psi_n(u)\to\Psi(u)\) for \(\gamma\)-a.e. \(u\).
+</LEMMA_PROOF>
+<DEPS id="1.3">1.2</DEPS>
+
+<LEMMA_STATEMENT id="1.4">
+With \(Z_n\), \(Z\), \(\Psi_n\), and \(\Psi\) as in Proposition 1,
+\[
+        Z_n\to Z
+\]
+and
+\[
+        Z_n^{-1}e^{2\Psi_n}\longrightarrow Z^{-1}e^{2\Psi}
+        \quad\text{in }L^1(\gamma).
+\]
+Consequently, \(\mu_n\to\mu\) in total variation.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="1.4">
+By Lemma 1.3, another application of dominated convergence gives \(Z_n\to Z\) and
+\[
+        Z_n^{-1}e^{2\Psi_n}\longrightarrow Z^{-1}e^{2\Psi}
+        \quad\text{in }L^1(\gamma).
+\]
+This is exactly total-variation convergence.
+</LEMMA_PROOF>
+<DEPS id="1.4">1.3</DEPS>
+
+<PROPOSITION_PROOF id="1">
+Lemma 1.1 gives the asserted equivalence and boundedness of the Radon--Nikodym derivative. Lemma 1.4 gives the total-variation convergence.
+</PROPOSITION_PROOF>
+<DEPS id="1">1.1, 1.4</DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+For \(n\geq1\), let \(P_t^n\) be the Markov semigroup for the regularized equation
+\[
+    \partial_t u^n=\frac12\partial_{xx}u^n+G_{1/n}(u^n)+\dot W
+\]
+with Dirichlet boundary conditions, where \(G_{1/n}\), \(\Psi_n\), and \(\mu_n\) are as in Proposition 1.
+
+For each \(n\), \(\mu_n\) is invariant and reversible for \(P_t^n\):
+\[
+        \int_E f\,P_t^n g\,\dd\mu_n
+        =
+        \int_E g\,P_t^n f\,\dd\mu_n
+\]
+for all bounded Borel \(f,g:E\to\R\) and all \(t\geq0\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="2.1">
+For cylinder functions \(\varphi,\psi\) on \(H\), the generator of the regularized equation satisfies
+\[
+        L_n\varphi=L_0\varphi+\langle D\Psi_n,D\varphi\rangle_H,
+\]
+where \(L_0\) is the Ornstein--Uhlenbeck generator associated with the linear Dirichlet stochastic heat equation, and
+\[
+        \int \psi\,L_n\varphi\,\dd\mu_n
+        =
+        -\frac12\int \langle D\varphi,D\psi\rangle_H\,\dd\mu_n
+        =
+        \int \varphi\,L_n\psi\,\dd\mu_n .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.1">
+For cylinder functions \(\varphi,\psi\) on \(H\), the generator of the regularized
+equation is
+\[
+        L_n\varphi=L_0\varphi+\langle D\Psi_n,D\varphi\rangle_H,
+\]
+where \(L_0\) is the Ornstein--Uhlenbeck generator associated with the linear
+Dirichlet stochastic heat equation. Since \(\mu_n=Z_n^{-1}e^{2\Psi_n}\gamma\), the
+Gaussian integration-by-parts formula gives
+\[
+        \int \psi\,L_n\varphi\,\dd\mu_n
+        =
+        -\frac12\int \langle D\varphi,D\psi\rangle_H\,\dd\mu_n
+        =
+        \int \varphi\,L_n\psi\,\dd\mu_n .
+\]
+</LEMMA_PROOF>
+<DEPS id="2.1"></DEPS>
+
+<LEMMA_STATEMENT id="2.2">
+For each \(n\), the closure of \(L_n\) is self-adjoint in \(L^2(\mu_n)\), the associated Markov semigroup is symmetric, and \(\mu_n\) is invariant for \(P_t^n\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.2">
+By Lemma 2.1, the closure of \(L_n\) is self-adjoint in \(L^2(\mu_n)\), and the associated Markov semigroup is symmetric. Taking \(\psi\equiv1\) gives invariance.
+</LEMMA_PROOF>
+<DEPS id="2.2">2.1</DEPS>
+
+<PROPOSITION_PROOF id="2">
+The following is standard for gradient-type stochastic heat equations with smooth drift. Lemmas 2.1 and 2.2 give the stated reversibility and invariance. This is the usual Gibbs-reversibility computation for stochastic quantization; see, for example, Bounebache--Zambotti \cite[Section 4]{BZ14} for the same calculation in the present Dirichlet setting.
+
+External citation used: S.~K.~Bounebache and L.~Zambotti, \emph{A skew stochastic heat equation}, J. Theoret. Probab. \textbf{27} (2014), no.~1, 168--201.
+</PROPOSITION_PROOF>
+<DEPS id="2">2.1, 2.2</DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+Assume the weak convergence of the regularized solutions:
+\[
+        P_t^n h(u)\longrightarrow P_t h(u),\qquad u\in E,
+\]
+for every \(h\in C_b(E)\) and every fixed \(t>0\). Let \(\mu_n\) and \(\mu\) be as in Proposition 1.
+
+The measure \(\mu\) is invariant and reversible for \(P_t\). Namely, for all bounded Borel \(f,g:E\to\R\) and all \(t\geq0\),
+\[
+        \int_E f\,P_tg\,\dd\mu
+        =
+        \int_E g\,P_tf\,\dd\mu .
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="3.1">
+For \(f,g\in C_b(E)\) and fixed \(t>0\),
+\[
+        \int fP_t^ng\,\dd\mu_n\longrightarrow\int fP_tg\,\dd\mu
+\]
+and
+\[
+        \int gP_t^nf\,\dd\mu_n\longrightarrow \int gP_tf\,\dd\mu .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.1">
+First take \(f,g\in C_b(E)\). By the assumed weak convergence of the regularized
+solutions,
+\[
+        P_t^n h(u)\longrightarrow P_t h(u),\qquad u\in E,
+\]
+for every \(h\in C_b(E)\) and every fixed \(t>0\). Therefore, using Proposition 1,
+\[
+\begin{aligned}
+\left|\int fP_t^ng\,\dd\mu_n-\int fP_tg\,\dd\mu\right|
+&\leq
+\|f\|_\infty\|g\|_\infty\,\|\mu_n-\mu\|_{\mathrm{TV}}        \\
+&\quad
++\int |f(u)|\,|P_t^ng(u)-P_tg(u)|\,\mu(\dd u)
+\longrightarrow0.
+\end{aligned}
+\]
+Similarly,
+\[
+        \int gP_t^nf\,\dd\mu_n\longrightarrow \int gP_tf\,\dd\mu .
+\]
+</LEMMA_PROOF>
+<DEPS id="3.1">1</DEPS>
+
+<LEMMA_STATEMENT id="3.2">
+For bounded continuous \(f,g:E\to\mathbb R\) and \(t\geq0\),
+\[
+        \int_E f\,P_tg\,\dd\mu
+        =
+        \int_E g\,P_tf\,\dd\mu .
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.2">
+By Proposition 2 and Lemma 3.1, the reversibility identity for \(P_t^n\) therefore passes to the limit and yields
+\[
+        \int_E f\,P_tg\,\dd\mu
+        =
+        \int_E g\,P_tf\,\dd\mu
+\]
+for bounded continuous \(f,g\).
+</LEMMA_PROOF>
+<DEPS id="3.2">2, 3.1</DEPS>
+
+<LEMMA_STATEMENT id="3.3">
+For all bounded Borel \(f,g:E\to\mathbb R\) and all \(t\geq0\),
+\[
+        \int_E f\,P_tg\,\dd\mu
+        =
+        \int_E g\,P_tf\,\dd\mu .
+\]
+The measure \(\mu\) is invariant for \(P_t\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.3">
+By Lemma 3.2, the identity holds for bounded continuous \(f,g\). Since \(E\) is Polish and
+\(\mu\) is a probability measure, a monotone-class argument extends the identity to all bounded Borel \(f,g\). Taking \(g\equiv1\) gives invariance of \(\mu\).
+</LEMMA_PROOF>
+<DEPS id="3.3">3.2</DEPS>
+
+<PROPOSITION_PROOF id="3">
+We now pass to the singular limit. Lemma 3.3 gives the stated reversibility and invariance.
+</PROPOSITION_PROOF>
+<DEPS id="3">3.3</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Let \(\mathcal{FC}_b^1\) denote the smooth bounded cylinder functions on \(H\). Define on \(\mathcal{FC}_b^1\) the bilinear form
+\[
+        \cE(F,G)
+        :=
+        \frac12\int_E \langle DF(u),DG(u)\rangle_H\,\mu(\dd u).
+\]
+The form is closable in \(L^2(\mu)\); denote its closure by \((\cE,\cF)\).
+
+The symmetric semigroup \((P_t)_{t\geq0}\) is the Markov semigroup associated with
+\((\cE,\cF)\). Moreover, \((\cE,\cF)\) satisfies a Poincare inequality: there exists
+\(C<\infty\) such that for every \(F\in\cF\),
+\[
+        \Var_\mu(F)\leq C\,\cE(F,F).
+\]
+If \(F\in L^2(\mu)\) and \(P_tF=F\) in \(L^2(\mu)\) for all \(t\geq0\), then
+\(F\) is \(\mu\)-a.s. constant.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+The bilinear form
+\[
+        \cE(F,G)
+        :=
+        \frac12\int_E \langle DF(u),DG(u)\rangle_H\,\mu(\dd u)
+\]
+on \(\mathcal{FC}_b^1\) is closable in \(L^2(\mu)\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.1">
+By Proposition 1, \(\dd\mu/\dd\gamma\) is bounded above and below by positive constants.
+</LEMMA_PROOF>
+<DEPS id="4.1">1</DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+The symmetric semigroup \((P_t)_{t\geq0}\) is the Markov semigroup associated with \((\cE,\cF)\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+For \(f=-2\mathsf H\), Bounebache--Zambotti \cite[Propositions 2.4 and 3.1]{BZ14}
+construct the quasi-regular Dirichlet form
+\[
+        \frac12\int \langle DF,DG\rangle\,\dd\nu_f,
+        \qquad
+        \nu_f(\dd u)=\frac1{Z_f}\exp\!\left(-\int_0^1 f(u(\xi))\,\dd\xi\right)\gamma(\dd u).
+\]
+Since \(f=-2\mathsf H\), we have \(\nu_f=\mu\). For smooth \(f\), their local-time
+formulation is equivalent, by the occupation-time formula, to
+\[
+        \partial_t u=\frac12\partial_{xx}u-\frac12 f'(u)+\dot W.
+\]
+For \(f=-2\mathsf H\), one has \(-\frac12 f'=\delta_0\) in the sense of distributions.
+Thus the Bounebache--Zambotti process solves the same singular SPDE. By the
+assumed uniqueness in law of the ABLM solution, the associated semigroup agrees
+with \(P_t\). Hence \(P_t\) is the semigroup of \((\cE,\cF)\).
+
+External citations used: S.~K.~Bounebache and L.~Zambotti, \emph{A skew stochastic heat equation}, J. Theoret. Probab. \textbf{27} (2014), no.~1, 168--201; S.~Athreya, O.~Butkovsky, K.~L\^e and L.~Mytnik, \emph{Well-posedness of stochastic heat equation with distributional drift and skew stochastic heat equation}, Comm. Pure Appl. Math. \textbf{77} (2024), no.~5, 2708--2777.
+</LEMMA_PROOF>
+<DEPS id="4.2"></DEPS>
+
+<LEMMA_STATEMENT id="4.3">
+The form \((\cE,\cF)\) satisfies a Poincare inequality: there exists \(C<\infty\) such that for every \(F\in\cF\),
+\[
+        \Var_\mu(F)\leq C\,\cE(F,F).
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.3">
+It remains to prove the Poincare inequality. Let \(\cE_0\) be the Ornstein--Uhlenbeck
+Dirichlet form on \(L^2(\gamma)\):
+\[
+        \cE_0(F,F)=\frac12\int \|DF\|_H^2\,\dd\gamma .
+\]
+The Brownian-bridge Ornstein--Uhlenbeck form has a spectral gap; equivalently,
+there exists \(C_0<\infty\) such that
+\[
+        \Var_\gamma(F)\leq C_0\,\cE_0(F,F),
+        \qquad F\in\operatorname{Dom}(\cE_0).
+\]
+This follows from the Hermite expansion of the Dirichlet Ornstein--Uhlenbeck
+generator; see Bounebache--Zambotti \cite[Proposition 2.1]{BZ14}.
+
+By Proposition 1, \(\dd\mu=m\,\dd\gamma\) with \(0<a\leq m\leq b<\infty\). The form domains of
+\(\cE\) and \(\cE_0\) coincide and
+\[
+        a\,\cE_0(F,F)\leq \cE(F,F)\leq b\,\cE_0(F,F).
+\]
+Therefore,
+\[
+\begin{aligned}
+        \Var_\mu(F)
+        &=\inf_{c\in\R}\int (F-c)^2\,\dd\mu                                      \\
+        &\leq \int \left(F-\int F\,\dd\gamma\right)^2\,\dd\mu                       \\
+        &\leq b\,\Var_\gamma(F)
+        \leq bC_0\,\cE_0(F,F)
+        \leq \frac{bC_0}{a}\,\cE(F,F).
+\end{aligned}
+\]
+This proves the Poincare inequality.
+
+External citation used: S.~K.~Bounebache and L.~Zambotti, \emph{A skew stochastic heat equation}, J. Theoret. Probab. \textbf{27} (2014), no.~1, 168--201.
+</LEMMA_PROOF>
+<DEPS id="4.3">1</DEPS>
+
+<LEMMA_STATEMENT id="4.4">
+If \(F\in L^2(\mu)\) and \(P_tF=F\) in \(L^2(\mu)\) for all \(t\geq0\), then \(F\) is \(\mu\)-a.s. constant.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.4">
+If \(P_tF=F\) for all \(t\), then
+\[
+        \cE(F,F)
+        =
+        \lim_{t\downarrow0}\frac1t\langle F-P_tF,F\rangle_{L^2(\mu)}
+        =0,
+\]
+and Lemma 4.3 implies \(\Var_\mu(F)=0\).
+</LEMMA_PROOF>
+<DEPS id="4.4">4.3</DEPS>
+
+<PROPOSITION_PROOF id="4">
+Lemma 4.1 gives closability. Lemma 4.2 identifies the semigroup associated with \((\cE,\cF)\). Lemma 4.3 gives the Poincare inequality. Lemma 4.4 gives the stated constancy of invariant \(L^2(\mu)\) functions.
+</PROPOSITION_PROOF>
+<DEPS id="4">4.1, 4.2, 4.3, 4.4</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+For \(\alpha>0\), write the normalized resolvent as
+\[
+        \mathcal R_\alpha(x,A)
+        :=
+        \alpha\int_0^\infty e^{-\alpha t}P_t(x,A)\,\dd t,
+        \qquad x\in E,\ A\in\cB(E).
+\]
+For every \(\alpha>0\) and every \(x\in E\),
+\[
+        \mathcal R_\alpha(x,\cdot)\ll \mu.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="5">
+We also need the absolute-continuity property of the resolvent. Bounebache--Zambotti prove the absolute-continuity condition for the resolvent of
+the Dirichlet-form process associated with \(\nu_f\) for every bounded function
+\(f\) of bounded variation; see \cite[Proposition 2.5]{BZ14}. Applying their result
+to \(f=-2\mathsf H\) gives absolute continuity with respect to \(\mu\). Their
+Proposition 3.1 identifies the associated process as a weak solution of the
+corresponding local-time SPDE. As explained in Proposition 4, for \(f=-2\mathsf H\) this is precisely the SPDE with drift
+\(\delta_0(u)\). The assumed uniqueness in law of the ABLM mild solution therefore
+identifies this resolvent with the resolvent of \(P_t\). Hence
+\(\mathcal R_\alpha(x,\cdot)\ll\mu\).
+
+External citations used: S.~K.~Bounebache and L.~Zambotti, \emph{A skew stochastic heat equation}, J. Theoret. Probab. \textbf{27} (2014), no.~1, 168--201; S.~Athreya, O.~Butkovsky, K.~L\^e and L.~Mytnik, \emph{Well-posedness of stochastic heat equation with distributional drift and skew stochastic heat equation}, Comm. Pure Appl. Math. \textbf{77} (2024), no.~5, 2708--2777.
+</PROPOSITION_PROOF>
+<DEPS id="5">4</DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+Let \(\lambda\) be any invariant probability measure for \(P_t\). Then
+\[
+        \lambda\ll\mu.
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="6">
+Let \(A\in\cB(E)\) satisfy \(\mu(A)=0\). By Proposition 5,
+\(\mathcal R_\alpha(x,A)=0\) for every \(x\in E\). Since \(\lambda\) is invariant,
+\[
+\begin{aligned}
+        \lambda(A)
+        &=
+        \alpha\int_0^\infty e^{-\alpha t}\lambda P_t(A)\,\dd t        \\
+        &=
+        \int_E \mathcal R_\alpha(x,A)\,\lambda(\dd x)
+        =0.
+\end{aligned}
+\]
+Thus \(\lambda\ll\mu\).
+</PROPOSITION_PROOF>
+<DEPS id="6">5</DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Let \(\lambda\) be an invariant probability measure for \(P_t\). Assume \(\lambda\ll\mu\), and write
+\[
+        h:=\dd\lambda/\dd\mu.
+\]
+Then \(h\geq0\), \(\int h\,\dd\mu=1\), and
+\[
+        P_t h=h
+\]
+in \(L^1(\mu)\) for every \(t\geq0\).
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="7">
+For every bounded Borel \(\varphi\),
+\[
+\begin{aligned}
+        \int_E \varphi\,P_t h\,\dd\mu
+        &=
+        \int_E P_t\varphi\, h\,\dd\mu                         \\
+        &=
+        \int_E P_t\varphi\,\dd\lambda                         \\
+        &=
+        \int_E \varphi\,\dd\lambda                            \\
+        &=
+        \int_E \varphi\,h\,\dd\mu .
+\end{aligned}
+\]
+Here the first equality uses the symmetry of \(P_t\) in \(L^2(\mu)\), extended by
+duality to \(L^1(\mu)\)--\(L^\infty(\mu)\), and the third equality uses invariance of
+\(\lambda\).
+</PROPOSITION_PROOF>
+<DEPS id="7">3</DEPS>
+
+<PROPOSITION_STATEMENT id="8">
+Let \(h\in L^1(\mu)\) satisfy \(h\geq0\), \(\int h\,\dd\mu=1\), and
+\[
+        P_t h=h
+\]
+in \(L^1(\mu)\) for every \(t\geq0\). For \(N>0\), set
+\[
+        h_N:=h\wedge N.
+\]
+Then \(h_N\) is \(\mu\)-a.s. constant for every \(N>0\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="8.1">
+With \(h_N:=h\wedge N\), for every \(t\geq0\),
+\[
+        P_t h_N \leq h_N.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.1">
+Since \(r\mapsto r\wedge N\) is concave and nondecreasing, Jensen's inequality for the Markov operator \(P_t\) gives
+\[
+        P_t h_N \leq (P_t h)\wedge N=h_N.
+\]
+</LEMMA_PROOF>
+<DEPS id="8.1"></DEPS>
+
+<LEMMA_STATEMENT id="8.2">
+With \(h_N:=h\wedge N\), for every \(t\geq0\),
+\[
+        P_t h_N=h_N
+\]
+\(\mu\)-a.s.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.2">
+By Lemma 8.1 and Proposition 3, integrating with respect to the invariant measure \(\mu\),
+\[
+        \int P_t h_N\,\dd\mu=\int h_N\,\dd\mu.
+\]
+Therefore \(P_t h_N=h_N\) \(\mu\)-a.s. for every \(t\geq0\).
+</LEMMA_PROOF>
+<DEPS id="8.2">8.1, 3</DEPS>
+
+<LEMMA_STATEMENT id="8.3">
+With \(h_N:=h\wedge N\), \(h_N\) is \(\mu\)-a.s. constant for every \(N>0\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.3">
+Since \(h_N\in L^2(\mu)\), Lemma 8.2 and Proposition 4 imply that \(h_N\) is \(\mu\)-a.s. constant.
+</LEMMA_PROOF>
+<DEPS id="8.3">8.2, 4</DEPS>
+
+<PROPOSITION_PROOF id="8">
+Lemma 8.3 gives the assertion.
+</PROPOSITION_PROOF>
+<DEPS id="8">8.3</DEPS>
+
+<PROPOSITION_STATEMENT id="9">
+Let \(h\geq0\) satisfy
+\[
+        \int h\,\dd\mu=1.
+\]
+Assume that \(h_N:=h\wedge N\) is \(\mu\)-a.s. constant for every \(N>0\). If \(h=\dd\lambda/\dd\mu\), then
+\[
+        h=1
+\]
+\(\mu\)-a.s. and hence \(\lambda=\mu\).
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="9">
+Taking \(N=2\), we obtain \(h\wedge2=c\) for some constant \(c\). Since
+\[
+        c=\int (h\wedge2)\,\dd\mu\leq \int h\,\dd\mu=1<2,
+\]
+the identity \(h\wedge2=c\) forces \(h=c\) \(\mu\)-a.s. Finally,
+\(\int h\,\dd\mu=1\) gives \(c=1\). Hence \(\lambda=\mu\).
+</PROPOSITION_PROOF>
+<DEPS id="9"></DEPS>
+
+<THEOREM_PROOF id="1">
+We prove that the Markov semigroup associated with the Dirichlet stochastic heat
+equation with drift \(\delta_0(u)\) has at most one invariant probability measure.
+In fact, under the hypotheses stated in the question, the invariant measure is unique
+and is the Gibbs perturbation of the Brownian bridge measure
+\[
+        \mu(\dd u)=Z^{-1}\exp\!\left(2\int_0^1 \1_{\{u(\xi)>0\}}\dd \xi\right)\gamma(\dd u),
+\]
+where \(\gamma\) is the law of the standard Brownian bridge on \([0,1]\).
+The proof uses three inputs: the reversible Gibbs structure of smooth approximations,
+the absolute-continuity theorem of Bounebache--Zambotti for the associated
+Dirichlet-form resolvent, and irreducibility of the weighted Ornstein--Uhlenbeck
+Dirichlet form.
+
+By Proposition 3, \(\mu\) is invariant. Let \(\lambda\) be any
+invariant probability measure for \(P_t\). We first show that \(\lambda\ll\mu\), which is Proposition 6.
+
+Write \(h:=\dd\lambda/\dd\mu\). Then \(h\geq0\) and
+\(\int h\,\dd\mu=1\). Proposition 7 gives \(P_t h=h\) in \(L^1(\mu)\) for every \(t\geq0\). Proposition 8 gives that, for every \(N>0\), \(h_N:=h\wedge N\) is \(\mu\)-a.s. constant. Proposition 9 gives \(\lambda=\mu\).
+
+Thus \(\mu\) is the unique invariant probability measure.
+
+The key point excluding additional singular invariant measures is the pointwise
+absolute continuity of the normalized resolvent in Proposition 5.
+Symmetry and the Poincare inequality alone imply uniqueness only among invariant
+probability measures that are already absolutely continuous with respect to \(\mu\), as in Proposition 4.
+
+External citations from the paper: S.~Athreya, O.~Butkovsky, K.~L\^e and L.~Mytnik, \emph{Well-posedness of stochastic heat equation with distributional drift and skew stochastic heat equation}, Comm. Pure Appl. Math. \textbf{77} (2024), no.~5, 2708--2777; S.~K.~Bounebache and L.~Zambotti, \emph{A skew stochastic heat equation}, J. Theoret. Probab. \textbf{27} (2014), no.~1, 168--201; M.~Fukushima, Y.~Oshima and M.~Takeda, \emph{Dirichlet Forms and Symmetric Markov Processes}, 2nd revised and extended edition, de Gruyter, Berlin, 2011.
+</THEOREM_PROOF>
+<DEPS id="theorem_1">3, 4, 5, 6, 7, 8, 9</DEPS>

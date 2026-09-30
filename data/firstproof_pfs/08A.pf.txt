@@ -1,0 +1,602 @@
+<THEOREM_STATEMENT id="1">
+Let \(M\) be a matroid on ground set \(E\) of rank \(r\), and let \(\mu_M\) be the trivial rank \(r\) valuated matroid supported on the bases of \(M\). Suppose that the lattice of flats \(\cL(M)\) admits an order-reversing involution \(X\mapsto X^\perp\). Let \(\Dr(M)\) be the relative Dressian in the standard model: a rank \(k\) point is a projective valuated matroid \(\nu\) with \(\nu\preceq\mu_M\), where \(\preceq\) denotes valuated quotient.
+
+For a rank \(k\) quotient \(\nu\preceq\mu_M\), define
+\[
+ \nu^{\perp_M}(A)=
+ \begin{cases}
+   \bar\nu\bigl((\cl A)^\perp\bigr),
+      & A\text{ independent in }M,\ |A|=r-k,\\
+   \infty,&\text{otherwise,}
+ \end{cases}
+\]
+where \(\bar\nu(X)\) denotes the common value of \(\nu\) on independent \(k\)-sets spanning the rank \(k\) flat \(X\), and \(\bar\nu(X)=\infty\) if no basis of \(\nu\) spans \(X\).
+
+Statement:
+The map
+\[
+        \Phi([\nu])=[\nu^{\perp_M}]
+\]
+is an order-reversing involution of \(\Dr(M)\) extending the given order-reversing involution of \(\cL(M)\).
+</THEOREM_STATEMENT>
+
+<PROPOSITION_STATEMENT id="1">
+Let \(E\) be the ground set, \(r=\rk M\), and \(\mu_M\) the trivial rank \(r\) valuated matroid supported on the bases of \(M\). In the standard model of the relative Dressian, a rank \(k\) point is a projective valuated matroid \(\nu\) with \(\nu\preceq\mu_M\), where \(\preceq\) denotes valuated quotient. For projective tropical linear spaces,
+\[
+        \Trop(\theta)\subseteq\Trop(\nu)
+        \quad\Longleftrightarrow\quad \theta\preceq\nu .
+\]
+For valuated matroids \(p,q\) of ranks \(a\le b\), \(p\preceq q\) is equivalent to the incidence-Plucker relations
+\[
+ \min_{i\in J\setminus I}\{p(I\cup i)+q(J\setminus i)\}
+ \quad\hbox{attained at least twice}                         \tag{IP}
+\]
+for all \(I\in\binom{E}{a-1}\) and \(J\in\binom{E}{b+1}\). All-\(\infty\) minima are regarded as attained at every displayed index.
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="1">
+None.
+
+External citations used: M. Brandt, C. Eur and L. Zhang, “Tropical flag varieties”, Advances in Mathematics \(\mathbf{384}\) (2021), 107695.
+</PROPOSITION_PROOF>
+<DEPS id="1"></DEPS>
+
+<PROPOSITION_STATEMENT id="2">
+Let \(p,q\) be valuated matroids of ranks \(a<b\) whose ordinary supports are in quotient order. If \({\rm (IP)}\) holds whenever \(I\subseteq J\), then \({\rm (IP)}\) holds for all \(I,J\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="2.1">
+Let \(p,q\) be as in Proposition 2. For a rank \(a\) valuated matroid \(p\) and an \((a-1)\)-set \(I\), write
+\[
+C^*_p(I)_e=p(I\cup e),
+\]
+with value \(\infty\) if \(e\in I\). Fix arbitrary \(I\in\binom{E}{a-1}\) and \(J\in\binom{E}{b+1}\), and put \(c_j=q(J\setminus j)\) for \(j\in J\). If not all \(c_j\) are \(\infty\), then \(J\) contains a \(q\)-basis and the restriction \(p|J\) has rank \(a\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.1">
+Since not all \(c_j\) are \(\infty\), \(J\) contains a \(q\)-basis. Since the ordinary support of \(p\) is a quotient of the ordinary support of \(q\), every \(q\)-basis spans the support matroid of \(p\) (indeed,
+\[
+a-\rk_p(Q)\le b-\rk_q(Q)=0
+\]
+for a \(q\)-basis \(Q\)); hence the restriction \(p|J\) has rank \(a\).
+</LEMMA_PROOF>
+<DEPS id="2.1"></DEPS>
+
+<LEMMA_STATEMENT id="2.2">
+Let \(p,q,I,J,c\) be as in Lemma 2.1, assume \(p|J\) has rank \(a\), and assume the nested incidence hypothesis of Proposition 2 with upper set \(J\). For every \(S\subseteq J\) with \(|S|=a-1\), the cocircuit \(C^*_{p|J}(S)\) is tropically orthogonal to \(c=(c_j)_{j\in J}\), and the whole tropical linear space of \(p|J\) is contained in the set of vectors orthogonal to \(c\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.2">
+The nested hypothesis with upper set \(J\) says precisely that the cocircuit \(C^*_{p|J}(S)\) is tropically orthogonal to \(c=(c_j)_{j\in J}\). The set of vectors orthogonal to a fixed \(c\) is a tropical hyperplane, hence is tropically convex; therefore it contains the whole tropical linear space of \(p|J\), using the standard cocircuit-generation theorem of Dress--Wenzel/Speyer: the tropical linear space of a valuated matroid is the closed tropical convex hull of its valuated cocircuits.
+
+External citations used: A. Dress and W. Wenzel, “Valuated matroids”, Advances in Mathematics \(\mathbf{93}\) (1992), 214--250; D. Speyer, “Tropical linear spaces”, SIAM Journal on Discrete Mathematics \(\mathbf{22}\) (2008), 1527--1558.
+</LEMMA_PROOF>
+<DEPS id="2.2"></DEPS>
+
+<LEMMA_STATEMENT id="2.3">
+Let \(p,q,I,J,c\) be as in Lemma 2.1. If the whole tropical linear space of \(p|J\) is contained in the set of vectors orthogonal to \(c\), then \(C^*_p(I)|_J\) is orthogonal to \(c\), which is the desired arbitrary incidence relation for \(I,J\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="2.3">
+It remains only to note that \(C^*_p(I)|_J\) is a vector of \(p|J\): for each valuated circuit of \(p|J\), indexed by a set \(D\in\binom{J}{a+1}\), the orthogonality relation
+\[
+ \min_{e\in D}\{p(I\cup e)+p(D\setminus e)\}
+\]
+is exactly a Plucker relation for \(p\).
+</LEMMA_PROOF>
+<DEPS id="2.3"></DEPS>
+
+<PROPOSITION_PROOF id="2">
+Fix arbitrary \(I\in\binom{E}{a-1}\) and \(J\in\binom{E}{b+1}\), and put \(c_j=q(J\setminus j)\) for \(j\in J\). If all \(c_j\) are \(\infty\) there is nothing to prove. Otherwise Lemma 2.1 gives that \(p|J\) has rank \(a\), Lemma 2.2 puts the whole tropical linear space of \(p|J\) in the tropical hyperplane orthogonal to \(c\), and Lemma 2.3 gives the desired arbitrary incidence relation.
+</PROPOSITION_PROOF>
+<DEPS id="2">2.1, 2.2, 2.3</DEPS>
+
+<PROPOSITION_STATEMENT id="3">
+Let \(\eta\) be a rank \(d\) valuated matroid and let
+\[
+\theta:\binom{E}{d-1}\to{\mathbb R}\cup\{\infty\}
+\]
+be nonzero. Suppose that
+\[
+        \theta(A)=\infty\quad\hbox{whenever }A
+        \hbox{ is dependent in the support matroid of }\eta              \tag{D}
+\]
+and, when \(d\ge2\), for every \(S\in\binom{E}{d-2}\) and distinct \(x,y,z\notin S\),
+\[
+\min\{\theta(Sx)+\eta(Syz),\,
+      \theta(Sy)+\eta(Sxz),\,
+      \theta(Sz)+\eta(Sxy)\}                                      \tag{C}
+\]
+is attained at least twice. Statement:
+\(\theta\) is a valuated matroid and \(\theta\preceq\eta\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="3.1">
+Under the assumptions of Proposition 3 with \(d=1\), the conclusion is the unique rank-zero quotient.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.1">
+None.
+</LEMMA_PROOF>
+<DEPS id="3.1"></DEPS>
+
+<LEMMA_STATEMENT id="3.2">
+Under the assumptions of Proposition 3 with \(d\ge2\), all of Wang’s defining relations hold, so \(\theta\) represents a codimension-one tropical linear subspace of \(\Trop(\eta)\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="3.2">
+In Wang's terminology the “three-term incidence relations” consist of degenerate, parallel, and concurrent hyperplane relations; the displayed tropical minimum in \((C)\) is only the concurrent relation. By Wang's Theorem 4.3, \(\Dr^1(\eta)\) is cut out by the degenerate, parallel, and concurrent three-term incidence relations. Condition \((D)\) is exactly the degenerate part, and \((C)\) contains the concurrent part. It remains only to see that the parallel part follows from \((C)\). Write \(A=Di\) and \(B=Dj\) for independent \((d-1)\)-sets in the support matroid of \(\eta\) with the same closure, and choose \(k\) outside that closure, so \(Dik\) and \(Djk\) are bases. Applying \((C)\) to \(D,i,j,k\), the third upper coordinate \(\eta(Dij)\) is \(\infty\), while \(\eta(Dik)\) and \(\eta(Djk)\) are finite. Hence
+\[
+        \theta(Di)+\eta(Djk)=\theta(Dj)+\eta(Dik),
+\]
+which is Wang's parallel hyperplane relation. Thus all of Wang's defining relations hold, so \(\theta\) represents a codimension-one tropical linear subspace of \(\Trop(\eta)\).
+
+External citations used: J. Wang, “Lorentzian polynomials and the incidence geometry of tropical linear spaces”, arXiv:2412.12059v2 (2026).
+</LEMMA_PROOF>
+<DEPS id="3.2"></DEPS>
+
+<PROPOSITION_PROOF id="3">
+For \(d=1\), use Lemma 3.1. For \(d\ge2\), Lemma 3.2 gives Wang’s defining relations, hence \(\theta\) is a valuated matroid and \(\theta\preceq\eta\).
+</PROPOSITION_PROOF>
+<DEPS id="3">3.1, 3.2</DEPS>
+
+<PROPOSITION_STATEMENT id="4">
+Let \(\nu\preceq\mu_M\) have rank \(k\). Define its valuated Higgs completion by
+\[
+ h_j(B)=
+ \begin{cases}
+ \min\{\nu(C): B\subseteq C,\ |C|=k\}, & j\le k,\ |B|=j,\\
+ \min\{\nu(C): C\subseteq B,\ |C|=k\}, & j\ge k,\ B\in\mathcal I_j(M),\\
+ \infty, & j\ge k,\ B\notin\mathcal I_j(M).
+ \end{cases}                                                \tag{1}
+\]
+Statement:
+The functions \(h_j\) are valuated matroids, the adjacent quotients \(h_j\preceq h_{j+1}\) hold, and the top layer is projectively \(\mu_M\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="4.1">
+With \(h_j\) defined by \((1)\), the functions \(h_j\) are valuated matroids and the adjacent quotients \(h_j\preceq h_{j+1}\) hold.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.1">
+Murota's truncation and relative elongation theorems, equivalently the Dress--Terhalle well-layering construction, give valuated matroids \(h_j\) and adjacent quotients \(h_j\preceq h_{j+1}\).
+
+External citations used: K. Murota, “Matroid valuation on independent sets”, Journal of Combinatorial Theory, Series B \(\mathbf{69}\) (1997), 59--78, Theorems 2.1 and 4.1; A. Dress and W. Terhalle, “Well-layered maps---A class of greedily optimizable set functions”, Applied Mathematics Letters \(\mathbf{8}\) (1995), 77--80.
+</LEMMA_PROOF>
+<DEPS id="4.1"></DEPS>
+
+<LEMMA_STATEMENT id="4.2">
+With \(h_j\) defined by \((1)\), the top layer \(h_r\) is projectively \(\mu_M\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="4.2">
+If \(B'=B-e+f\) are adjacent \(M\)-bases and \(C\subseteq B\) minimizes \((1)\), then either \(e\notin C\) and \(C\subseteq B'\), or the incidence relation for \(\nu\preceq\mu_M\) from Proposition 1 with lower set \(C-e\) and upper set \(B\cup f\) gives a \(k\)-subset of \(B'\) of value at most \(\nu(C)\); by symmetry the two top-layer values are equal.
+</LEMMA_PROOF>
+<DEPS id="4.2">1</DEPS>
+
+<PROPOSITION_PROOF id="4">
+Lemma 4.1 gives the valuated matroids and adjacent quotients. Lemma 4.2 gives the top layer.
+</PROPOSITION_PROOF>
+<DEPS id="4">4.1, 4.2</DEPS>
+
+<PROPOSITION_STATEMENT id="5">
+Let \(M\) be a matroid of rank \(r\). If \(\cL(M)\) admits an order-reversing involution \(X\mapsto X^\perp\), then \(\cL(M)\) is modular and
+\[
+\rk(X^\perp)=r-\rk(X).
+\]
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="5">
+The anti-automorphism reverses maximal chains, so it sends rank \(i\) to rank \(r-i\). Applying it to the semimodular inequality for the geometric lattice \(\cL(M)\) gives the reverse inequality, hence equality.
+</PROPOSITION_PROOF>
+<DEPS id="5"></DEPS>
+
+<PROPOSITION_STATEMENT id="6">
+Let \(\nu\preceq\mu_M\) have rank \(k\). If \(B,B'\) are independent \(k\)-subsets of \(M\) with \(\cl(B)=\cl(B')\), then \(\nu(B)=\nu(B')\), and \(\nu(A)=\infty\) whenever \(A\) is dependent in \(M\).
+
+For a rank \(k\) flat \(X\), write \(\bar\nu(X)\) for the common value on independent \(k\)-sets spanning \(X\), and put \(\bar\nu(X)=\infty\) if no basis of \(\nu\) spans \(X\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="6.1">
+Let \(\nu\preceq\mu_M\) have rank \(k\). The support matroid of \(\nu\) has bases independent in \(M\), and \(\nu(A)=\infty\) whenever \(A\) is dependent in \(M\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.1">
+The support matroid of \(\nu\) is an ordinary quotient of \(M\), so its bases are independent in \(M\).
+</LEMMA_PROOF>
+<DEPS id="6.1"></DEPS>
+
+<LEMMA_STATEMENT id="6.2">
+Let \(\nu\preceq\mu_M\) have rank \(k>0\). If \(B=A\cup b\) and \(B'=A\cup b'\) are independent \(k\)-subsets spanning the same rank \(k\) flat, then \(\nu(Ab)=\nu(Ab')\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="6.2">
+Choose one complement \(C\) so that both \(AbC\) and \(Ab'C\) are \(M\)-bases. In the incidence relation for \(\nu\preceq\mu_M\) from Proposition 1 with lower set \(A\) and upper set \(A\cup\{b,b'\}\cup C\), the only finite \(\mu_M\)-terms are the \(b\)- and \(b'\)-terms. Thus \(\nu(Ab)=\nu(Ab')\).
+</LEMMA_PROOF>
+<DEPS id="6.2">1</DEPS>
+
+<PROPOSITION_PROOF id="6">
+Lemma 6.1 gives the assertion for dependent sets. For \(k>0\) it suffices to compare \(B=A\cup b\) and \(B'=A\cup b'\) spanning the same rank \(k\) flat; Lemma 6.2 gives the comparison.
+</PROPOSITION_PROOF>
+<DEPS id="6">6.1, 6.2</DEPS>
+
+<PROPOSITION_STATEMENT id="7">
+Let \(M\) be a matroid of rank \(r\) whose lattice of flats has an order-reversing involution \(X\mapsto X^\perp\). For a rank \(k\) quotient \(\nu\preceq\mu_M\), define
+\[
+ \nu^{\perp_M}(A)=
+ \begin{cases}
+   \bar\nu\bigl((\cl A)^\perp\bigr),
+      & A\text{ independent in }M,\ |A|=r-k,\\
+   \infty,&\text{otherwise.}
+ \end{cases}                                                 \tag{2}
+\]
+Here \(\bar\nu(X)\) denotes the common value of \(\nu\) on independent \(k\)-sets spanning the rank \(k\) flat \(X\), and \(\bar\nu(X)=\infty\) if no basis of \(\nu\) spans \(X\). Statement:
+This is projectively well-defined, and applying it twice recovers the original flat coordinates.
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="7">
+None.
+</PROPOSITION_PROOF>
+<DEPS id="7"></DEPS>
+
+<PROPOSITION_STATEMENT id="8">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). Let \(N\) be an ordinary quotient of \(M\) of rank \(k\), with rank function \(\rho_N\). Define
+\[
+        \rho^\perp(A)=\rk_M(A)-k+\rho_N((\cl A)^\perp).          \tag{3}
+\]
+Statement:
+\(\rho^\perp\) is a matroid rank function. Its bases are precisely the finite support of the polar formula \((2)\). If \(N_p\) is a quotient of \(N_q\), then \(N_q^{\perp_M}\) is a quotient of \(N_p^{\perp_M}\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="8.1">
+Let \(N\) be an ordinary quotient of \(M\) with rank function \(\rho_N\). Then \(\rho_N\) is constant on \(M\)-closures.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.1">
+Since \(N\) is a quotient of \(M\), \(\rho_N\) is constant on \(M\)-closures: if \(e\in\cl_M(A)\), then the \(N\)-rank increment from \(A\) to \(Ae\) is at most the corresponding \(M\)-increment, namely \(0\).
+</LEMMA_PROOF>
+<DEPS id="8.1"></DEPS>
+
+<LEMMA_STATEMENT id="8.2">
+Under the assumptions of Proposition 8, the restriction of \(\rho^\perp\) to flats is monotone with unit increments and is submodular on flats.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.2">
+First restrict \((3)\) to flats. For flats \(X\le Y\),
+\[
+\rho^\perp(Y)-\rho^\perp(X)
+ =\rk(Y)-\rk(X)-\bigl(\rho_N(X^\perp)-\rho_N(Y^\perp)\bigr)
+\]
+is between \(0\) and \(\rk(Y)-\rk(X)\) by the strong-map increment inequality, so \(\rho^\perp\) is monotone with unit increments on flats. For flats \(X,Y\), modularity of \(\rk_M\) from Proposition 5 and the identities
+\[
+(X\wedge Y)^\perp=X^\perp\vee Y^\perp
+\quad\text{and}\quad
+(X\vee Y)^\perp=X^\perp\wedge Y^\perp
+\]
+reduce submodularity of \(\rho^\perp\) to submodularity of \(\rho_N\).
+</LEMMA_PROOF>
+<DEPS id="8.2">5</DEPS>
+
+<LEMMA_STATEMENT id="8.3">
+Under the assumptions of Proposition 8, the function \(\rho^\perp\) defined by \((3)\) is submodular on arbitrary subsets and has the unit-increment property on arbitrary subsets.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.3">
+For arbitrary subsets, \(\rho^\perp(A)=\rho^\perp(\cl_M A)\). If \(X=\cl A\) and \(Y=\cl B\), then
+\[
+\cl(A\cap B)\le X\wedge Y
+\quad\text{and}\quad
+\cl(A\cup B)=X\vee Y;
+\]
+by monotonicity on flats from Lemma 8.2, submodularity for \(X,Y\) implies submodularity for \(A,B\). The unit-increment property also passes from flats to subsets.
+</LEMMA_PROOF>
+<DEPS id="8.3">8.2</DEPS>
+
+<LEMMA_STATEMENT id="8.4">
+Under the assumptions of Proposition 8, the bases of the matroid rank function \(\rho^\perp\) are precisely the finite support of the polar formula \((2)\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.4">
+An \(M\)-independent set \(A\) of size \(r-k\) has full \(\rho^\perp\)-rank exactly when
+\[
+\rho_N((\cl A)^\perp)=k,
+\]
+and \(M\)-dependent sets cannot be bases; this is precisely the finite support of \((2)\).
+</LEMMA_PROOF>
+<DEPS id="8.4"></DEPS>
+
+<LEMMA_STATEMENT id="8.5">
+Under the assumptions of Proposition 8, if \(N_p\) is a quotient of \(N_q\), then \(N_q^{\perp_M}\) is a quotient of \(N_p^{\perp_M}\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="8.5">
+If \(N_p\) is a quotient of \(N_q\), then on every interval the rank increment of \(N_p\) is at most that of \(N_q\). The displayed formula for increments therefore reverses the inequality for the polar ranks, which is exactly the strong-map criterion saying that \(N_q^{\perp_M}\) is a quotient of \(N_p^{\perp_M}\).
+</LEMMA_PROOF>
+<DEPS id="8.5"></DEPS>
+
+<PROPOSITION_PROOF id="8">
+Lemmas 8.1, 8.2, and 8.3 give a matroid rank function. Lemma 8.4 identifies its bases. Lemma 8.5 gives the quotient reversal for ordinary supports.
+</PROPOSITION_PROOF>
+<DEPS id="8">8.1, 8.2, 8.3, 8.4, 8.5</DEPS>
+
+<PROPOSITION_STATEMENT id="9">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). Let \(p\preceq q\preceq\mu_M\), with \(\rk p=d\) and \(\rk q=d+1\). Statement:
+\(q^{\perp_M}\) and \(p^{\perp_M}\) satisfy all adjacent three-term relations of ranks \(r-d-1\) and \(r-d\); explicitly, for every \(A\in\binom{E}{r-d-2}\) and distinct \(x,y,z\notin A\),
+\[
+\min\{q^{\perp_M}(Ax)+p^{\perp_M}(Ayz),\,
+      q^{\perp_M}(Ay)+p^{\perp_M}(Axz),\,
+      q^{\perp_M}(Az)+p^{\perp_M}(Axy)\}
+\]
+is attained at least twice.
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="9.1">
+Under the assumptions of Proposition 9, fix \(A\) of size \(r-d-2\) and distinct \(x,y,z\notin A\). Put \(U=\cl(A)\), \(W=\cl(Axyz)\), and \(\delta=\rk W-\rk U\). If \(A\) is dependent, or if \(\delta\le1\), then each term in the adjacent transformed three-term relation is \(\infty\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.1">
+If \(A\) is dependent, or if \(\delta\le1\), each term contains a dependent set of the required size and hence is \(\infty\).
+</LEMMA_PROOF>
+<DEPS id="9.1"></DEPS>
+
+<LEMMA_STATEMENT id="9.2">
+Under the assumptions and notation of Lemma 9.1, assume \(A\) is independent and \(\delta=2\). Then the adjacent transformed three-term relation is attained at least twice.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.2">
+Let \(G=W^\perp\) and \(H=U^\perp\), of ranks \(d\) and \(d+2\) by Proposition 5. Whenever the term indexed by \(x\) is finite, \(Ayz\) spans \(W\), so its \(p\)-factor is the common value \(\bar p(G)\) using Proposition 6 and formula \((2)\) of Proposition 7; its \(q\)-factor is \(\bar q((\cl(Ax))^\perp)\), and similarly for \(y,z\). In the rank-two interval \([U,W]\), a loop over \(U\) makes all terms involving it infinite, and two parallel elements give equal corresponding \(q\)-coordinates. Thus only the case of three non-parallel points over \(U\) needs proof. Choose a basis \(S\) of \(G\), representatives \(a_x,a_y,a_z\) for the three dual rank-one flats over \(G\) in \([G,H]\), and a complement \(C\) of \(H\) to a basis of \(M\). In the incidence relation for \(q\preceq\mu_M\) from Proposition 1 with lower set \(S\) and upper set
+\[
+S\cup\{a_x,a_y,a_z\}\cup C,
+\]
+the only finite \(\mu_M\)-terms are those obtained by deleting one of \(a_x,a_y,a_z\). Hence the three displayed \(q\)-coordinates have a non-unique minimum; adding the common \(\bar p(G)\) proves the transformed relation.
+</LEMMA_PROOF>
+<DEPS id="9.2">1, 5, 6, 7</DEPS>
+
+<LEMMA_STATEMENT id="9.3">
+Under the assumptions and notation of Lemma 9.1, assume \(A\) is independent and \(\delta=3\). Then the adjacent transformed three-term relation is attained at least twice.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="9.3">
+Then \(x,y,z\) form a Boolean frame over \(U\). Let \(G=W^\perp\) and
+\[
+ P_x=(\cl(Ayz))^\perp,\quad P_y=(\cl(Axz))^\perp,\quad
+ P_z=(\cl(Axy))^\perp .
+\]
+These are the three atoms over \(G\) in the dual frame, and
+\[
+(\cl(Ax))^\perp=P_y\vee P_z,
+\]
+with the analogous identities for \(y,z\). Choose a basis \(S\) of \(G\) and representatives
+\[
+a_e\in P_e\setminus G.
+\]
+The adjacent incidence relation for \(p\preceq q\) from Proposition 1 applied to the lower set \(S\) and to
+\[
+S\cup\{a_x,a_y,a_z\}
+\]
+is exactly the transformed three-term relation, using flat constancy from Proposition 6 and formula \((2)\) of Proposition 7 to identify the displayed coordinates.
+</LEMMA_PROOF>
+<DEPS id="9.3">1, 6, 7</DEPS>
+
+<PROPOSITION_PROOF id="9">
+Fix \(A\) of size \(r-d-2\) and distinct \(x,y,z\notin A\), and put \(U=\cl(A)\), \(W=\cl(Axyz)\), and \(\delta=\rk W-\rk U\). Lemma 9.1 handles the dependent and \(\delta\le1\) cases. In the remaining independent case, Lemma 9.2 handles \(\delta=2\), and Lemma 9.3 handles \(\delta=3\).
+</PROPOSITION_PROOF>
+<DEPS id="9">9.1, 9.2, 9.3</DEPS>
+
+<PROPOSITION_STATEMENT id="10">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). Statement:
+The formula \(\nu\mapsto\nu^{\perp_M}\) defines an involution of the set underlying \(\Dr(M)\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="10.1">
+Let \(\nu\preceq\mu_M\) have rank \(k\), and let \(h_j\) be its Higgs completion from \((1)\). After harmless scalar normalization,
+\[
+h_0^{\perp_M}=\mu_M.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="10.1">
+After harmless scalar normalization, the right endpoint \(h_0^{\perp_M}=\mu_M\) is clear from formula \((2)\) of Proposition 7.
+</LEMMA_PROOF>
+<DEPS id="10.1">7</DEPS>
+
+<LEMMA_STATEMENT id="10.2">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). Let \(\nu\preceq\mu_M\) have rank \(k\), and let \(h_j\) be its Higgs completion from \((1)\). Assume \(r\ge2\). Suppose \(0\le j\le r-2\) and \(h_j^{\perp_M}\) has already been proved valuated. Then
+\[
+h_{j+1}^{\perp_M}\preceq h_j^{\perp_M}.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="10.2">
+Since \(h_j\preceq h_{j+1}\) by Proposition 4, Proposition 8 says that the ordinary support of \(h_{j+1}^{\perp_M}\) is an elementary quotient of the ordinary support of \(h_j^{\perp_M}\); in particular it satisfies the degenerate support condition \((D)\) relative to \(h_j^{\perp_M}\). Proposition 9 gives the displayed concurrent relations \((C)\) for the pair \(h_{j+1}^{\perp_M},h_j^{\perp_M}\). Proposition 3 then implies
+\[
+h_{j+1}^{\perp_M}\preceq h_j^{\perp_M}.
+\]
+</LEMMA_PROOF>
+<DEPS id="10.2">3, 4, 8, 9</DEPS>
+
+<PROPOSITION_PROOF id="10">
+Insert \(\nu\) in the complete flag \((1)\) from Proposition 4. We prove inductively that
+\[
+        h_r^{\perp_M}\preceq h_{r-1}^{\perp_M}\preceq\cdots
+        \preceq h_0^{\perp_M}=\mu_M .
+\]
+Lemma 10.1 gives the right endpoint. If \(r\le1\), there is nothing more to check beyond the automatic rank-zero quotient. Now assume \(r\ge2\). Lemma 10.2 proves the induction down to \(h_{r-1}^{\perp_M}\); the last rank-zero quotient
+\[
+h_r^{\perp_M}\preceq h_{r-1}^{\perp_M}
+\]
+is automatic. Hence \(\nu^{\perp_M}\), one layer of the flag, lies in \(\Dr(M)\). Involutivity follows from formula \((2)\) of Proposition 7 and \((X^\perp)^\perp=X\).
+</PROPOSITION_PROOF>
+<DEPS id="10">4, 7, 10.1, 10.2</DEPS>
+
+<PROPOSITION_STATEMENT id="11">
+Let \(w\preceq\mu_M\) have rank \(k\ge1\), let \(A\) be an independent \((k-1)\)-set of \(M\), and let \(C\) be a circuit of \(M/A\) with \(|C|\ge2\). Statement:
+\[
+\min_{i\in C}w(A\cup i)
+\]
+is attained at least twice.
+</PROPOSITION_STATEMENT>
+
+<PROPOSITION_PROOF id="11">
+Let \(F=\cl(A\cup C)\). For every \(i\in C\), \(A\cup(C-i)\) is independent and spans \(F\). Choose one complement \(D\) of \(F\) to an \(M\)-basis. In the incidence relation for \(w\preceq\mu_M\) from Proposition 1 with lower set \(A\) and upper set \(A\cup C\cup D\), the finite \(\mu_M\)-terms are exactly those indexed by \(i\in C\).
+</PROPOSITION_PROOF>
+<DEPS id="11">1</DEPS>
+
+<PROPOSITION_STATEMENT id="12">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). If \(p\preceq q\preceq\mu_M\), then
+\[
+        q^{\perp_M}\preceq p^{\perp_M}.
+\]
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="12.1">
+Let \(p\preceq q\preceq\mu_M\), with \(\rk p=a\) and \(\rk q=b\). If \(a=b\), then \(p\) and \(q\) are projectively equal. If \(a=0\), then \(p^{\perp_M}=\mu_M\), so the assertion is \(q^{\perp_M}\preceq\mu_M\). If \(b=r\), the assertion is the vacuous rank-zero lower quotient.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="12.1">
+If \(a=b\), the strong-map inequalities applied to
+\[
+\emptyset\subseteq A
+\quad\text{and to}\quad
+A\subseteq E
+\]
+force the two ordinary support rank functions to be equal. Then \(p\) and \(q\) are projectively equal: the equal-rank incidence relation on adjacent bases from Proposition 1 shows \(p(B)-q(B)\) is constant on the common basis graph. If \(a=0\), then \(p^{\perp_M}=\mu_M\) by formula \((2)\) of Proposition 7, so the assertion is \(q^{\perp_M}\preceq\mu_M\); if \(b=r\), it is the vacuous rank-zero lower quotient.
+</LEMMA_PROOF>
+<DEPS id="12.1">1, 7</DEPS>
+
+<LEMMA_STATEMENT id="12.2">
+Assume \(p\preceq q\preceq\mu_M\), \(\rk p=a\), \(\rk q=b\), and \(0<a<b<r\). Then \(p^{\perp_M}\) and \(q^{\perp_M}\) are valuated matroids in \(\Dr(M)\), their ordinary supports are in quotient order, and it remains to prove nested incidence for \(q^{\perp_M}\preceq p^{\perp_M}\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="12.2">
+By Proposition 10 the polars are valuated matroids, and by Proposition 8 their ordinary supports are in quotient order. By Proposition 2 it remains to prove nested incidence.
+</LEMMA_PROOF>
+<DEPS id="12.2">2, 8, 10</DEPS>
+
+<LEMMA_STATEMENT id="12.3">
+Assume \(p\preceq q\preceq\mu_M\), \(\rk p=a\), \(\rk q=b\), and \(0<a<b<r\). Fix \(A\subseteq T\) with
+\[
+|A|=r-b-1,\qquad |T|=r-a+1,
+\]
+set \(B=T\setminus A\), and set
+\[
+m=|B|=b-a+2.
+\]
+If \(A\) is dependent, then all nested transformed incidence terms are \(\infty\). If \(A\) is independent and \(U=\cl(A)\), \(W=\cl(T)\), \(\delta=\rk W-\rk U\), then a finite term forces \(T-i\) to be independent and hence \(\delta\ge m-1\); since \(\delta\le m\), only the cases \(\delta=m\) and \(\delta=m-1\) remain.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="12.3">
+If \(A\) is dependent all terms are \(\infty\). Otherwise put \(U=\cl(A)\), \(W=\cl(T)\), and \(\delta=\rk W-\rk U\). A finite term forces \(T-i\) to be independent, hence \(\delta\ge m-1\); since \(\delta\le m\), only two cases remain.
+</LEMMA_PROOF>
+<DEPS id="12.3"></DEPS>
+
+<LEMMA_STATEMENT id="12.4">
+Under the assumptions and notation of Lemma 12.3, if \(\delta=m\), then the nested transformed incidence relation holds.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="12.4">
+Then \(T\) is independent over \(U\). Let \(G=W^\perp\) and \(H=U^\perp\), of ranks \(a-1\) and \(b+1\) by Proposition 5. The interval generated by \(B\) is Boolean; after applying \({}^\perp\), the flats
+\[
+X_i=(\cl(T-i))^\perp
+\]
+are the atoms over \(G\), and
+\[
+Y_i=(\cl(Ai))^\perp
+\]
+is the join of all \(X_j\) with \(j\ne i\). Choose a basis \(S\) of \(G\) and representatives \(x_i\in X_i\setminus G\). The nested incidence relation for \(p\preceq q\) from Proposition 1 with lower set \(S\) and upper set
+\[
+S\cup\{x_i:i\in B\}
+\]
+is exactly the desired transformed relation, using formula \((2)\) of Proposition 7.
+</LEMMA_PROOF>
+<DEPS id="12.4">1, 5, 7</DEPS>
+
+<LEMMA_STATEMENT id="12.5">
+Under the assumptions and notation of Lemma 12.3, assume additionally that \(q^{\perp_M}\preceq\mu_M\). If \(\delta=m-1\), then the nested transformed incidence relation holds.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="12.5">
+Then \(B\) has nullity one in \(M/A\), hence a unique circuit \(C\). A loop circuit gives only \(\infty\) terms. Otherwise, for \(i\notin C\) the set \(T-i\) is dependent; for \(i\in C\) it is independent and spans \(W\), so the \(p^{\perp_M}(T-i)\) factor is the common value \(\bar p(W^\perp)\) using Proposition 6. Proposition 11, applied to \(w=q^{\perp_M}\) and the circuit \(C\) of \(M/A\), gives two minima among the remaining \(q^{\perp_M}(Ai)\) terms. This proves nested incidence.
+</LEMMA_PROOF>
+<DEPS id="12.5">6, 11</DEPS>
+
+<PROPOSITION_PROOF id="12">
+Let \(\rk p=a\) and \(\rk q=b\). Lemma 12.1 handles the cases \(a=b\), \(a=0\), and \(b=r\). Hence assume \(0<a<b<r\). Lemma 12.2 reduces the assertion to nested incidence. Fix \(A\subseteq T\) with
+\[
+|A|=r-b-1,\qquad |T|=r-a+1.
+\]
+Lemma 12.3 leaves only the cases \(\delta=m\) and \(\delta=m-1\). Lemma 12.4 proves the case \(\delta=m\), and Lemma 12.5 proves the case \(\delta=m-1\).
+</PROPOSITION_PROOF>
+<DEPS id="12">12.1, 12.2, 12.3, 12.4, 12.5</DEPS>
+
+<PROPOSITION_STATEMENT id="13">
+Let \(M\) be a rank \(r\) matroid whose lattice of flats admits an order-reversing involution \(X\mapsto X^\perp\). Let \(F\) be a flat of rank \(f\), and let \(q_F\) be the trivial rank \(r-f\) valuated matroid of
+\[
+M/F\oplus U_{0,F}.
+\]
+Statement:
+The polar transform sends the flat \(F\) to \(F^\perp\).
+</PROPOSITION_STATEMENT>
+
+<LEMMA_STATEMENT id="13.1">
+Let \(F\) be a flat of rank \(f\), and let \(q_F\) be the trivial rank \(r-f\) valuated matroid of \(M/F\oplus U_{0,F}\). For an independent \((r-f)\)-set \(B\) with \(Z=\cl(B)\),
+\[
+        q_F(B)<\infty\quad\Longleftrightarrow\quad Z\vee F=\hat1.
+\]
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="13.1">
+None.
+</LEMMA_PROOF>
+<DEPS id="13.1"></DEPS>
+
+<LEMMA_STATEMENT id="13.2">
+Let \(F\) be a flat of rank \(f\), let \(q_F\) be the trivial rank \(r-f\) valuated matroid of \(M/F\oplus U_{0,F}\), and let \(A\) be an independent \(f\)-set with \(Y=\cl(A)\). Then
+\[
+ q_F^{\perp_M}(A)<\infty
+ \quad\Longleftrightarrow\quad
+Y\vee F^\perp=\hat1,
+\]
+the basis condition for \(M/F^\perp\oplus U_{0,F^\perp}\).
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="13.2">
+For an independent \(f\)-set \(A\) with \(Y=\cl(A)\), formula \((2)\) of Proposition 7 gives
+\[
+ q_F^{\perp_M}(A)<\infty
+ \quad\Longleftrightarrow\quad Y^\perp\vee F=\hat1 .
+\]
+By modularity from Proposition 5, since \(\rk(Y^\perp)=r-f\) and \(\rk F=f\), this is equivalent to
+\[
+Y^\perp\wedge F=\hat0.
+\]
+Applying the anti-automorphism gives
+\[
+Y\vee F^\perp=\hat1,
+\]
+the basis condition for \(M/F^\perp\oplus U_{0,F^\perp}\).
+</LEMMA_PROOF>
+<DEPS id="13.2">5, 7</DEPS>
+
+<LEMMA_STATEMENT id="13.3">
+For the flat \(F\) and \(q_F\) of Proposition 13, the finite values are zero on both sides.
+</LEMMA_STATEMENT>
+
+<LEMMA_PROOF id="13.3">
+None.
+</LEMMA_PROOF>
+<DEPS id="13.3"></DEPS>
+
+<PROPOSITION_PROOF id="13">
+Lemma 13.1 gives the finite support of \(q_F\). Lemma 13.2 identifies the finite support of \(q_F^{\perp_M}\) with the basis condition for \(M/F^\perp\oplus U_{0,F^\perp}\). Lemma 13.3 identifies the finite values. Thus the polar transform sends the flat \(F\) to \(F^\perp\).
+</PROPOSITION_PROOF>
+<DEPS id="13">13.1, 13.2, 13.3</DEPS>
+
+<THEOREM_PROOF id="1">
+Combining Proposition 10, Proposition 12, and Proposition 13, the map
+\[
+        \Phi([\nu])=[\nu^{\perp_M}]
+\]
+is an order-reversing involution of \(\Dr(M)\) extending the given order-reversing involution of \(\cL(M)\).
+</THEOREM_PROOF>
+<DEPS id="theorem_1">10, 12, 13</DEPS>

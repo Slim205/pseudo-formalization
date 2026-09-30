@@ -91,7 +91,7 @@ def _row_metadata(row: Dict[str, Any]) -> Dict[str, Any]:
         "url": row.get("url"),
         "category": row.get("category"),
         "category_name_readable": row.get("category_name_readable"),
-        "title": row.get("title_extracted_from_tex"),
+        "title": row.get("title") or row.get("title_extracted_from_tex"),
         "tex_number_of_lines": row.get("tex_number_of_lines"),
         "ground_truth_location": row.get("Location of Error"),
         "comments": row.get("comments"),
@@ -112,11 +112,18 @@ async def _run_one(
     return result
 
 
-def _build_verifier(method: str, model: str, effort: str) -> Any:
+def _build_verifier(method: str, model: str, effort: str,
+                    faithfulness: str = "whole") -> Any:
     if method == "baseline":
         return ArxivVerifierBaseline(model=model, effort=effort)
     if method == "pseudo-formalisation":
-        return ArxivDecomposedVerifier(model=model, effort=effort)
+        # faithfulness: "whole" (the paper: one call audits the whole rewrite),
+        # "per_component" (one call per component) or "off" (parse check only).
+        if faithfulness == "off":
+            return ArxivDecomposedVerifier(model=model, effort=effort,
+                                           faithfulness_check=False)
+        return ArxivDecomposedVerifier(model=model, effort=effort,
+                                       faithfulness_mode=faithfulness)
     if method == "arxiv-complex-pseudo-formalisation":
         # Defaults: faithfulness on, meta-verify on, n_verifications=1,
         # global block check off (friend can flip on later if useful).
@@ -147,6 +154,7 @@ async def main(
     limit: int = -1,
     arxiv_ids: list = None,
     save_every: int = 10,
+    faithfulness: str = "whole",
 ) -> Dict[str, Any]:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -209,7 +217,7 @@ async def main(
         state[aid]["pdf_filename"] = pdf_info[aid]["filename"]
         state[aid]["pdf_size_bytes"] = pdf_info[aid]["size_bytes"]
 
-    verifier = _build_verifier(method, model, effort)
+    verifier = _build_verifier(method, model, effort, faithfulness)
     sem = asyncio.Semaphore(concurrency)
 
     # Build the task list: only fire calls that haven't been completed yet.
@@ -313,6 +321,11 @@ def _parse_args() -> argparse.Namespace:
     )
     p.add_argument("--save-every", type=int, default=10,
                    help="Checkpoint frequency in completed runs.")
+    p.add_argument("--faithfulness", choices=["whole", "per_component", "off"],
+                   default="whole",
+                   help="pseudo-formalisation faithfulness check: one call over the "
+                   "whole rewrite (default, as in the paper), one call per "
+                   "component, or none.")
     return p.parse_args()
 
 
@@ -331,5 +344,6 @@ if __name__ == "__main__":
             limit=args.limit,
             arxiv_ids=args.arxiv_id,
             save_every=args.save_every,
+            faithfulness=args.faithfulness,
         )
     )

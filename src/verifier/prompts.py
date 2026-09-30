@@ -1173,6 +1173,60 @@ The original paper is the PDF attached to this message.
 """
 
 
+# Whole-rewrite faithfulness check (paper Appendix E.4): ONE call audits every
+# component of the rewrite against the PDF. Placeholders: {component_ids},
+# {rewritten_paper}. XML output, since descriptions contain raw LaTeX.
+WHOLE_FAITHFULNESS_PROMPT_PDF_ONLY = """You are an expert mathematician reviewing whether a rewritten mathematical paper faithfully represents the original paper.
+
+You are given:
+1. **Original Paper (PDF)**: The rendered PDF of the original paper, attached as a file. This is the ground truth.
+2. **Rewritten Paper**: The full structured rewrite, as a tree of theorems, propositions and lemmas. Each component carries an id.
+3. **Component ids**: The complete list of ids you may refer to.
+
+Your task is to determine, for **every component** of the Rewritten Paper, whether that component's statement and proof **faithfully represent** the corresponding part of the Original Paper.
+
+Check for:
+1. **Strengthened or weakened claims**: Does the component claim more or less than the original paper establishes at the corresponding point?
+2. **Omitted content**: Does the component's proof drop a non-trivial argument that appears in the original paper?
+3. **Added content**: Does the component's proof introduce new arguments, repairs, or proof ideas not present in the original paper?
+4. **Notation drift**: Are variables, functions, or definitions used differently than in the original paper?
+5. **Misinterpretation**: Does the component misunderstand the original's reasoning or logical structure?
+6. **Scope errors**: Are assumptions incorrectly inherited, dropped, or added compared to the original?
+
+Instructions:
+- Do NOT judge whether the original paper is mathematically correct. Your sole task is faithfulness.
+- Only flag changes that alter mathematical meaning. Cosmetic rephrasing is fine.
+- A component may assume the statements of the components that enclose it; judge it within that scope.
+- Work through the components in the order they are listed. A component you do not report is treated as faithful, so only report a component when you have identified a specific discrepancy.
+- Use ONLY ids from the Component ids list. Do not invent ids.
+
+OUTPUT FORMAT:
+
+After your analysis, output your final answer using the following XML-style format. Use one `<component>` block per unfaithful component. Use the field tags exactly as shown. You may write LaTeX math (with raw backslashes) freely inside the `<description>` field; do not escape anything. Do not output anything after the closing `</unfaithful>` tag.
+
+<unfaithful>
+  <component>
+    <id>an id from the Component ids list</id>
+    <description>Identify the specific discrepancy: what the rewrite says vs. what the original paper says.</description>
+  </component>
+</unfaithful>
+
+If every component is faithful, output an empty block:
+
+<unfaithful>
+</unfaithful>
+
+**ORIGINAL PAPER**
+The original paper is the PDF attached to this message.
+
+**COMPONENT IDS**
+{component_ids}
+
+**REWRITTEN PAPER**
+{rewritten_paper}
+"""
+
+
 ARXIV_META_VERIFY_PROMPT_PDF_ONLY = """You are an expert mathematical referee. Your task is to produce the FINAL list of mathematical errors in a peer-reviewed mathematics paper.
 
 You are given:

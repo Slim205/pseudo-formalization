@@ -5,15 +5,16 @@ The dataset must be pre-decrypted to ``data/hard2verify.json`` (see
 ``decrypt_hard2verify.py``).
 
 Two verification methods (selected with ``--method``):
-  - ``baseline``: ``Verfifierbaseline`` (one model call per run, returns a
-    0-7 score that we threshold to a binary label later).
+  - ``baseline``: ``Hard2VerifyStepBaseline`` (one step-level LLM-as-judge
+    call per run using the Hard2Verify authors' prompts from
+    ``Hard2Verify/utils.py``; returns a yes/no verdict per step).
   - ``pseudo-formalisation``: ``PseudoFormalisationVerifier`` (rewrite +
     faithfulness retries + per-component verification + step meta-calibration).
 
-Both reuse the existing IMO verifiers / prompts from ``src/verifier``.
-The Hard2Verify problems are olympiad-style and the prompts already
-target that style of grading; the only adaptation here is at the data
-layer (concatenate ``model_response_by_step`` into a single proof and
+The pseudo-formalisation method reuses the existing IMO verifiers / prompts
+from ``src/verifier``; the Hard2Verify problems are olympiad-style and the
+prompts already target that style of grading. The only adaptation is at the
+data layer (concatenate ``model_response_by_step`` into a single proof and
 derive a binary GT label from ``human_labels``).
 
 Per-row data shape (matches what ``src/pipeline`` expects):
@@ -50,7 +51,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from src.verifier.verifier import (
-    Verfifierbaseline,
+    Hard2VerifyStepBaseline,
     PseudoFormalisationVerifier,
 )
 from src.pipeline import pipeline
@@ -135,7 +136,7 @@ def _build_dataset(
 
 def _build_verifier(method: str, n_runs: int, model: str, effort: str):
     if method == "baseline":
-        return Verfifierbaseline(
+        return Hard2VerifyStepBaseline(
             n=n_runs,
             max_tries=6,
             model=model,
